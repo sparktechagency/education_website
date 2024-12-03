@@ -3,7 +3,6 @@ import "./globals.css";
 import Navbar from "@/components/Shared/Navbar";
 import Footer from "@/components/Shared/Footer";
 
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -27,15 +26,17 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="">
-        <div className="bg-[#2F799E] ">
-          <div className="max-w-[1400px] m-auto">
-          <Navbar />
+          <div className="bg-[#2F799E] ">
+            <div className="max-w-[1400px] m-auto">
+              <Navbar />
+            </div>
           </div>
-        </div>
-        <div className="max-w-[1400px] m-auto">{children}</div>
-        <div>
-          <Footer />
-        </div>
+          <div className="max-w-[1400px] m-auto ">{children}</div>
+          <div className="bg-[#2F799E] pb-2">
+            <div className="">
+              <Footer />
+            </div>
+          </div>
         </div>
       </body>
     </html>

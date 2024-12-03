@@ -6,7 +6,7 @@ import logo from "../../../public/navbar/logo.png";
 import language from "../../../public/navbar/language.png";
 import { useState } from "react";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { FaRegUserCircle } from "react-icons/fa";
+import { FaBars, FaRegUserCircle } from "react-icons/fa";
 const Navbar = () => {
   const [activeLanguage, setActiveLanguage] = useState("Eng");
   const navItems = [
@@ -29,16 +29,54 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center py-2">
-      <div>
-        <Image src={logo} alt="logo" width={80} height={80} />
-      </div>
-      <div className="flex gap-20 text-white">
-        {navItems.map((item, index) => (
-          <div key={index}>
-            <Link href={item.path}>{item.title}</Link>
+    <div className="flex justify-between items-center py-2 px-4 lg:px-0">
+      <div className="flex">
+        <div className="lg:hidden">
+          <div className="drawer">
+            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content">
+              {/* Page content here */}
+              <div className="mt-7">
+              <label
+                htmlFor="my-drawer"
+                className=" text-3xl text-white"
+              >
+                
+                <FaBars />
+               
+              </label>
+              </div>
+            </div>
+            <div className="drawer-side">
+              <label
+                htmlFor="my-drawer"
+                aria-label="close sidebar"
+                className="drawer-overlay"
+              ></label>
+              <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                {/* Sidebar content here */}
+                {navItems.map((item, index) => (
+                  <div key={index}>
+                    <Link href={item.path}>{item.title}</Link>
+                  </div>
+                ))}
+              </ul>
+            </div>
           </div>
-        ))}
+        </div>
+        <div>
+          <Image src={logo} alt="logo" width={80} height={80} />
+        </div>
+      </div>
+
+      <div className="hidden lg:block">
+        <div className="flex gap-20 text-white">
+          {navItems.map((item, index) => (
+            <div key={index}>
+              <Link href={item.path}>{item.title}</Link>
+            </div>
+          ))}
+        </div>
       </div>
       <div>
         <div className="border border-white flex rounded">
@@ -63,8 +101,8 @@ const Navbar = () => {
           </button>
         </div>
         <div className="text-yellow-100 flex text-3xl justify-end mt-3 gap-2">
-        <IoMdNotificationsOutline />
-        <FaRegUserCircle />
+          <IoMdNotificationsOutline />
+          <FaRegUserCircle />
         </div>
       </div>
     </div>
