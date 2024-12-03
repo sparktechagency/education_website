@@ -35,9 +35,9 @@ const Footer = () => {
             "Children are not only our future, but they also have a right to
             shape it with their voices heard and their rights upheld."
           </p>
-          <button className="bg-white rounded text-[#2F799E] p-2 mt-5">
+          <Link href={'/contact'}><button className="bg-white rounded text-[#2F799E] p-2 mt-5">
             contact Us
-          </button>
+          </button></Link>
         </div>
         <div className="md:flex justify-center py-9 md:py-0">
           <div className="text-white space-y-3">

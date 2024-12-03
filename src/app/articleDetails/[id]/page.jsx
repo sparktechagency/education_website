@@ -1,20 +1,55 @@
-import { Description } from "@radix-ui/react-dialog";
+import { notFound } from "next/navigation";
+import img from "../../../../public/article/cover.png";
+import img1 from "../../../../public/article/cover1.png";
+import img2 from "../../../../public/article/cover2.png";
+import img4 from "../../../../public/home/popular.png";
 import Image from "next/image";
 import { MdArrowBack } from "react-icons/md";
-import img from "../../../public/article/cover.png";
-import img1 from "../../../public/article/cover1.png";
-import img2 from "../../../public/article/cover2.png";
-import { IoMdArrowForward } from "react-icons/io";
-import Articles from "@/components/articles/Articles";
-import Link from "next/link";
-const page = () => {
-  const videos = [
+const ArticleDetails = ({ params }) => {
+  const { id } = params;
+
+  const related = [
+    {
+      id: 1,
+      title1: "Education is the most powerful weapon",
+      time1: "2 day's ago",
+      detaisl:
+        " These include exhibitions,  presentations, competitions, technical events,",
+      thumbnail1: img4,
+    },
+    {
+      id: 1,
+      title1: "Education is the most powerful weapon",
+      time1: "2 day's ago",
+      detaisl:
+        " These include exhibitions, seminars, projects, competitions, technical events,",
+      thumbnail1: img4,
+    },
+    {
+      id: 1,
+      title1: "Education is the most powerful weapon",
+      time1: "2 day's ago",
+      detaisl:
+        " These include exhibitions, seminars, projects, presentations, , technical events,",
+      thumbnail1: img4,
+    },
+    {
+      id: 1,
+      title1: "Education is the most powerful weapon",
+      time1: "2 day's ago",
+      detaisl:
+        " These include exhibitions, seminars, projects, presentations, ,",
+      thumbnail1: img4,
+    },
+  ];
+  const articles = [
     {
       id: 1,
       title: "Education is the most powerful weapon",
       description: `In today’s era education is not only confined to read and write. It is now linked to the holistic development of the children. With the efforts of the Government and parents, education has now reached everyone and every child is knowledgeable nowadays. Now the challenge and the demands in the market are not only limited to having knowledge, but it is also more about how impeccably one can present that knowledge.  This is the reason the  are leaving no stone unturned to help students to experiment with their knowledge and are providing them different opportunities to showcase their skills. These include exhibitions, seminars, projects, presentations, competitions, technical events, etc....... `,
 
       time: "2 day's ago",
+
       thumbnail: img,
     },
     {
@@ -24,6 +59,7 @@ const page = () => {
         "In today’s era education is not only confined to read and write. It is now linked to the holistic development of the children. With the efforts of the Government and parents, education has now reached everyone and every child is knowledgeable nowadays. Now the challenge and the demands in the market are not only limited to having knowledge, but it is also more about how impeccably one can present that knowledge.  This is the reason the best CBSE schools of Bhubaneswar are leaving no stone unturned to help students to experiment with their knowledge and are providing them different opportunities to showcase their skills. These include exhibitions, seminars, projects, presentations, competitions, technical events, etc....... ",
 
       time: "2 day's ago",
+
       thumbnail: img1,
     },
     {
@@ -33,14 +69,19 @@ const page = () => {
         "In today’s era education is not only confined to read and write. It is now linked to the holistic development of the children. With the efforts of the Government and parents, education has now reached everyone and every child is knowledgeable nowadays. Now the challenge and the demands in the market are not only limited to having knowledge, but it is also more about how impeccably one can present that knowledge.  This is the reason the best CBSE schools of Bhubaneswar are leaving no stone unturned to help students to experiment with their knowledge and are providing them different opportunities to showcase their skills. These include exhibitions, seminars, projects, presentations, competitions, technical events, etc....... ",
 
       time: "2 day's ago",
+
       thumbnail: img2,
     },
-
-    // Add more videos as needed
   ];
 
+  const article = articles.find((item) => item.id === parseInt(id));
+
+  if (!article) {
+    return notFound();
+  }
+
   return (
-    <div className="max-w-[1400px] m-auto ">
+    <div className="p-5 max-w-[1400px] m-auto ">
       <div className="flex items-center my-5 mb-11">
         <div className="w-[20%] flex items-center gap-2 text-[#2F799E]">
           <MdArrowBack />
@@ -65,13 +106,65 @@ const page = () => {
         </div>
       </div>
 
+      <div className="grid grid-cols-3">
+        <div className="col-span-2 mt-2 mr-4">
+          <Image src={article.thumbnail} width={1500} height={399} alt="asdf" />
+        </div>
+
+        <div className="col-span-1 ">
+          {related.slice(0, 3).map((relat) => (
+            <>
+              <div>
+                <div className="flex bg-[#C0C9CD] rounded-xl my-2 mx-1">
+                  <Image
+                    className="rounded-xl"
+                    src={relat.thumbnail1}
+                    width={140}
+                    height={100}
+                    alt="asdf"
+                  />
+
+                  <div className="p-3">
+                    <p className="font-semibold"> {relat.time1}</p>
+                    <p className=" font-semibold truncate">{relat.title1}</p>
+                    <p className="text-sm">{relat.detaisl}</p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ))}
+        </div>
+      </div>
+      <h1 className="text-2xl font-bold my-6">{article.title}</h1>
+      <p className="text-gray-700">{article.description}</p>
       <div>
-        {videos.map((item) => (
-          <Articles item={item}></Articles>
-        ))}
+        <div className="grid grid-cols-2 mt-11 gap-11">
+          <div>
+            <Image
+              src={article.thumbnail}
+              width={1500}
+              height={399}
+              alt="asdf"
+            />
+          </div>
+          <p className="text-gray-700">{article.description}</p>
+        </div>
+
+        <div className="grid grid-cols-2 mt-11 gap-11">
+          
+          <p className="text-gray-700">{article.description}</p>
+          <div>
+            <Image
+              src={article.thumbnail}
+              width={1500}
+              height={399}
+              alt="asdf"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default page;
+export default ArticleDetails;

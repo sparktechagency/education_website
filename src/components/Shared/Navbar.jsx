@@ -29,7 +29,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center py-2 px-4 lg:px-0">
+    <div className="flex justify-between items-center  px-4 lg:px-0">
       <div className="flex">
         <div className="lg:hidden">
           <div className="drawer">
@@ -47,13 +47,13 @@ const Navbar = () => {
               </label>
               </div>
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side z-50">
               <label
                 htmlFor="my-drawer"
                 aria-label="close sidebar"
-                className="drawer-overlay"
+                className="drawer-overlay z-50"
               ></label>
-              <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+              <ul className="menu bg-black z-50 text-base-content min-h-full w-80 p-4">
                 {/* Sidebar content here */}
                 {navItems.map((item, index) => (
                   <div key={index}>
@@ -65,7 +65,7 @@ const Navbar = () => {
           </div>
         </div>
         <div>
-          <Image src={logo} alt="logo" width={80} height={80} />
+          <Image src={logo} alt="logo" width={70} height={80} />
         </div>
       </div>
 
@@ -78,7 +78,7 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-      <div>
+      <div className="my-2">
         <div className="border border-white flex rounded">
           <div className="flex items-center p-1">
             <Image src={language} alt="language" width={23} height={20} />
@@ -100,7 +100,7 @@ const Navbar = () => {
             Esp
           </button>
         </div>
-        <div className="text-yellow-100 flex text-3xl justify-end mt-3 gap-2">
+        <div className="text-yellow-100 flex text-3xl justify-end mt-1 gap-2">
           <IoMdNotificationsOutline />
           <FaRegUserCircle />
         </div>
