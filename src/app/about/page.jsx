@@ -18,15 +18,15 @@ const page = () => {
     ]
   return (
     <div>
-      <div className="bg-[#DBE3EA] py-8 ">
+      <div className="bg-[#DBE3EA] py-8 px-4 md:px-0">
         <div className="max-w-[1400px] m-auto ">
-          <h1 className="text-4xl font-bold">Discover Who We Are &</h1>
-          <h1 className="text-white font-bold text-4xl  mt-2">
+          <h1 className="md:text-4xl text-2xl  font-bold">Discover Who We Are &</h1>
+          <h1 className="text-white font-bold md:text-4xl text-2xl  mt-2">
             <span className="text-zinc-600">-</span> what drives us
           </h1>
         </div>
       </div>
-      <div className="max-w-[1400px] m-auto mt-11">
+      <div className="max-w-[1400px] m-auto mt-11 mx-4 md:mx-0">
         <Image src={img} width={1600} height={399} alt="asdf" />
 
         <h1 className="my-4 text-4xl font-semibold">Get to Know Us: Our Journey and Vision for Child Education</h1>

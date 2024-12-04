@@ -101,8 +101,8 @@ const Navbar = () => {
           </button>
         </div>
         <div className="text-yellow-100 flex text-3xl justify-end mt-1 gap-2">
-          <IoMdNotificationsOutline />
-          <FaRegUserCircle />
+          <Link href={'/notification'}><IoMdNotificationsOutline /></Link>
+          <Link href={'/personalInfo'}><FaRegUserCircle /></Link>
         </div>
       </div>
     </div>

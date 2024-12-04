@@ -6,7 +6,7 @@ import FaqSection from "@/components/home/FaqSection";
 
 export default function Home() {
   return (
-    <div className="max-w-[1400px] m-auto ">
+    <div className="max-w-[1400px] m-auto mb-20">
       <Hero></Hero>
       <PopularVideo></PopularVideo>
       <SpecialVideo></SpecialVideo>

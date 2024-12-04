@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaBookmark } from "react-icons/fa6";
 
-const Videos = ({ videose }) => {
+const ArticleBookmarks = ({ videose }) => {
   return (
     <div>
       <Link href={`/videdetails/${videose.id}`}>
@@ -14,22 +14,7 @@ const Videos = ({ videose }) => {
             height={100}
             className="w-full h-90 object-cover"
           />
-          <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-md">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6 text-black"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M14.752 11.168l-5.197-3.482a1 1 0 00-1.555.832v6.964a1 1 0 001.555.832l5.197-3.482a1 1 0 000-1.664z"
-              />
-            </svg>
-          </button>
+          
         </div>
       </Link>
 
@@ -52,4 +37,4 @@ const Videos = ({ videose }) => {
   );
 };
 
-export default Videos;
+export default ArticleBookmarks;

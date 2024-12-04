@@ -11,16 +11,24 @@ const Footer = () => {
       path: "/",
     },
     {
-      title: "About",
+      title: "About Us",
       path: "/about",
     },
     {
-      title: "Video",
-      path: "/video",
+      title: "Contact Us",
+      path: "/contact",
     },
     {
-      title: "Article",
-      path: "/article",
+      title: "Terms & condition",
+      path: "/terms&condition",
+    },
+    {
+      title: "Feedback",
+      path: "/feedback",
+    },
+    {
+      title: "Partner Law Firms",
+      path: "/partnerlaw",
     },
   ];
   return (

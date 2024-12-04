@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const PopularCard = ({video}) => {
     return (
         <div>
+            <Link href={`/videdetails/${video.id}`}>
             <div className="relative">
               <Image
                 src={video.thumbnail}
@@ -27,7 +29,8 @@ const PopularCard = ({video}) => {
                   />
                 </svg>
               </button>
-            </div>
+            </div></Link>
+
 
             <div className="p-2 bg-[#2F799E] text-white">
               <h2 className="text-lg font-bold truncate">{video.title}</h2>

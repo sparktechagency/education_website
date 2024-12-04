@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
             </div>
           </div>
           <div className="">{children}</div>
-          <div className="bg-[#2F799E] mt-20 pb-2">
+          <div className="bg-[#2F799E] pb-2">
             <div className="">
               <Footer />
             </div>
