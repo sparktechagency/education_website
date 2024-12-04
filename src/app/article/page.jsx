@@ -40,7 +40,8 @@ const page = () => {
   ];
 
   return (
-    <div className="max-w-[1400px] m-auto mx-4 md:mx-0">
+    <div className="max-w-[1400px] m-auto  ">
+      <div className="mx-4 md:mx-0">
       <div className="flex items-center gap-2  my-5 mb-11">
           <div className="md:w-[20%] flex items-center gap-2 text-[#2F799E]">
             <MdArrowBack />
@@ -69,6 +70,7 @@ const page = () => {
         {videos.map((item) => (
           <Articles item={item}></Articles>
         ))}
+      </div>
       </div>
     </div>
   );

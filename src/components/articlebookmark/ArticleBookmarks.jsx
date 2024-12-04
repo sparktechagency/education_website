@@ -5,7 +5,7 @@ import { FaBookmark } from "react-icons/fa6";
 const ArticleBookmarks = ({ videose }) => {
   return (
     <div>
-      <Link href={`/videdetails/${videose.id}`}>
+      <Link href={`/articlebookdetails/${videose.id}`}>
         <div className="relative">
           <Image
             src={videose.thumbnail}

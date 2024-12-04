@@ -23,9 +23,14 @@ const Footer = () => {
       path: "/terms&condition",
     },
     {
+      title: "privacy Policy",
+      path: "/privacyPolicy",
+    },
+    {
       title: "Feedback",
       path: "/feedback",
     },
+
     {
       title: "Partner Law Firms",
       path: "/partnerlaw",

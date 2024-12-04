@@ -110,7 +110,7 @@ const page = ({ params }) => {
         <div className="flex items-center gap-2  my-5 mb-11">
           <div className="md:w-[20%] flex items-center gap-2 text-[#2F799E]">
             <MdArrowBack />
-            <span>All Videos</span>
+            <span>Article</span>
           </div>
           <div className="md:w-[60%]">
             <label className="input input-bordered rounded-sm w-full flex items-center gap-2 bg-[#75BEE3]  text-white">
@@ -141,22 +141,7 @@ const page = ({ params }) => {
                 height={100}
                 className="w-full h-90 object-cover"
               />
-              <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-md">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6 text-black"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M14.752 11.168l-5.197-3.482a1 1 0 00-1.555.832v6.964a1 1 0 001.555.832l5.197-3.482a1 1 0 000-1.664z"
-                  />
-                </svg>
-              </button>
+              
             </div>
           </div>
 

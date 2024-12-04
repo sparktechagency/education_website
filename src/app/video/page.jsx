@@ -62,7 +62,7 @@ const page = () => {
         // Add more videos as needed
       ];
   return (
-    <div className="max-w-[1400px] m-auto mx-4 md:mx-0 mb-20">
+    <div className="max-w-[1400px] px-4 md:px-0 m-auto mb-20">
       <div className="flex items-center gap-2  my-5 mb-11">
           <div className="md:w-[20%] flex items-center gap-2 text-[#2F799E]">
             <MdArrowBack />

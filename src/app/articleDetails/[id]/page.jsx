@@ -81,7 +81,7 @@ const ArticleDetails = ({ params }) => {
   }
 
   return (
-    <div className="p-5 max-w-[1400px] m-auto ">
+    <div className="p-5 max-w-[1400px] m-auto mb-20">
       <div className="flex items-center gap-2  my-5 mb-11">
           <div className="md:w-[20%] flex items-center gap-2 text-[#2F799E]">
             <MdArrowBack />

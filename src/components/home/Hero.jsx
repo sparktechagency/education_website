@@ -1,11 +1,13 @@
+import Link from "next/link";
 import hero from "../../../public/home/hero1.png";
 import { MdArrowOutward } from "react-icons/md";
 const Hero = () => {
   return (
     <div>
       {/* Search Bar */}
-      <label className="input input-bordered rounded-sm mt-5 flex items-center gap-2 bg-[#75BEE3] max-w-[900px] m-auto text-white">
-        <input type="text" className="grow" placeholder="Search" />
+      <div className="mx-4 md:mx-0">
+      <label className="input input-bordered rounded-sm  mt-5 flex items-center gap-2 bg-[#75BEE3] max-w-[900px] m-auto text-white">
+        <input type="text" className="grow " placeholder="Search" />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
@@ -19,6 +21,7 @@ const Hero = () => {
           />
         </svg>
       </label>
+      </div>
 
       {/* Text on Image */}
       <div
@@ -38,9 +41,9 @@ const Hero = () => {
             the world."{" "}
           </h1>
           <p className="mt-4 text-lg md:text-2xl">– Nelson Mandela</p>
-          <button className="flex bg-white text-black rounded-md px-7 py-2 items-center gap-2 text-xl mt-9">
+          <Link href={'/video'}><button className="flex bg-white text-black rounded-md px-7 py-2 items-center gap-2 text-xl mt-9 hover:bg-[#2F799E] hover:text-white transition">
             View Video <MdArrowOutward />
-          </button>
+          </button></Link>
         </div>
       </div>
     </div>

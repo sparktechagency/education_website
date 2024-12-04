@@ -3,6 +3,7 @@ import ball from "../../../public/home/ball.png";
 import img from "../../../public/home/popular.png";
 import pencile from "../../../public/home/pencile.png";
 import { IoMdArrowForward } from "react-icons/io";
+import Link from "next/link";
 const EducationArticle = () => {
 
     const videos = [
@@ -86,7 +87,7 @@ const EducationArticle = () => {
             <div>
                 <h2 className="text-yellow-100">{item.title}</h2>
                 <p className="text-white py-3">{item.description}</p>
-                <button className="text-yellow-100 flex items-center gap-2">Read more <IoMdArrowForward className="mt-1"/></button>
+                <Link href={`/articleDetails/${item.id}`}><button className="text-yellow-100 flex items-center gap-2">Read more <IoMdArrowForward className="mt-1"/></button></Link>
             </div>
 
             </div>

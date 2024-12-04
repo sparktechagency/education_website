@@ -27,6 +27,7 @@ const SpecialVideo = () => {
                 generation systems disseminate holistic e-services through
                 customer directed expertise.
               </p>
+              <button className="bg-white text-[#2F799E] px-6 py-2 rounded mt-5 border-4 border-yellow-100">Learn more</button>
             </div>
          
               <div className="mt-6">
