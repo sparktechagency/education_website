@@ -51,33 +51,34 @@ const Navbar = () => {
                 aria-label="close sidebar"
                 className="drawer-overlay z-50"
               ></label>
-              <ul className="menu bg-black text-white z-50  min-h-full w-80 p-4 flex flex-col">
-  <div className="flex justify-center mb-4">
-    <Image src={logo} alt="logo" width={100} height={80} />
-  </div>
-  {navItems.map((item, index) => (
-    <div key={index}>
-      <Link
-        href={item.path}
-        className={`${
-          currentPath === item.path ? "text-yellow-200" : ""
-        }`}
-      >
-        <div className="border-b border-neutral-700 py-5">{item.title}</div>
-      </Link>
-    </div>
-  ))}
-  {/* Spacer to push the user icon to the bottom */}
-  <div className="flex-grow"></div>
-  <div className="mb-4">
-    <Link href={"/personalInfo"}>
-      <div className="bg-neutral-900 p-2 rounded flex justify-center">
-        <FaRegUserCircle className="text-2xl" />
-      </div>
-    </Link>
-  </div>
-</ul>
-
+              <ul className="menu bg-[#2F799E] text-white z-50  min-h-full w-80 p-4 flex flex-col">
+                <div className="flex justify-center mb-4">
+                  <Image src={logo} alt="logo" width={100} height={80} />
+                </div>
+                {navItems.map((item, index) => (
+                  <div key={index}>
+                    <Link
+                      href={item.path}
+                      className={`${
+                        currentPath === item.path ? "text-yellow-200" : ""
+                      }`}
+                    >
+                      <div className="border-b border-neutral-300 py-5">
+                        {item.title}
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+                {/* Spacer to push the user icon to the bottom */}
+                <div className="flex-grow"></div>
+                <div className="mb-4">
+                  <Link href={"/personalInfo"}>
+                    <div className="bg-[#57a6ce] p-2 rounded flex justify-center">
+                      <FaRegUserCircle className="text-2xl" />
+                    </div>
+                  </Link>
+                </div>
+              </ul>
             </div>
           </div>
         </div>
@@ -104,15 +105,15 @@ const Navbar = () => {
       </div>
       <div className="my-2 lg:my-0 flex lg:flex-col py-2">
         <div className="border border-white flex rounded">
-          <div className=" ">
+          <div className="flex items-center ">
             <div className=" flex items-center p-1">
               <Image src={language} alt="language" width={23} height={20} />
             </div>
           </div>
           <button
             onClick={() => setActiveLanguage("Eng")}
-            className={`px-4 py-2 ${
-              activeLanguage === "Eng" ? "bg-white text-[#2F799E]" : ""
+            className={`px-4 py-2  ${
+              activeLanguage === "Eng" ? "bg-white text-[#2F799E]" : "text-[#FFFFFF]"
             }`}
           >
             Eng
@@ -120,7 +121,7 @@ const Navbar = () => {
           <button
             onClick={() => setActiveLanguage("Spa")}
             className={`px-4 py-2 ${
-              activeLanguage === "Spa" ? "bg-white text-[#2F799E]" : ""
+              activeLanguage === "Spa" ? "bg-white text-[#2F799E]" : "text-[#FFFFFF]"
             }`}
           >
             Esp

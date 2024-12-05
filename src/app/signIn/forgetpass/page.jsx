@@ -16,10 +16,10 @@ const Page = () => {
   };
 
   return (
-    <div className="min-h-screen md:flex items-center  pt-44 md:pt-0 px-4 justify-center bg-[#2F799E]">
-      <div className="max-w-[1000px] m-auto  ">
-        <div className="lg:grid grid-cols-2 gap-8">
-          <div>
+    <div className="min-h-screen flex items-center  md:pt-0 px-4 justify-center bg-[#2F799E]">
+      <div className="  w-full max-w-[1500px] m-auto">
+        <div className="lg:grid lg:grid-cols-2 gap-5">
+          <div className="lg:flex lg:justify-end">
             <div className="bg-white md:w-[500px] md:px-16 px-5 py-16 rounded-lg shadow-lg">
               <h2 className="text-2xl font-bold mb-2 text-gray-800">
                 Forget Password
@@ -64,9 +64,13 @@ const Page = () => {
               </form>
             </div>
           </div>
-          <div className="flex justify-center items-center">
-            <Image src={logo} width={200} height={200} alt="login" />
+          <div className="hidden lg:block">
+        <div className="flex justify-start  items-center">
+          <div>
+            <Image src={logo} width={300} height={200} alt="login" />
           </div>
+        </div>
+        </div>
         </div>
       </div>
     </div>

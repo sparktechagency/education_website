@@ -67,16 +67,15 @@ const page = () => {
     <div className="max-w-[1400px] px-4 lg:px-0 m-auto mb-20">
       <div className="flex items-center gap-2 my-5 mb-11">
         <div className="md:w-[20%]">
-          <Navigate title={'All videos'}></Navigate>
+          <Navigate title={"All videos"}></Navigate>
         </div>
         <div className="md:w-[60%]">
-          <label className="input input-bordered rounded-sm w-full flex items-center gap-2 bg-[#75BEE3] text-white">
-            <input type="text" className="grow" placeholder="Search" />
+          <label className="input input-bordered rounded-sm flex items-center gap-2 bg-[#75BEE3] max-w-[900px] m-auto text-white relative">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
               fill="currentColor"
-              className="h-4 w-4 opacity-70"
+              className="h-4 w-4 opacity-70 order-1"
             >
               <path
                 fillRule="evenodd"
@@ -84,6 +83,14 @@ const page = () => {
                 clipRule="evenodd"
               />
             </svg>
+            <input
+              type="text"
+              className="grow order-2 text-left bg-transparent placeholder-transparent"
+              placeholder="Search"
+            />
+            <span className="absolute right-3 text-white pointer-events-none">
+              Search
+            </span>
           </label>
         </div>
       </div>

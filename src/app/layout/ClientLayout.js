@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 export default function ClientLayout({ children }) {
   const pathname = usePathname();
 
-  const hideNavbarFooter = pathname === "/signIn" || pathname === "/signIn/forgetpass" || pathname === "/signIn/forgetpass/otp" || pathname === "/signIn/forgetpass/otp/resetpassword"; 
+  const hideNavbarFooter = pathname === "/signIn" || pathname === "/signIn/forgetpass" || pathname === "/signUp" || pathname === "/signIn/forgetpass/otp" || pathname === "/signIn/forgetpass/otp/resetpassword"; 
 
   return (
     <>

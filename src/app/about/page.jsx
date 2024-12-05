@@ -35,14 +35,7 @@ const page = () => {
       </div>
       </div>
 
-        <div className="flex justify-center md:flex-row  gap-5 px-4 bg-black py-11 mt-11">
-            {
-                about.map((aboute)=> <><div>
-                    <Image src={aboute.imgaes} width={300} height={399} alt="asdf" />
-                    
-                    </div></>)
-            }
-        </div>
+        
     </div>
   );
 };
