@@ -53,7 +53,7 @@ const ChangPassword = () => {
         {/* New Password */}
      
        
-        <label className="">Current Password
+        <label className="">New Password
        
           <input
             className={`bg-white border py-2 px-1 border-neutral-300 mb-4 w-full ${
@@ -97,7 +97,7 @@ const ChangPassword = () => {
         {/* Submit Button */}
         <div className="flex justify-center mt-11">
           <input
-            className="bg-[#2F799E] px-11 py-1 text-white rounded mt-6"
+            className="bg-[#2F799E] cursor-pointer px-11 py-1 text-white rounded mt-6"
             type="submit"
             value="Update"
           />

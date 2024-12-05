@@ -98,7 +98,7 @@ const EditProfile = () => {
             </div>
             <div className="flex justify-center mt-11">
               <input
-                className="bg-[#2F799E] px-11 py-1  text-white rounded mt-6"
+                className="bg-[#2F799E] px-11 py-1 cursor-pointer  text-white rounded mt-6"
                 type="submit"
                 value="Update"
               />

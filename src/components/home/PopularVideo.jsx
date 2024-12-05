@@ -72,7 +72,7 @@ const PopularVideo = () => {
   ];
 
   return (
-    <div className="px-4 lg:px-0">
+    <div className="px-4 lg::px-0">
       <div className="text-center py-5 ">
         <h1 className="text-[#2F799E] text-2xl font-bold font-serif">Popular Videos</h1>
         <div className="flex justify-center mt-3">

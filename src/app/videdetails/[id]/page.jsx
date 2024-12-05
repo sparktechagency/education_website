@@ -2,7 +2,13 @@ import { MdArrowBack } from "react-icons/md";
 import img from "../../../../public/home/popular.png";
 import img4 from "../../../../public/home/popular.png";
 import Image from "next/image";
-
+import img1 from "../../../../public/home/popular1.png";
+import img2 from "../../../../public/home/popular2.png";
+import img3 from "../../../../public/home/popular3.png";
+import img7 from "../../../../public/home/popular4.png";
+import img5 from "../../../../public/home/popular5.png";
+import img6 from "../../../../public/home/popular6.png";
+import Navigate from "@/components/navigate/Navigate";
 const page = ({ params }) => {
   const { id } = params;
   const related = [
@@ -44,7 +50,7 @@ const page = ({ params }) => {
     {
       id: 1,
       title: "Education is the most powerful weapon",
-
+      
       views: "1.3M views",
       time: "2 day's ago",
       thumbnail: img,
@@ -52,10 +58,10 @@ const page = ({ params }) => {
     {
       id: 2,
       title: "Education is the most powerful weapon",
-
+      
       views: "1.3M views",
       time: "2 day's ago",
-      thumbnail: img,
+      thumbnail: img1,
     },
     {
       id: 3,
@@ -63,39 +69,39 @@ const page = ({ params }) => {
 
       views: "1.3M views",
       time: "2 day's ago",
-      thumbnail: img,
+      thumbnail: img2,
     },
     {
       id: 4,
       title: "Education is the most powerful weapon",
-
+     
       views: "1.3M views",
       time: "2 day's ago",
-      thumbnail: img,
+      thumbnail: img3,
     },
     {
       id: 5,
       title: "Education is the most powerful weapon",
-
+    
       views: "1.3M views",
       time: "2 day's ago",
-      thumbnail: img,
+      thumbnail: img7,
     },
     {
       id: 6,
       title: "Education is the most powerful weapon",
-
+    
       views: "1.3M views",
       time: "2 day's ago",
-      thumbnail: img,
+      thumbnail: img5,
     },
     {
       id: 7,
       title: "Education is the most powerful weapon",
-
+     
       views: "1.3M views",
       time: "2 day's ago",
-      thumbnail: img,
+      thumbnail: img6,
     },
     // Add more videos as needed
   ];
@@ -106,12 +112,11 @@ const page = ({ params }) => {
   }
   return (
     <div>
-      <div className="p-5 max-w-[1400px] m-auto mb-20">
-        <div className="flex items-center gap-2  my-5 mb-11">
-          <div className="md:w-[20%] flex items-center gap-2 text-[#2F799E]">
-            <MdArrowBack />
-            <span>All Videos</span>
-          </div>
+      <div className="max-w-[1400px] px-4 lg:px-0 m-auto mb-20">
+      <div className="flex items-center gap-2 my-5 mb-11">
+      <div className="md:w-[20%]">
+          <Navigate title={'Details'}></Navigate>
+        </div>
           <div className="md:w-[60%]">
             <label className="input input-bordered rounded-sm w-full flex items-center gap-2 bg-[#75BEE3]  text-white">
               <input type="text" className="grow" placeholder="Search" />
@@ -131,13 +136,13 @@ const page = ({ params }) => {
           </div>
         </div>
 
-        <div className="md:grid grid-cols-3">
+        <div className="lg:grid grid-cols-3">
           <div className="col-span-2 mt-2 md:mr-4">
             <div className="relative">
               <Image
                 src={article.thumbnail}
                 alt={article.title}
-                width={100}
+                width={1400}
                 height={100}
                 className="w-full h-90 object-cover"
               />

@@ -1,14 +1,12 @@
+import Navigate from "@/components/navigate/Navigate";
 import { FaArrowLeft } from "react-icons/fa6";
 
 const page = () => {
   return (
     <div className="max-w-[1400px] m-auto pt-5 pb-20">
-      <h1 className="flex gap-4">
-        <button className="text-[#EF4849]">
-          <FaArrowLeft />
-        </button>
-        <span className="text-lg font-semibold">Profile</span>
-      </h1>
+      <div className="md:w-[20%]">
+          <Navigate title={'Privacy Policy'}></Navigate>
+        </div>
 
       <div>
         <p className="my-11">

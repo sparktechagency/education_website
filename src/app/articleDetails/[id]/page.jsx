@@ -5,6 +5,7 @@ import img2 from "../../../../public/article/cover2.png";
 import img4 from "../../../../public/home/popular.png";
 import Image from "next/image";
 import { MdArrowBack } from "react-icons/md";
+import Navigate from "@/components/navigate/Navigate";
 const ArticleDetails = ({ params }) => {
   const { id } = params;
 
@@ -81,12 +82,11 @@ const ArticleDetails = ({ params }) => {
   }
 
   return (
-    <div className="p-5 max-w-[1400px] m-auto mb-20">
-      <div className="flex items-center gap-2  my-5 mb-11">
-          <div className="md:w-[20%] flex items-center gap-2 text-[#2F799E]">
-            <MdArrowBack />
-            <span>All Videos</span>
-          </div>
+    <div className="max-w-[1400px] px-4 lg:px-0 m-auto mb-20">
+      <div className="flex items-center gap-2 my-5 mb-11">
+      <div className="md:w-[20%]">
+          <Navigate title={'Details'}></Navigate>
+        </div>
           <div className="md:w-[60%]">
             <label className="input input-bordered rounded-sm w-full flex items-center gap-2 bg-[#75BEE3]  text-white">
               <input type="text" className="grow" placeholder="Search" />
@@ -106,7 +106,7 @@ const ArticleDetails = ({ params }) => {
           </div>
         </div>
 
-      <div className="md:grid grid-cols-3">
+      <div className="lg:grid grid-cols-3">
         <div className="col-span-2 mt-2 md:mr-4">
           <Image src={article.thumbnail} width={1500} height={399} alt="asdf" />
         </div>
@@ -138,7 +138,7 @@ const ArticleDetails = ({ params }) => {
       <h1 className="text-2xl font-bold my-6">{article.title}</h1>
       <p className="text-gray-700">{article.description}</p>
       <div>
-        <div className="md:grid grid-cols-2 mt-11 gap-11">
+        <div className="lg:grid grid-cols-2 mt-11 gap-11">
           <div>
             <Image
               src={article.thumbnail}
@@ -150,7 +150,7 @@ const ArticleDetails = ({ params }) => {
           <p className="text-gray-700">{article.description}</p>
         </div>
 
-        <div className="md:grid grid-cols-2 mt-11 gap-11">
+        <div className="lg:grid grid-cols-2 mt-11 gap-11">
           
           <p className="text-gray-700">{article.description}</p>
           <div>

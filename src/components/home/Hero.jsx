@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <div>
       {/* Search Bar */}
-      <div className="mx-4 md:mx-0">
+      <div className="mx-4 lg:mx-0">
       <label className="input input-bordered rounded-sm  mt-5 flex items-center gap-2 bg-[#75BEE3] max-w-[900px] m-auto text-white">
         <input type="text" className="grow " placeholder="Search" />
         <svg

@@ -9,7 +9,7 @@ const PopularCard = ({video}) => {
               <Image
                 src={video.thumbnail}
                 alt={video.title}
-                width={100}
+                width={1000}
                 height={100}
                 className="w-full h-[250px] object-cover"
               />

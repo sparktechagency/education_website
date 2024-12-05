@@ -1,6 +1,7 @@
 import Image from "next/image";
 import notification from "../../../public/article/profile.png";
 import { FaArrowLeft } from "react-icons/fa6";
+import Navigate from "@/components/navigate/Navigate";
 const page = () => {
   const notifications = [
     {
@@ -24,13 +25,10 @@ const page = () => {
   ];
   return (
     <div className="max-w-[1400px] m-auto">
-      <div className="mt-4">
-        <h1 className="flex gap-4 pl-4">
-          <span className="text-[#004466] mt-[7px]">
-            <FaArrowLeft />
-          </span>
-          <span className="text-lg font-semibold">Notification</span>
-        </h1>
+      <div className="mt-4 mb-20">
+      <div className="md:w-[20%]">
+          <Navigate title={'Notification'}></Navigate>
+        </div>
         <div className="mt-11">
           {notifications.map((notification) => (
             <div

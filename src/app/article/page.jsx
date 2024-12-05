@@ -7,6 +7,7 @@ import img2 from "../../../public/article/cover2.png";
 import { IoMdArrowForward } from "react-icons/io";
 import Articles from "@/components/articles/Articles";
 import Link from "next/link";
+import Navigate from "@/components/navigate/Navigate";
 const page = () => {
   const videos = [
     {
@@ -41,12 +42,11 @@ const page = () => {
 
   return (
     <div className="max-w-[1400px] m-auto  ">
-      <div className="mx-4 md:mx-0">
-      <div className="flex items-center gap-2  my-5 mb-11">
-          <div className="md:w-[20%] flex items-center gap-2 text-[#2F799E]">
-            <MdArrowBack />
-            <span>All Videos</span>
-          </div>
+      <div className="mx-4 lg:mx-0">
+      <div className="flex items-center gap-2 mt-5 lg:my-5 lg:mb-11 mb-5">
+      <div className="md:w-[20%]">
+          <Navigate title={'All Article'}></Navigate>
+        </div>
           <div className="md:w-[60%]">
             <label className="input input-bordered rounded-sm w-full flex items-center gap-2 bg-[#75BEE3]  text-white">
               <input type="text" className="grow" placeholder="Search" />

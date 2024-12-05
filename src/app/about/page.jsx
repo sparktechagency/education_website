@@ -1,5 +1,5 @@
 import Image from "next/image";
-import img from "../../../public/home/popular.png";
+import img from "../../../public/home/about.png";
 
 const page = () => {
     const about = [
@@ -18,7 +18,7 @@ const page = () => {
     ]
   return (
     <div className="mb-20">
-      <div className="bg-[#DBE3EA] py-8 px-4 md:px-0">
+      <div className="bg-[#DBE3EA] py-8 px-4 ">
         <div className="max-w-[1400px] m-auto ">
           <h1 className="md:text-4xl text-2xl  font-bold">Discover Who We Are &</h1>
           <h1 className="text-white font-bold md:text-4xl text-2xl  mt-2">
@@ -27,7 +27,7 @@ const page = () => {
         </div>
       </div>
       <div className="max-w-[1400px] m-auto">
-      <div className=" mt-11 mx-4 md:mx-0">
+      <div className=" mt-11 mx-4 ">
         <Image src={img} width={1600} height={399} alt="asdf" />
 
         <h1 className="my-4 text-4xl font-semibold">Get to Know Us: Our Journey and Vision for Child Education</h1>
@@ -35,7 +35,7 @@ const page = () => {
       </div>
       </div>
 
-        <div className="flex justify-center md:flex-row  gap-5 bg-black py-11 mt-11">
+        <div className="flex justify-center md:flex-row  gap-5 px-4 bg-black py-11 mt-11">
             {
                 about.map((aboute)=> <><div>
                     <Image src={aboute.imgaes} width={300} height={399} alt="asdf" />

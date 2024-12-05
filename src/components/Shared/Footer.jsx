@@ -48,13 +48,13 @@ const Footer = () => {
             "Children are not only our future, but they also have a right to
             shape it with their voices heard and their rights upheld."
           </p>
-          <Link href={'/contact'}><button className="bg-white rounded text-[#2F799E] p-2 mt-5">
+          <Link href={'/contact'}><button className="bg-white rounded text-[#2F799E] font-semibold p-2 px-7 mt-5">
             contact Us
           </button></Link>
         </div>
         <div className="md:flex justify-center py-9 md:py-0">
           <div className="text-white space-y-3">
-            <h1>Quick Link</h1>
+            <h1 className="font-semibold">Quick Link</h1>
             {navItems.map((item, index) => (
               <div key={index}>
                 <Link href={item.path}>{item.title}</Link>
@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="text-white space-y-3">
-          <h1>Like Us?</h1>
+          <h1 className="font-semibold">Like Us?</h1>
           <div className="flex items-center gap-2">
             <CiFacebook />
             <span>Facebook</span>

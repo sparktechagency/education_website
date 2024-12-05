@@ -2,6 +2,7 @@ import { MdArrowBack } from "react-icons/md";
 import img from "../../../../public/home/popular.png";
 import img4 from "../../../../public/home/popular.png";
 import Image from "next/image";
+import Navigate from "@/components/navigate/Navigate";
 
 const page = ({ params }) => {
   const { id } = params;
@@ -108,10 +109,9 @@ const page = ({ params }) => {
     <div>
       <div className="p-5 max-w-[1400px] m-auto mb-20">
         <div className="flex items-center gap-2  my-5 mb-11">
-          <div className="md:w-[20%] flex items-center gap-2 text-[#2F799E]">
-            <MdArrowBack />
-            <span>Article</span>
-          </div>
+        <div className="md:w-[20%]">
+          <Navigate title={'Details'}></Navigate>
+        </div>
           <div className="md:w-[60%]">
             <label className="input input-bordered rounded-sm w-full flex items-center gap-2 bg-[#75BEE3]  text-white">
               <input type="text" className="grow" placeholder="Search" />
