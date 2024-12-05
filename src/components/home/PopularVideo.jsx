@@ -3,6 +3,12 @@ import line from "../../../public/home/line.png";
 
 
 import img from "../../../public/home/popular.png";
+import img1 from "../../../public/home/popular1.png";
+import img2 from "../../../public/home/popular2.png";
+import img3 from "../../../public/home/popular3.png";
+import img4 from "../../../public/home/popular4.png";
+import img5 from "../../../public/home/popular5.png";
+import img6 from "../../../public/home/popular6.png";
 import PopularCard from "./PopularCard";
 const PopularVideo = () => {
   const videos = [
@@ -20,7 +26,7 @@ const PopularVideo = () => {
       
       views: "1.3M views",
       time: "2 day's ago",
-      thumbnail: img,
+      thumbnail: img1,
     },
     {
       id: 3,
@@ -28,7 +34,7 @@ const PopularVideo = () => {
 
       views: "1.3M views",
       time: "2 day's ago",
-      thumbnail: img,
+      thumbnail: img2,
     },
     {
       id: 4,
@@ -36,7 +42,7 @@ const PopularVideo = () => {
      
       views: "1.3M views",
       time: "2 day's ago",
-      thumbnail: img,
+      thumbnail: img3,
     },
     {
       id: 5,
@@ -44,7 +50,7 @@ const PopularVideo = () => {
     
       views: "1.3M views",
       time: "2 day's ago",
-      thumbnail: img,
+      thumbnail: img4,
     },
     {
       id: 6,
@@ -52,7 +58,7 @@ const PopularVideo = () => {
     
       views: "1.3M views",
       time: "2 day's ago",
-      thumbnail: img,
+      thumbnail: img5,
     },
     {
       id: 7,
@@ -60,7 +66,7 @@ const PopularVideo = () => {
      
       views: "1.3M views",
       time: "2 day's ago",
-      thumbnail: img,
+      thumbnail: img6,
     },
     // Add more videos as needed
   ];
@@ -68,9 +74,9 @@ const PopularVideo = () => {
   return (
     <div className="px-4 lg:px-0">
       <div className="text-center py-5 ">
-        <h1 className="text-[#2F799E] text-2xl font-bold">Popular Vedios</h1>
+        <h1 className="text-[#2F799E] text-2xl font-bold font-serif">Popular Videos</h1>
         <div className="flex justify-center mt-3">
-          <Image src={line} width={250} height={50} alt="line" />
+          <Image  src={line} width={250} height={50} alt="line" />
         </div>
       </div>
 

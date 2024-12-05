@@ -13,13 +13,15 @@ export default function ClientLayout({ children }) {
 
   return (
     <>
-      {!hideNavbarFooter && <div className="bg-[#2F799E] fixed w-full z-50">
-            <div className="max-w-[1400px] m-auto">
+      {!hideNavbarFooter && <div className="bg-[#2F799E] z-50">
+            <div className="max-w-[1400px] m-auto ">
               <Navbar />
             </div>
           </div>}
       <hr />
+      <div className="">
       {children}
+      </div>
       {!hideNavbarFooter &&  <div className="bg-[#2F799E] pb-2">
             <div className="">
               <Footer />

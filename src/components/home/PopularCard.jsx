@@ -11,7 +11,7 @@ const PopularCard = ({video}) => {
                 alt={video.title}
                 width={100}
                 height={100}
-                className="w-full h-90 object-cover"
+                className="w-full h-[250px] object-cover"
               />
               <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-md">
                 <svg

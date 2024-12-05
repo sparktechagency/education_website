@@ -126,6 +126,7 @@
   line-height: 1.5714285714285714;
   cursor: pointer;
   transition: all 0.3s, visibility 0s;
+  font-weight: 700;
 }
 
 :where(.css-dev-only-do-not-override-1wwf28x).ant-collapse>.ant-collapse-item:last-child, :where(.css-dev-only-do-not-override-1wwf28x).ant-collapse>.ant-collapse-item:last-child>.ant-collapse-header {

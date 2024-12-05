@@ -40,7 +40,7 @@ const Footer = () => {
     <div className="max-w-[1400px] m-auto px-4 lg:px-0">
       <div className=" md:grid grid-cols-3 pt-5 pb-6">
         <div>
-          <div className="md:flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <Image src={footer} width={50} height={50} alt="footer" />
             <span className="text-white font-semibold">Kids Know Rights</span>
           </div>

@@ -35,13 +35,13 @@ const Hero = () => {
            // Centers the image
         }}
       >
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center md:px-20">
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center md:px-56">
           <h1 className="text-4xl md:text-4xl font-bold">
             "Education is the most powerful weapon which you can use to change
             the world."{" "}
           </h1>
           <p className="mt-4 text-lg md:text-2xl">– Nelson Mandela</p>
-          <Link href={'/video'}><button className="flex bg-white text-black rounded-md px-7 py-2 items-center gap-2 text-xl mt-9 hover:bg-[#2F799E] hover:text-white transition">
+          <Link href={'/video'}><button className="flex bg-[#DBE3EA] text-black rounded-md px-7 py-2 items-center gap-2 text-xl mt-9 hover:bg-[#2F799E] hover:text-white transition">
             View Video <MdArrowOutward />
           </button></Link>
         </div>

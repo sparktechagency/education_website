@@ -1,6 +1,10 @@
 import Image from "next/image";
 import ball from "../../../public/home/ball.png";
 import img from "../../../public/home/popular.png";
+import a1 from "../../../public/home/a1.png";
+import a2 from "../../../public/home/a2.png";
+import a4 from "../../../public/home/a4.png";
+import a5 from "../../../public/home/a5.png";
 import pencile from "../../../public/home/pencile.png";
 import { IoMdArrowForward } from "react-icons/io";
 import Link from "next/link";
@@ -9,55 +13,36 @@ const EducationArticle = () => {
     const videos = [
         {
           id: 1,
-          title: "Education ",
+          title: "Games ",
           description: "lasdfwe iasdfuewr asiofj weroi asddfoi jasd",
      
-          thumbnail: img,
+          thumbnail: a1,
         },
         {
           id: 2,
-          title: "Education ",
+          title: "Formal Education ",
           description: "lasdfwe iasdfuewr asiofj weroi asddfoi jasd",
   
-          thumbnail: img,
+          thumbnail: a2,
         },
         {
           id: 3,
-          title: "Education ",
+          title: "Sports ",
           description: "lasdfwe iasdfuewr asiofj weroi asddfoi jasd",
     
-          thumbnail: img,
+          thumbnail: a4,
         },
         {
           id: 4,
-          title: "Education ",
+          title: "Importance of Science ",
           description: "lasdfwe iasdfuewr asiofj weroi asddfoi jasd",
  
-          thumbnail: img,
-        },
-        {
-          id: 5,
-          title: "Education ",
-          description: "lasdfwe iasdfuewr asiofj weroi asddfoi jasd",
-     
-          thumbnail: img,
-        },
-        {
-          id: 6,
-          title: "Education ",
-          description: "lasdfwe iasdfuewr asiofj weroi asddfoi jasd",
-          
-          thumbnail: img,
-        },
-        {
-          id: 7,
-          title: "Education ",
-          description: "lasdfwe iasdfuewr asiofj weroi asddfoi jasd",
-          
-          thumbnail: img,
-        },
-        // Add more videos as needed
-      ];
+          thumbnail: a5,
+        }
+        
+        
+        
+      ]
 
   return (
     <div>
@@ -66,10 +51,10 @@ const EducationArticle = () => {
           <Image src={ball} width={100} height={100} alt="ball" />
         </div>
         <div className="text-center">
-          <h3 className="text-xl font-semibold text-[#2F799E]">
+          <h3 className="text-2xl font-semibold text-[#2F799E] font-serif">
             Educational Article
           </h3>
-          <h1 className="text-2xl font-bold mt-2 text-[#2F799E]">For Kids</h1>
+          <h1 className="text-4xl font-bold mt-2 text-[#2F799E]">For Kids</h1>
         </div>
         <div>
           <Image src={pencile} width={100} height={100} alt="ball" />
@@ -82,8 +67,8 @@ const EducationArticle = () => {
         {
             videos.map((item)=> <div>
             
-            <div className="rounded-2xl p-6 py-11 flex gap-11 bg-[#2F799E] m-3">
-            <Image className="imgg" src={img} width={150} height={100} alt="ball" />
+            <div className="rounded-2xl p-6 py-8 flex items-center gap-11 bg-[#2F799E] m-3">
+            <Image className="imgg" src={item.thumbnail} width={150} height={100} alt="ball" />
             <div>
                 <h2 className="text-yellow-100">{item.title}</h2>
                 <p className="text-white py-3">{item.description}</p>
