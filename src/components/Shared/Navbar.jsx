@@ -51,7 +51,7 @@ const Navbar = () => {
                 aria-label="close sidebar"
                 className="drawer-overlay z-50"
               ></label>
-              <ul className="menu bg-black text-white z-50 text-base-content min-h-full w-80 p-4 flex flex-col">
+              <ul className="menu bg-black text-white z-50  min-h-full w-80 p-4 flex flex-col">
   <div className="flex justify-center mb-4">
     <Image src={logo} alt="logo" width={100} height={80} />
   </div>
