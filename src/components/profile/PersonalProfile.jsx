@@ -5,13 +5,17 @@ import profile from '../../../public/article/profile.png'
 import Image from "next/image";
 import BookMark from "./BookMark";
 import ArticleBookmark from "./ArticleBookmark";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "use-intl";
+
 const PersonalProfile = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
 
   // Tab state
   const [activeTab, setActiveTab] = useState("personalInfo");
+
+  const p = useTranslations('profile')
 
   return (
     <div className="max-w-[1400px] m-auto px-4 lg:px-0 mb-20">
@@ -23,7 +27,7 @@ const PersonalProfile = () => {
           }`}
           onClick={() => setActiveTab("personalInfo")}
         >
-          Personal Info
+          {p("Personal Info")}
         </button>
         <button
           className={`${
@@ -31,7 +35,7 @@ const PersonalProfile = () => {
           }`}
           onClick={() => setActiveTab("bookMark")}
         >
-          Book Mark
+          {p("Book Mark")}
         </button>
       </div>
 
@@ -49,7 +53,7 @@ const PersonalProfile = () => {
 
           <form className="mt-16" onSubmit={handleSubmit(onSubmit)}>
             <label>
-              <span className="">Full Name</span>
+              <span className="">{p("Full Name")}</span>
               <input
                 className="bg-white border py-2 px-1 border-neutral-300 w-full"
                 {...register("fullName")}
@@ -58,7 +62,7 @@ const PersonalProfile = () => {
             </label>
             <div className="grid grid-cols-2 gap-5 mt-5">
               <label>
-                <span className="">Email</span>
+                <span className="">{p("Email")}</span>
                 <input
                   className="bg-white border py-2 px-1 border-neutral-300 w-full"
                   {...register("email")}
@@ -66,7 +70,7 @@ const PersonalProfile = () => {
                 />
               </label>
               <label>
-                <span className="">Phone Number</span>
+                <span className="">{p("Contact Number")}</span>
                 <input
                   className="bg-white border py-2 px-1 border-neutral-300 w-full"
                   {...register("phone")}
@@ -77,7 +81,7 @@ const PersonalProfile = () => {
             
             <div className="mt-5">
               <label>
-                <span className="">Adress</span>
+                <span className="">{p("Adress")}</span>
                 <input
                   className="bg-white border py-2 px-1 border-neutral-300 w-full"
                   {...register("additionalInfo")}

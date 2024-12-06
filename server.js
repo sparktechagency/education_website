@@ -27,3 +27,11 @@ app.prepare().then(() => {
 //     "start": "next start",
 //     "lint": "next lint"
 //   },
+
+
+
+// "scripts": {
+//       "dev": "node server.js",
+//       "build": "next build",
+//       "start": "NODE_ENV=production node server.js"
+//     },

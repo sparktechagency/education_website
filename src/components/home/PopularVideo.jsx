@@ -10,6 +10,7 @@ import img4 from "../../../public/home/popular4.png";
 import img5 from "../../../public/home/popular5.png";
 import img6 from "../../../public/home/popular6.png";
 import PopularCard from "./PopularCard";
+import { useTranslations } from "next-intl";
 const PopularVideo = () => {
   const videos = [
     {
@@ -71,10 +72,11 @@ const PopularVideo = () => {
     // Add more videos as needed
   ];
 
+  const p = useTranslations("popular");
   return (
     <div className="px-4 lg::px-0">
       <div className="text-center py-5 ">
-        <h1 className="text-[#2F799E] text-2xl font-bold font-serif">Popular Videos</h1>
+        <h1 className="text-[#2F799E] text-2xl font-bold font-serif">{p("Popular Videos")}</h1>
         <div className="flex justify-center mt-3">
           <Image  src={line} width={250} height={50} alt="line" />
         </div>

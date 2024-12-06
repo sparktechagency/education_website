@@ -1,17 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation"; // Import usePathname
-import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { FaBars, FaRegUserCircle } from "react-icons/fa";
 import logo from "../../../public/navbar/logo.png";
 import language from "../../../public/navbar/language.png";
+import { Link } from "@/i18n/routing";
+import { useLocale, useTranslations } from "next-intl";
 
 const Navbar = () => {
-  const [activeLanguage, setActiveLanguage] = useState("Eng");
-  const currentPath = usePathname(); // Get the current path
+  const currentPath = usePathname();
+  const locale = useLocale();
 
   const navItems = [
     {
@@ -32,8 +32,18 @@ const Navbar = () => {
     },
   ];
 
+  const changeLanguage = (language) => {
+    // Update the locale using next-intl's `useLocale`
+    if (language === "Eng") {
+      window.location.href = "/en"; // Redirect to English version
+    } else {
+      window.location.href = "/es"; // Redirect to Spanish version
+    }
+  };
+
+  const n = useTranslations("navbar");
   return (
-    <div className="flex justify-between items-center px-4 lg:px-0 ">
+    <div className="flex justify-between items-center px-4 lg:px-0">
       <div className="flex">
         <div className="lg:hidden">
           <div className="drawer">
@@ -60,16 +70,18 @@ const Navbar = () => {
                     <Link
                       href={item.path}
                       className={`${
-                        currentPath === item.path ? "text-yellow-200" : ""
+                        currentPath.replace(`/${locale}`, "") ===
+                        (item.path === "/" ? "" : item.path)
+                          ? "text-yellow-200 "
+                          : "hover:text-gray-300"
                       }`}
                     >
                       <div className="border-b border-neutral-300 py-5">
-                        {item.title}
+                      {n(`${item.title}`)}
                       </div>
                     </Link>
                   </div>
                 ))}
-                {/* Spacer to push the user icon to the bottom */}
                 <div className="flex-grow"></div>
                 <div className="mb-4">
                   <Link href={"/personalInfo"}>
@@ -94,10 +106,13 @@ const Navbar = () => {
               <Link
                 href={item.path}
                 className={`${
-                  currentPath === item.path ? "text-yellow-200 underline" : ""
+                  currentPath.replace(`/${locale}`, "") ===
+                  (item.path === "/" ? "" : item.path)
+                    ? "text-yellow-200 underline "
+                    : "hover:text-gray-300"
                 }`}
               >
-                {item.title}
+                {n(`${item.title}`)}
               </Link>
             </div>
           ))}
@@ -111,17 +126,17 @@ const Navbar = () => {
             </div>
           </div>
           <button
-            onClick={() => setActiveLanguage("Eng")}
+            onClick={() => changeLanguage("Eng")}
             className={`px-4 py-2  ${
-              activeLanguage === "Eng" ? "bg-white text-[#2F799E]" : "text-[#FFFFFF]"
+              locale === "en" ? "bg-white text-[#2F799E]" : "text-[#FFFFFF]"
             }`}
           >
             Eng
           </button>
           <button
-            onClick={() => setActiveLanguage("Spa")}
+            onClick={() => changeLanguage("Esp")}
             className={`px-4 py-2 ${
-              activeLanguage === "Spa" ? "bg-white text-[#2F799E]" : "text-[#FFFFFF]"
+              locale === "es" ? "bg-white text-[#2F799E]" : "text-[#FFFFFF]"
             }`}
           >
             Esp

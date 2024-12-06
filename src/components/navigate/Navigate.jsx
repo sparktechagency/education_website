@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+
+import { useRouter } from "@/i18n/routing";
 import { MdArrowBack } from "react-icons/md";
 
 const Navigate = ({title}) => {

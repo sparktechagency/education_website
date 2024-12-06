@@ -59,7 +59,7 @@ const BookMark = () => {
           time: "2 day's ago",
           thumbnail: img,
         },
-        // Add more videos as needed
+        
       ];
     return (
         <div>

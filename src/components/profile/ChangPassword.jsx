@@ -34,7 +34,7 @@ const ChangPassword = () => {
     <div className="max-w-[650px] m-auto">
       <form className="bg-white p-4" onSubmit={handleSubmit(onSubmit)}>
         {/* Current Password */}
-        
+        <h1 className="text-xl font-bold text-center mb-5">Change Password</h1>
         <label className="">Current Password
           <input
             className={`bg-white border py-2 px-1 border-neutral-300 mb-4 w-full ${
@@ -99,7 +99,7 @@ const ChangPassword = () => {
           <input
             className="bg-[#2F799E] cursor-pointer px-11 py-1 text-white rounded mt-6"
             type="submit"
-            value="Update"
+            value="Save Changes"
           />
         </div>
       </form>
