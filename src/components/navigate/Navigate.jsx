@@ -10,7 +10,7 @@ const Navigate = ({title}) => {
     <div>
       <div
         className=" flex items-center gap-2 text-[#2F799E] cursor-pointer"
-        onClick={() => router.back()} // Navigate back to the previous page
+        onClick={() => router.back()} // Navigate back to the previous 
       >
         <MdArrowBack />
         <span>{title}</span>
