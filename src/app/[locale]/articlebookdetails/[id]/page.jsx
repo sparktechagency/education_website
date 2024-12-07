@@ -100,7 +100,7 @@ const page = ({ params }) => {
       time: "2 day's ago",
       thumbnail: img,
     },
-    // Add more videos as needed
+    
   ];
 
   const article = videos.find((item) => item.id === parseInt(id));
