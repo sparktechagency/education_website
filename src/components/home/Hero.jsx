@@ -32,7 +32,7 @@ const Hero = () => {
         </label>
       </div>
 
-      {/* Text on Image */}
+     
       <div
         className="relative bg-cover bg-center md:h-[80vh] h-[500px] mt-5 rounded"
         style={{
