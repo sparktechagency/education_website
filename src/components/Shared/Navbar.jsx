@@ -33,7 +33,7 @@ const Navbar = () => {
   ];
 
   const changeLanguage = (language) => {
-    // Update the locale using next-intl's `useLocale`
+    
     if (language === "Eng") {
       window.location.href = "/en"; // Redirect to English version
     } else {
