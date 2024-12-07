@@ -77,7 +77,7 @@ const PopularVideo = () => {
       time: "2 day's ago",
       thumbnail: img4,
     },
-    // Add more videos as needed
+   
   ];
 
   const p = useTranslations("popular");
