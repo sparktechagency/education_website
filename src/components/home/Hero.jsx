@@ -41,7 +41,7 @@ const Hero = () => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           width: "100%",
-          // Centers the image
+          
         }}
       >
         <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center md:px-32">
