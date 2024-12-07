@@ -6,7 +6,7 @@ const Hero = () => {
   const h = useTranslations("hero");
   return (
     <div>
-      {/* Search Bar */}
+     
       <div className="mx-4 lg:mx-0">
         <label className="input input-bordered rounded-sm mt-5 flex items-center gap-2 bg-[#75BEE3] max-w-[900px] m-auto text-white relative">
           <svg
