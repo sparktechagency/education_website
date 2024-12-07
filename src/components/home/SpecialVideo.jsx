@@ -15,7 +15,7 @@ const SpecialVideo = () => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
 
-        // Centers the image
+        
       }}
     >
       <div className="">
