@@ -37,7 +37,7 @@ const Hero = () => {
         className="relative bg-cover bg-center md:h-[80vh] h-[500px] mt-5 rounded"
         style={{
           backgroundImage: `url(${hero.src})`,
-          backgroundSize: "cover", // Ensures the image covers the container
+          backgroundSize: "cover", 
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           width: "100%",
