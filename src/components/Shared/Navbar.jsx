@@ -35,7 +35,7 @@ const Navbar = () => {
   const changeLanguage = (language) => {
     
     if (language === "Eng") {
-      window.location.href = "/en"; // Redirect to English version
+      window.location.href = "/en"; 
     } else {
       window.location.href = "/es"; // Redirect to Spanish version
     }
