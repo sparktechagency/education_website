@@ -34,7 +34,7 @@ const Videos = ({ videose }) => {
         </div>
       </Link>
 
-      <div className="p-2 bg-[#2F799E] text-white">
+      <div className="p-2 bg-[#2F799E] text-white -mt-[1px]">
         <div className="flex items-center gap-2">
           <h2 className="text-lg font-bold truncate">{videose.title}</h2>
           <p className="text-2xl">

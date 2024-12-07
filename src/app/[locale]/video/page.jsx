@@ -62,14 +62,22 @@ const page = () => {
       time: "2 day's ago",
       thumbnail: img6,
     },
+    {
+      id: 8,
+      title: "Education is the most powerful weapon",
+      views: "1.3M views",
+      time: "2 day's ago",
+      thumbnail: img4,
+    },
   ];
 
   const m = useTranslations("hero"); 
+  const p = useTranslations("profile"); 
   return (
     <div className="max-w-[1400px] px-4 lg:px-0 m-auto mb-20">
       <div className="flex items-center gap-2 my-5 mb-11">
         <div className="md:w-[20%]">
-          <Navigate title={"All videos"}></Navigate>
+          <Navigate title={`${p("All Videos")}`}></Navigate>
         </div>
         <div className="md:w-[60%]">
           <label className="input input-bordered rounded-sm flex items-center gap-2 bg-[#75BEE3] max-w-[900px] m-auto text-white relative">

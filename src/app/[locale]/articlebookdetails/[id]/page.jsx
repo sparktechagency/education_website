@@ -1,9 +1,10 @@
-import Navigate from '@/components/navigate/Navigate';
-import Image from 'next/image';
-import { MdArrowBack } from 'react-icons/md';
+import Navigate from "@/components/navigate/Navigate";
+import Image from "next/image";
+import { MdArrowBack } from "react-icons/md";
 
-import img from '../../../../../public/home/popular.png';
-import img4 from '../../../../../public/home/popular.png';
+import img from "../../../../../public/home/popular.png";
+import img4 from "../../../../../public/home/popular.png";
+import { useTranslations } from "next-intl";
 
 const page = ({ params }) => {
   const { id } = params;
@@ -106,35 +107,39 @@ const page = ({ params }) => {
   if (!article) {
     return notFound();
   }
+
+  const h = useTranslations("hero")
+  const p = useTranslations("profile")
   return (
     <div>
       <div className="p-5 max-w-[1400px] m-auto mb-20">
         <div className="flex items-center gap-2  my-5 mb-11">
-        <div className="md:w-[20%]">
-          <Navigate title={'Details'}></Navigate>
-        </div>
+          <div className="md:w-[20%]">
+            <Navigate title={`${p("Details")}`}></Navigate>
+          </div>
           <div className="md:w-[60%]">
-          <label className="input input-bordered rounded-sm  flex items-center gap-2 bg-[#75BEE3] max-w-[900px] m-auto text-white relative">
-      <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 16 16"
-    fill="currentColor"
-    className="h-4 w-4 opacity-70 order-1"
-  >
-    <path
-      fillRule="evenodd"
-      d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-      clipRule="evenodd"
-    />
-  </svg>
-  <input
-    type="text"
-    className="grow order-2 text-left bg-transparent placeholder-transparent"
-    placeholder="Search"
-  />
-  <span className="absolute right-3 text-white pointer-events-none">Search</span>
-</label>
-
+            <label className="input input-bordered rounded-sm  flex items-center gap-2 bg-[#75BEE3] max-w-[900px] m-auto text-white relative">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                className="h-4 w-4 opacity-70 order-1"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <input
+                type="text"
+                className="grow order-2 text-left bg-transparent placeholder-transparent"
+                placeholder="Search"
+              />
+              <span className="absolute right-3 text-white pointer-events-none">
+                {h("search")}
+              </span>
+            </label>
           </div>
         </div>
 
@@ -148,7 +153,6 @@ const page = ({ params }) => {
                 height={100}
                 className="w-full h-90 object-cover"
               />
-              
             </div>
           </div>
 

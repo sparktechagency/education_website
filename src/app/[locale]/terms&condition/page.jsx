@@ -1,12 +1,14 @@
 import Navigate from "@/components/navigate/Navigate";
+import { useTranslations } from "next-intl";
 
 
 
 const page = () => {
+  const f = useTranslations("footer")
     return (
         <div className="max-w-[1400px] m-auto pt-5 pb-20">
       <div className="md:w-[20%]">
-          <Navigate title={"Terms And Condition"}></Navigate>
+          <Navigate title={`${f("Terms & condition")}`}></Navigate>
         </div>
 
       <div>

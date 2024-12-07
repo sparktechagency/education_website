@@ -30,7 +30,7 @@
     "Education is the most powerful weapon which you can use to change the world": "Education is the most powerful weapon which you can use to change the world.",
     "Nelson Mandela": " Nelson Mandela",
     "View Video": "View Video",
-    "search": "search"
+    "search": "Search"
     
   },
   "popular" : {
@@ -57,7 +57,7 @@
     "Full Name":"Full Name",
     "Email":"Email",
     "Contact Number":"Contact Number",
-    "Adress":"Adress",
+    "Address":"Adress",
     "Update": "Update",
     "User Name": "User Name",
     "Edit Your Profile":"Edit Your Profile",
@@ -66,6 +66,26 @@
     "Current Password":"Current Password",
     "New Password":"New Password",
     "Confirm Password":"Confirm Password",
-    "hours ago":"hours ago"
+    "hours ago":"hours ago",
+    "Edit Profile": "Edit Profile",
+    "Personal Info": "Personal Info",
+    "Book Mark": "Book Mark",
+    "All Article":"All Article",
+    "All Videos":"All Videos",
+    "Notification": "Notification",
+    "Profile":"Profile",
+    "Details":"Details",
+    "More About":"More About",
+    "Contacting Us":"Contacting Us.",
+    "Location":"Location",
+    "Description":"Description",
+    "Select Services":"Select Services",
+    "Contact Us to":"Contact Us to",
+    "Explore":"Explore",
+    "Child":"Child",
+    "Learn":"Learn",
+    "Opportunities":"Opportunities.",
+    "Map":"Map"
+    
   }
 }

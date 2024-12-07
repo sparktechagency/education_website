@@ -6,7 +6,7 @@ const PopularCard = ({video}) => {
     return (
         <div>
             <Link href={`/videdetails/${video.id}`}>
-            <div className="relative">
+            <div className="relative ">
               <Image
                 src={video.thumbnail}
                 alt={video.title}
@@ -33,7 +33,7 @@ const PopularCard = ({video}) => {
             </div></Link>
 
 
-            <div className="p-2 bg-[#2F799E] text-white">
+            <div className="p-2 bg-[#2F799E] text-white -mt-[1px]">
               <h2 className="text-lg font-bold truncate">{video.title}</h2>
               
 

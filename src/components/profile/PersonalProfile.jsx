@@ -16,6 +16,7 @@ const PersonalProfile = () => {
   const [activeTab, setActiveTab] = useState("personalInfo");
 
   const p = useTranslations('profile')
+  const n = useTranslations('navbar')
 
   return (
     <div className="max-w-[1400px] m-auto px-4 lg:px-0 mb-20">
@@ -81,7 +82,7 @@ const PersonalProfile = () => {
             
             <div className="mt-5">
               <label>
-                <span className="">{p("Adress")}</span>
+                <span className="">{p("Address")}</span>
                 <input
                   className="bg-white border py-2 px-1 border-neutral-300 w-full"
                   {...register("additionalInfo")}
@@ -103,7 +104,7 @@ const PersonalProfile = () => {
         <div>
             <h1 className="text-[#3f8cb3] text-2xl pb-2 font-semibold">Vedio's</h1>
           <BookMark></BookMark>
-          <h1 className="text-[#3f8cb3] text-2xl pb-2 pt-5 font-semibold">Article</h1>
+          <h1 className="text-[#3f8cb3] text-2xl pb-2 pt-5 font-semibold">{n("Article")}</h1>
           <ArticleBookmark></ArticleBookmark>
         </div>
       )}

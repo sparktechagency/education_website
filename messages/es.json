@@ -53,7 +53,7 @@
     "Full Name": "Nombre Completo",
     "Email": "Correo Electrónico",
     "Contact Number": "Número de Contacto",
-    "Adress": "Dirección",
+    "Address": "Dirección",
     "Update": "Actualizar",
     "User Name": "Nombre de Usuario",
     "Edit Your Profile": "Editar Tu Perfil",
@@ -65,6 +65,23 @@
     "hours ago": "hace horas",
     "Edit Profile": "Editar Perfil",
     "Personal Info": "Información Personal",
-    "Book Mark": "Marcador"
+    "Book Mark": "Marcador",
+    "All Article": "Todos los Artículos",
+     "All Videos": "Todos los Videos",
+    "Notification": "Notificación",
+    "Profile": "Perfil",
+    "Details": "Detalles",
+    "More About": "Más Sobre",
+    "Contacting Us": "Contactándonos.",
+    "Location": "Ubicación",
+    "Description": "Descripción",
+    "Select Services": "Seleccionar Servicios",
+    "Contact Us to": "Contáctenos para",
+    "Explore": "Explorar",
+    "Child": "Niño",
+    "Learn": "Aprender",
+    "Opportunities": "Oportunidades.",
+    "Map": "Mapa"
+    
   }
 }

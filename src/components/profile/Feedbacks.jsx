@@ -1,6 +1,8 @@
 import Image from "next/image";
 import profile from "../../../public/article/profile.png";
+import { useTranslations } from "next-intl";
 const Feedbacks = () => {
+  const f = useTranslations('footer')
   return (
     <div className="max-w-[900px] m-auto">
       <div>
@@ -23,7 +25,7 @@ const Feedbacks = () => {
         <div className="mt-11">
           <form action="">
           <label>
-            Feedback <br />
+            {f("Feedback")} <br />
             <textarea className="bg-white border rounded w-full h-[150px]" name="" id=""></textarea>
           </label>
           <div className="flex justify-center mt-11">

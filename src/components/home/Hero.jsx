@@ -44,8 +44,8 @@ const Hero = () => {
           // Centers the image
         }}
       >
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center md:px-56">
-          <h1 className="text-4xl md:text-4xl font-bold">
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center md:px-32">
+          <h1 className="text-4xl md:text-5xl font-bold">
             {h("Education is the most powerful weapon which you can use to change the world")}
           </h1>
           <p className="mt-4 text-lg md:text-2xl">– Nelson Mandela</p>

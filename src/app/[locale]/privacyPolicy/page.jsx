@@ -1,11 +1,14 @@
 import Navigate from "@/components/navigate/Navigate";
+import { useTranslations } from "next-intl";
 import { FaArrowLeft } from "react-icons/fa6";
 
 const page = () => {
+
+  const f = useTranslations("footer")
   return (
     <div className="max-w-[1400px] m-auto pt-5 pb-20">
       <div className="md:w-[20%]">
-          <Navigate title={'Privacy Policy'}></Navigate>
+          <Navigate title={`${f("privacy Policy")}`}></Navigate>
         </div>
 
       <div>

@@ -69,6 +69,14 @@ const PopularVideo = () => {
       time: "2 day's ago",
       thumbnail: img6,
     },
+    {
+      id: 8,
+      title: "Education is the most powerful weapon",
+    
+      views: "1.3M views",
+      time: "2 day's ago",
+      thumbnail: img4,
+    },
     // Add more videos as needed
   ];
 
