@@ -21,7 +21,7 @@ export const metadata = {
 export default async function RootLayout({ children, params }) {
   const locale = (await params).locale;
 
-  // Ensure that the incoming `locale` is valid
+  
   if (!routing.locales.includes(locale)) {
     return redirect("/not-found");
   }
