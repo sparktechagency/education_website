@@ -40,7 +40,7 @@ const page = () => {
       thumbnail: img2,
     },
 
-    // Add more videos as needed
+    
   ];
   const m = useTranslations("hero"); 
   const a = useTranslations("article")
