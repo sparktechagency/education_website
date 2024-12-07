@@ -11,7 +11,7 @@ const SpecialVideo = () => {
       className="relative bg-cover w-full bg-center lg:h-[90vh] h-[600px] mt-5 rounded"
       style={{
         backgroundImage: `url(${back.src})`,
-        backgroundSize: "cover", // Ensures the image covers the container
+        backgroundSize: "cover", 
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
 
