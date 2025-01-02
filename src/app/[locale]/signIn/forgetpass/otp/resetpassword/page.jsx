@@ -1,22 +1,66 @@
 "use client";
-import { Form, Input } from "antd";
+
+import { Form, Input, message } from "antd";
 import Image from "next/image";
-import logo from "../../../../../../../public/navbar/logo.png";
+import BaseUrl from "@/components/baseApi/BaseApi"; // Replace with your Base API path
 
-const page = () => {
+const Page = () => {
   const onFinish = async (values) => {
-    console.log(values);
+    const email = localStorage.getItem("userEmail"); // Retrieve the email from localStorage
+    if (!email) {
+      message.error("Email not found. Please restart the reset process.");
+      return;
+    }
 
+    const payload = {
+      email: email,
+      password: values.password,
+      confirmPassword: values.confirmPassword,
+    };
+
+    try {
+      const response = await fetch(`${BaseUrl}/auth/reset-password`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const responseData = await response.json();
+
+      if (response.ok && responseData.success) {
+        // Show success message
+        alert('sucess')
+        console.log("Response Data:", responseData);
+
+        // Save tokens to localStorage or handle accordingly
+        localStorage.setItem("accessToken", responseData.data.accessToken);
+        localStorage.setItem("refreshToken", responseData.data.refreshToken);
+
+        // Redirect to login or dashboard
+        window.location.href = "/login"; // Update the URL as needed
+      } else {
+        // Handle API errors
+        message.error(responseData.message || "Failed to reset password.");
+        console.error("Error:", responseData);
+      }
+    } catch (error) {
+      // Handle unexpected errors
+      message.error("An unexpected error occurred. Please try again later.");
+      console.error("Unexpected Error:", error);
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
   return (
     <div>
       <div className="items-center px-4 justify-center flex min-h-screen bg-[#2F799E]">
-        <div className="lg:grid grid-cols-2">
-          <div className="bg-white md:w-[500px] md:px-16 px-5 py-16 rounded-lg shadow-lg">
+        <div className="">
+          <div className="bg-white lg:w-[500px] lg:px-16 px-5 py-16 rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
               Set a new password
             </h2>
@@ -24,7 +68,6 @@ const page = () => {
               Create a new password. Ensure it differs from previous ones for
               security
             </h3>
-
             <Form
               name="reset-password"
               onFinish={onFinish}
@@ -82,17 +125,10 @@ const page = () => {
               </Form.Item>
             </Form>
           </div>
-          <div className="hidden lg:block">
-          <div className="flex justify-start items-center mt-16">
-            <div>
-              <Image src={logo} width={300} height={200} alt="login" />
-            </div>
-          </div>
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default page;
+export default Page;

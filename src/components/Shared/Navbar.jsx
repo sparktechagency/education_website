@@ -12,6 +12,7 @@ import { useLocale, useTranslations } from "next-intl";
 const Navbar = () => {
   const currentPath = usePathname();
   const locale = useLocale();
+ 
 
   const navItems = [
     {
@@ -33,13 +34,19 @@ const Navbar = () => {
   ];
 
   const changeLanguage = (language) => {
-    
     if (language === "Eng") {
-      window.location.href = "/en"; 
+      window.location.href = "/en";
     } else {
-      window.location.href = "/es"; 
+      window.location.href = "/es";
     }
   };
+
+  const handleLogOut = () => {
+    localStorage.removeItem('accessToken')
+   
+    
+    window.location.href = "/signIn"; 
+  }
 
   const n = useTranslations("navbar");
   return (
@@ -77,7 +84,7 @@ const Navbar = () => {
                       }`}
                     >
                       <div className="border-b border-neutral-300 py-5">
-                      {n(`${item.title}`)}
+                        {n(`${item.title}`)}
                       </div>
                     </Link>
                   </div>
@@ -100,7 +107,8 @@ const Navbar = () => {
       </div>
 
       <div className="hidden lg:block">
-        <div className="flex gap-20 text-white">
+        <div className="flex gap-16">
+        <div className="flex gap-16 text-white">
           {navItems.map((item, index) => (
             <div key={index}>
               <Link
@@ -116,6 +124,10 @@ const Navbar = () => {
               </Link>
             </div>
           ))}
+        </div>
+        <div>
+          <button onClick={handleLogOut} className="text-white">Log Out</button>
+        </div>
         </div>
       </div>
       <div className="my-2 lg:my-0 flex lg:flex-col py-2">

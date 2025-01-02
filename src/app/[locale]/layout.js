@@ -6,6 +6,7 @@ import ClientLayout from "./layout/ClientLayout";
 import { NextIntlClientProvider } from "next-intl";
 import { redirect, routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
+import ReduxProvider from "@/provider/ReduxProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,11 +37,13 @@ export default async function RootLayout({ children, params }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ReduxProvider>
         <NextIntlClientProvider messages={messages}>
           <div className="">
             <ClientLayout>{children}</ClientLayout>
           </div>
         </NextIntlClientProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

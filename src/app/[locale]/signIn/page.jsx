@@ -1,38 +1,53 @@
 "use client";
-
-import { Checkbox, Form, Input } from "antd";
-import Image from "next/image";
-
-import { useForm } from "react-hook-form";
-
-import logo from "../../../../public/navbar/logo.png";
+import { Checkbox, Form, Input, message } from "antd";
 import { Link } from "@/i18n/routing";
+import BaseUrl from "@/components/baseApi/BaseApi";
+
 
 const Page = () => {
   const onFinish = async (values) => {
-    console.log(values);
-    setLoading(true);
-  };
+    const payload = {
+      email: values.email,
+      password: values.password,
+    };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+    try {
+      const response = await fetch(`${BaseUrl}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+      const responseData = await response.json(); 
+      console.log(responseData)
+      if (response.ok && responseData.success) {
+        // Login successful
+        alert('success')
+        console.log("Login Success:", responseData);
+        localStorage.setItem("accessToken", responseData.data.accessToken);
+        localStorage.setItem("refreshToken", responseData.data.refreshToken);
+        
+        window.location.href = "/"; 
+      } else {
+        
+        message.error(responseData.message || "Login failed");
+        console.error("Error:", responseData);
+      }
+    } catch (error) {
+   
+      message.error("An unexpected error occurred. Please try again later.");
+      console.error("Unexpected Error:", error);
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center  md:pt-0 px-4 justify-center bg-[#2F799E]">
-      <div className="  w-full max-w-[1500px] m-auto">
-        <div className="lg:grid lg:grid-cols-2 gap-5">
-          <div className="lg:flex lg:justify-end">
-            <div className="bg-white  lg:w-[500px] md:px-16 px-5 py-16 rounded-lg shadow-lg ">
+    <div className="min-h-screen flex items-center md:pt-0 px-4 justify-center bg-[#2F799E]">
+      <div className="w-full max-w-[1500px] m-auto">
+        <div className="gap-5">
+          <div className="lg:flex lg:justify-center">
+            <div className="bg-white lg:w-[500px] md:px-16 px-5 py-16 rounded-lg shadow-lg">
               <h2 className="text-2xl font-bold mb-2 text-gray-800">
                 Welcome back!
               </h2>
@@ -43,7 +58,6 @@ const Page = () => {
                   remember: true,
                 }}
                 onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
                 autoComplete="off"
                 layout="vertical"
               >
@@ -63,7 +77,7 @@ const Page = () => {
                 >
                   <Input
                     placeholder="Enter your Email"
-                    className="w-full px-4 py-2 border  rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </Form.Item>
 
@@ -104,15 +118,6 @@ const Page = () => {
                   </button>
                 </Form.Item>
               </Form>
-            </div>
-          </div>
-          <div>
-            <div className="hidden lg:block">
-              <div className="flex  justify-start items-center mt-20">
-                <div>
-                  <Image src={logo} width={300} height={200} alt="login" />
-                </div>
-              </div>
             </div>
           </div>
         </div>

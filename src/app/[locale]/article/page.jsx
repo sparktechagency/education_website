@@ -1,56 +1,31 @@
+"use client";
+
 import Articles from "@/components/articles/Articles";
 import Navigate from "@/components/navigate/Navigate";
-import { Description } from "@radix-ui/react-dialog";
-import Image from "next/image";
-import Link from "next/link";
-import { IoMdArrowForward } from "react-icons/io";
-import { MdArrowBack } from "react-icons/md";
-
-import img from "../../../../public/article/cover.png";
-import img1 from "../../../../public/article/cover1.png";
-import img2 from "../../../../public/article/cover2.png";
+import { useGetArticleQuery } from "@/redux/Api/article";
 import { useTranslations } from "next-intl";
 
-const page = () => {
-  const videos = [
-    {
-      id: 1,
-      title: "Education is the most powerful weapon",
-      description: `In today’s era education is not only confined to read and write. It is now linked to the holistic development of the children. With the efforts of the Government and parents, education has now reached everyone and every child is knowledgeable nowadays. Now the challenge and the demands in the market are not only limited to having knowledge, but it is also more about how impeccably one can present that knowledge.  This is the reason the  are leaving no stone unturned to help students to experiment with their knowledge and are providing them different opportunities to showcase their skills. These include exhibitions, seminars, projects, presentations, competitions, technical events, etc....... `,
+const Page = () => {
+  const { data, isLoading, error } = useGetArticleQuery();
+  const m = useTranslations("hero");
+  const p = useTranslations("profile");
 
-      time: "2 day's ago",
-      thumbnail: img,
-    },
-    {
-      id: 2,
-      title: "Education is the most powerful weapon",
-      description:
-        "In today’s era education is not only confined to read and write. It is now linked to the holistic development of the children. With the efforts of the Government and parents, education has now reached everyone and every child is knowledgeable nowadays. Now the challenge and the demands in the market are not only limited to having knowledge, but it is also more about how impeccably one can present that knowledge.  This is the reason the best CBSE schools of Bhubaneswar are leaving no stone unturned to help students to experiment with their knowledge and are providing them different opportunities to showcase their skills. These include exhibitions, seminars, projects, presentations, competitions, technical events, etc....... ",
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-      time: "2 day's ago",
-      thumbnail: img1,
-    },
-    {
-      id: 3,
-      title: "Education is the most powerful weapon",
-      description:
-        "In today’s era education is not only confined to read and write. It is now linked to the holistic development of the children. With the efforts of the Government and parents, education has now reached everyone and every child is knowledgeable nowadays. Now the challenge and the demands in the market are not only limited to having knowledge, but it is also more about how impeccably one can present that knowledge.  This is the reason the best CBSE schools of Bhubaneswar are leaving no stone unturned to help students to experiment with their knowledge and are providing them different opportunities to showcase their skills. These include exhibitions, seminars, projects, presentations, competitions, technical events, etc....... ",
+  if (error) {
+    return <div>Error loading articles: {error.message}</div>;
+  }
 
-      time: "2 day's ago",
-      thumbnail: img2,
-    },
+  const articles = data?.data?.result || [];
 
-    
-  ];
-  const m = useTranslations("hero"); 
-  const a = useTranslations("article")
-  const p = useTranslations("profile")
   return (
-    <div className="max-w-[1400px] m-auto  ">
+    <div className="max-w-[1400px] m-auto">
       <div className="mx-4 lg:mx-0">
         <div className="flex items-center gap-2 mt-5 lg:my-5 lg:mb-11 mb-5">
           <div className="md:w-[20%]">
-            <Navigate title={`${p("All Article")}`}></Navigate>
+            <Navigate title={`${p("All Article")}`} />
           </div>
           <div className="md:w-[60%]">
             <label className="input input-bordered rounded-sm flex items-center gap-2 bg-[#75BEE3] max-w-[900px] m-auto text-white relative">
@@ -79,8 +54,8 @@ const page = () => {
         </div>
 
         <div>
-          {videos.map((item) => (
-            <Articles item={item}></Articles>
+          {articles.map((item) => (
+            <Articles key={item._id} item={item} />
           ))}
         </div>
       </div>
@@ -88,4 +63,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
