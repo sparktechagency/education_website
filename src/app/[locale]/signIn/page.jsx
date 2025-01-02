@@ -12,43 +12,6 @@ const Page = () => {
   const onFinish = async (values) => {
     console.log(values);
     setLoading(true);
-    //   try {
-    //     const response = await axiosUrl.post("/dashboard/login", values);
-    //     if (response.status === 200) {
-    //       localStorage.setItem("token", response.data.token);
-
-    //       Swal.fire({
-    //         title: "Login Successful!",
-    //         text: "Welcome back!",
-    //         icon: "success",
-    //         confirmButtonText: "OK"
-    //       });
-
-    //       navigate("/");
-    //     }
-    //   } catch (error) {
-    //     console.error("Login failed:", error.response?.data?.message || error.message);
-
-    //     Swal.fire({
-    //       title: "Login Failed",
-    //       text: error.response?.data?.message || "Login failed. Please try again.",
-    //       icon: "error",
-    //       confirmButtonText: "Try Again"
-    //     });
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
-
-    // const onFinishFailed = (errorInfo) => {
-    //   console.log("Failed:", errorInfo);
-
-    //   Swal.fire({
-    //     title: "Form Validation Failed",
-    //     text: "Please fill all required fields correctly.",
-    //     icon: "warning",
-    //     confirmButtonText: "OK"
-    //   });
   };
 
   const onFinishFailed = (errorInfo) => {

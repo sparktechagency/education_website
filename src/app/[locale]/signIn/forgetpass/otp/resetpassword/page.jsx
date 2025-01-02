@@ -7,57 +7,6 @@ const page = () => {
   const onFinish = async (values) => {
     console.log(values);
 
-    // try {
-    //   const token = localStorage.getItem("recoveryToken");
-    //   console.log("Token retrieved:", token);
-
-    //   if (!token) {
-    //     Swal.fire({
-    //       title: "Error",
-    //       text: "Not Verifyed. Please verify OTP again.",
-    //       icon: "error",
-    //       confirmButtonText: "OK",
-    //     });
-    //     navigate("/verify");
-    //     return;
-    //   }
-
-    //   const response = await axiosUrl.post(
-    //     "/auth/change-password",
-    //     {
-    //       password: values.password,
-    //       confirmPassword: values.confirmPassword,
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     }
-    //   );
-
-    //   console.log(response.data);
-
-    //   if (response.data) {
-    //     Swal.fire({
-    //       title: "Success",
-    //       text: "Password reset successful!",
-    //       icon: "success",
-    //       confirmButtonText: "OK",
-    //     });
-    //     localStorage.removeItem("recoveryToken");
-    //     navigate("/login");
-    //   }
-    // } catch (error) {
-    //   console.error("Error:", error);
-    //   Swal.fire({
-    //     title: "Error",
-    //     text: "Failed to reset password. Please try again.",
-    //     icon: "error",
-    //     confirmButtonText: "Try Again",
-    //   });
-    // } finally {
-    //   setIsLoading(false);
-    // }
   };
 
   const onFinishFailed = (errorInfo) => {
