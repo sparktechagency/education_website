@@ -1,3 +1,4 @@
+"use client";
 import Videos from "@/components/video/videos";
 import { MdArrowBack } from "react-icons/md";
 import img from "../../../../public/home/popular.png";
@@ -10,69 +11,15 @@ import img6 from "../../../../public/home/popular6.png";
 
 import Navigate from "@/components/navigate/Navigate";
 import { useTranslations } from "next-intl";
+import { useGetVideosQuery } from "@/redux/Api/videoApi";
 
 const page = () => {
-  const videos = [
-    {
-      id: 1,
-      title: "Education is the most powerful weapon",
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img,
-    },
-    {
-      id: 2,
-      title: "Education is the most powerful weapon",
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img1,
-    },
-    {
-      id: 3,
-      title: "Education is the most powerful weapon",
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img2,
-    },
-    {
-      id: 4,
-      title: "Education is the most powerful weapon",
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img3,
-    },
-    {
-      id: 5,
-      title: "Education is the most powerful weapon",
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img4,
-    },
-    {
-      id: 6,
-      title: "Education is the most powerful weapon",
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img5,
-    },
-    {
-      id: 7,
-      title: "Education is the most powerful weapon",
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img6,
-    },
-    {
-      id: 8,
-      title: "Education is the most powerful weapon",
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img4,
-    },
-  ];
+  const { data: videoData, isLoading } = useGetVideosQuery();
+  console.log(videoData);
+  const videos = videoData?.data?.result || [];
 
-  const m = useTranslations("hero"); 
-  const p = useTranslations("profile"); 
+  const m = useTranslations("hero");
+  const p = useTranslations("profile");
   return (
     <div className="max-w-[1400px] px-4 lg:px-0 m-auto mb-20">
       <div className="flex items-center gap-2 my-5 mb-11">
@@ -95,7 +42,7 @@ const page = () => {
             </svg>
             <input
               type="text"
-              className="grow order-2 text-left bg-transparent placeholder-transparent"
+              className="grow order-2 pr-14 text-left bg-transparent placeholder-transparent"
               placeholder="Search"
             />
             <span className="absolute right-3 text-white pointer-events-none">
@@ -106,8 +53,8 @@ const page = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
-        {videos.map((videose) => (
-          <div key={videose.id}>
+        {videos.map((videose, i) => (
+          <div key={i}>
             <Videos videose={videose}></Videos>
           </div>
         ))}

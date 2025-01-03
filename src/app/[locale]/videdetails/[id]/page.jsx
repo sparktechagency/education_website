@@ -1,3 +1,4 @@
+"use client";
 import { MdArrowBack } from "react-icons/md";
 import img from "../../../../../public/home/popular.png";
 import img4 from "../../../../../public/home/popular.png";
@@ -10,117 +11,35 @@ import img5 from "../../../../../public/home/popular5.png";
 import img6 from "../../../../../public/home/popular6.png";
 import Navigate from "@/components/navigate/Navigate";
 import { useTranslations } from "next-intl";
-const page = ({ params }) => {
-  const { id } = params;
-  const related = [
-    {
-      id: 1,
-      title1: "Education is the most powerful weapon",
-      time1: "2 day's ago",
-      detaisl:
-        " These include exhibitions,  presentations, competitions, technical events,",
-      thumbnail1: img4,
-    },
-    {
-      id: 1,
-      title1: "Education is the most powerful weapon",
-      time1: "2 day's ago",
-      detaisl:
-        " These include exhibitions, seminars, projects, competitions, technical events,",
-      thumbnail1: img4,
-    },
-    {
-      id: 1,
-      title1: "Education is the most powerful weapon",
-      time1: "2 day's ago",
-      detaisl:
-        " These include exhibitions, seminars, projects, presentations, , technical events,",
-      thumbnail1: img4,
-    },
-    {
-      id: 1,
-      title1: "Education is the most powerful weapon",
-      time1: "2 day's ago",
-      detaisl:
-        " These include exhibitions, seminars, projects, presentations, ,",
-      thumbnail1: img4,
-    },
-  ];
 
-  const videos = [
-    {
-      id: 1,
-      title: "Education is the most powerful weapon",
+import { useGetSingleVideosQuery } from "@/redux/Api/videoApi";
+import { useParams } from "next/navigation";
+import BaseUrl from "@/components/baseApi/BaseApi";
+const page = () => {
+  const params = useParams();
+  const { data: apiResponse, isLoading, error } = useGetSingleVideosQuery({ id: params?.id });
 
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img,
-    },
-    {
-      id: 2,
-      title: "Education is the most powerful weapon",
+  const a = useTranslations("hero");
+  const p = useTranslations("profile");
 
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img1,
-    },
-    {
-      id: 3,
-      title: "Education is the most powerful weapon",
-
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img2,
-    },
-    {
-      id: 4,
-      title: "Education is the most powerful weapon",
-
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img3,
-    },
-    {
-      id: 5,
-      title: "Education is the most powerful weapon",
-
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img7,
-    },
-    {
-      id: 6,
-      title: "Education is the most powerful weapon",
-
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img5,
-    },
-    {
-      id: 7,
-      title: "Education is the most powerful weapon",
-
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img6,
-    },
-    {
-      id: 8,
-      title: "Education is the most powerful weapon",
-
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img7,
-    },
-    // Add more videos as needed
-  ];
-
-  const a = useTranslations("hero")
-  const p = useTranslations("profile")
-  const article = videos.find((item) => item.id === parseInt(id));
-  if (!article) {
-    return notFound();
+  if (isLoading) {
+    return <p className="text-center mt-10">Loading...</p>;
   }
+
+  if (error) {
+    return <p className="text-center mt-10 text-red-500">Failed to load video details.</p>;
+  }
+
+  const videoData = apiResponse?.data;
+
+  // Ensure BaseUrl and path are properly combined
+  const constructUrl = (path) =>
+    path ? `${BaseUrl.replace(/\/$/, "")}${path.replace(/\\/g, "/")}` : "";
+
+  const videoUrl = constructUrl(videoData?.video); // Construct video URL
+  const thumbnailUrl = constructUrl(videoData?.thumbnail_image); 
+
+  console.log(videoUrl)
   return (
     <div>
       <div className="max-w-[1400px] px-4 lg:px-0 m-auto mb-20">
@@ -157,34 +76,19 @@ const page = ({ params }) => {
         <div className="lg:grid grid-cols-3">
           <div className="col-span-2 mt-2 md:mr-4">
             <div className="relative">
-              <Image
-                src={article.thumbnail}
-                alt={article.title}
-                width={1400}
-                height={100}
-                className="w-full h-90 object-cover"
-              />
-              <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-md">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6 text-black"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M14.752 11.168l-5.197-3.482a1 1 0 00-1.555.832v6.964a1 1 0 001.555.832l5.197-3.482a1 1 0 000-1.664z"
-                  />
-                </svg>
-              </button>
+            <video
+            src={videoUrl}
+            poster={thumbnailUrl}
+            className="w-full h-90 object-cover"
+            controls
+            autoPlay
+          />
+              
             </div>
           </div>
 
           <div className="col-span-1 ">
-            {related.slice(0, 3).map((relat) => (
+            {/* {related.slice(0, 3).map((relat) => (
               <>
                 <div>
                   <div className="flex bg-[#C0C9CD] rounded-xl my-2 mx-1">
@@ -204,11 +108,12 @@ const page = ({ params }) => {
                   </div>
                 </div>
               </>
-            ))}
+            ))} */}
           </div>
         </div>
-        <h1 className="text-2xl font-bold  text-[#2F799E]">{article.title}</h1>
-        <h1 className=" font-bold  text-[#2F799E]">{article.time}</h1>
+        <h1 className="text-2xl font-bold text-[#2F799E] mt-5">{videoData?.title}</h1>
+        <p className="text-md text-gray-600 mt-3">{videoData?.description}</p>
+        <p className="text-sm text-gray-500 mt-1">Views: {videoData?.totalView}</p>
 
         <div></div>
       </div>

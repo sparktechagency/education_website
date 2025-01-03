@@ -1,19 +1,35 @@
+'use client'
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
-
+import moment from "moment";
 import { FaBookmark } from "react-icons/fa6";
+import BaseUrl from "../baseApi/BaseApi";
+import { useBookmarkVideosMutation } from "@/redux/Api/videoApi";
 
 const Videos = ({ videose }) => {
+
+  const [addBookmark] =  useBookmarkVideosMutation();
+
+
+const handleBookmark = async (id) => {
+  console.log(id)
+  try {
+    const res = await addBookmark(id).unwrap();
+    console.log(res)
+    console.lg("Video bookmark successfully!");
+  } catch (error) {
+    console.log("Video to bookmat article.");
+  }
+};
+  
   return (
     <div>
-      <Link href={`/videdetails/${videose.id}`}>
+      <Link href={`videdetails/${videose._id}`}>
         <div className="relative">
-          <Image
-            src={videose.thumbnail}
+          <img
+            src={`${BaseUrl}/${videose.thumbnail_image}`}
             alt={videose.title}
-            width={1000}
-            height={100}
-            className="w-full h-[250px] object-cover"
+            className="w-full h-[300px] object-cover"
           />
           <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-md">
             <svg
@@ -35,17 +51,20 @@ const Videos = ({ videose }) => {
       </Link>
 
       <div className="p-2 bg-[#2F799E] text-white -mt-[1px]">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between gap-2">
           <h2 className="text-lg font-bold truncate">{videose.title}</h2>
-          <p className="text-2xl">
-            <FaBookmark />
+          <p onClick={() => handleBookmark(videose._id)} className="text-2xl cursor-pointer">
+          <FaBookmark
+              style={{ color: videose.isBookmark===true ? "red" : "white" }}
+            />
           </p>
         </div>
 
-        <div className=" gap-2 ">
-          <div className=" text-sm text-gray-200 mt-2">
-            <span>{videose.views}</span>
-            <span>{videose.time}</span>
+        <div className="gap-2">
+          <div className="text-sm text-gray-200 mt-2 flex items-center gap-2">
+            <span>{videose.totalView} views</span>
+            <span></span>
+            <span>{moment(videose.createdAt).fromNow()}</span> 
           </div>
         </div>
       </div>

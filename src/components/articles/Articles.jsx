@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { FaArrowRight } from "react-icons/fa6";
 import { format } from "date-fns";
+import BaseUrl from "../baseApi/BaseApi";
 const Articles = ({ item }) => {
   const a = useTranslations("article");
   
@@ -19,13 +20,16 @@ const Articles = ({ item }) => {
 
   console.log(item);
 
+  const constructImageUrl = (path) =>
+    `${BaseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+
   return (
     <div className="mb-20">
      {item?.article_images?.slice(0,1).map((image, index) => (
           <img
             key={index}
-            src={`http://192.168.10.11:6050/${image}`}
-            alt={`${item?.title} - ${index + 1}`}
+            src={constructImageUrl(image)}
+              alt={`Article Image ${index + 2}`}
             className="object-cover rounded-3xl w-full"
           />
         ))}

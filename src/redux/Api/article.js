@@ -10,7 +10,7 @@ const article = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["article"],
+      providesTags: ["videos"],
     }),
    
 
@@ -21,7 +21,7 @@ const article = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["article"],
+      providesTags: ["videos"],
     }),
 
 

@@ -1,108 +1,114 @@
-import { useForm } from "react-hook-form";
+"use client";
+import { useChangePasswordMutation } from "@/redux/Api/webmanageApi";
+import { Form, Input, Button } from "antd";
+import { useState } from "react";
+
+import { useRouter } from "next/navigation";
 
 const ChangPassword = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    setError,
-    clearErrors,
-    formState: { errors },
-  } = useForm();
+  const [form] = Form.useForm();
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
+  const [passError, setPassError] = useState("");
+  const router = useRouter();
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const [changePassword, { isLoading: changePasswordLoading }] =
+    useChangePasswordMutation();
+
+  const validatePasswords = () => {
+    const newPassword = form.getFieldValue("newPassword");
+    const confirmPassword = form.getFieldValue("confirmNewPassword");
+    setPasswordMismatch(newPassword !== confirmPassword);
   };
 
-  // Watch new password and confirm password
-  const newPassword = watch("newPassword");
-  const confirmPassword = watch("confirmPassword");
-
-  // Validate confirm password
-  const validatePasswords = () => {
-    if (newPassword !== confirmPassword) {
-      setError("confirmPassword", {
-        type: "manual",
-        message: "Passwords do not match",
-      });
-    } else {
-      clearErrors("confirmPassword");
+  const onFinish = (values) => {
+    if (values.newPassword === values.oldPassword) {
+      setPassError("Your old password cannot be your new password.");
+      return;
     }
+    if (values.newPassword !== values.confirmNewPassword) {
+      setPassError("Confirm password doesn't match.");
+      return;
+    }
+
+    setPassError("");
+    changePassword(values)
+      .unwrap()
+      .then(() => {
+        alert('sucess')
+        console.log("Your password has been changed successfully. Please log in again.");
+        localStorage.removeItem("accessToken");
+        router.push("/signIn");
+      })
+      .catch((error) => {
+        alert('unsucess')
+        console.error(error?.data?.message || "Failed to change password.");
+      });
   };
 
   return (
     <div className="max-w-[650px] m-auto">
-      <form className="bg-white p-4" onSubmit={handleSubmit(onSubmit)}>
-        {/* Current Password */}
+      <Form
+        form={form}
+        className="bg-white p-4 md:w-[590px]"
+        layout="vertical"
+        onFinish={onFinish}
+      >
         <h1 className="text-xl font-bold text-center mb-5">Change Password</h1>
-        <label className="">Current Password
-          <input
-            className={`bg-white border py-2 px-1 border-neutral-300 mb-4 w-full ${
-              errors.currentPassword ? "border-red-500" : ""
-            }`}
-            {...register("currentPassword", { required: "Current password is required" })}
-            placeholder="Current Password"
-          />
-          {errors.currentPassword && (
-            <p className="text-red-500 text-sm">{errors.currentPassword.message}</p>
-          )}
-        </label>
-        
-       
+
+        {/* Current Password */}
+        <Form.Item
+          label="Current Password"
+          name="oldPassword"
+          rules={[{ required: true, message: "Current password is required" }]}
+        >
+          <Input.Password placeholder="Current Password" />
+        </Form.Item>
 
         {/* New Password */}
-     
-       
-        <label className="">New Password
-       
-          <input
-            className={`bg-white border py-2 px-1 border-neutral-300 mb-4 w-full ${
-              errors.newPassword ? "border-red-500" : ""
-            }`}
-            {...register("newPassword", {
-              required: "New password is required",
-              minLength: {
-                value: 6,
-                message: "Password must be at least 6 characters",
-              },
-            })}
+        <Form.Item
+          label="New Password"
+          name="newPassword"
+          rules={[
+            { required: true, message: "New password is required" },
+            { min: 6, message: "Password must be at least 6 characters" },
+          ]}
+        >
+          <Input.Password
             placeholder="New Password"
             onBlur={validatePasswords}
           />
-          {errors.newPassword && (
-            <p className="text-red-500 text-sm">{errors.newPassword.message}</p>
-          )}
-        </label>
-
+        </Form.Item>
 
         {/* Confirm Password */}
-      
-          
-          <label>
-            <span className="">Confirm Password</span>
-            <input
-              className={`bg-white border py-2 px-1 border-neutral-300 w-full ${
-                errors.confirmPassword ? "border-red-500" : ""
-              }`}
-              {...register("confirmPassword", { required: "Confirm password is required" })}
-              placeholder="Confirm Password"
-              onBlur={validatePasswords}
-            />
-            {errors.confirmPassword && (
-              <p className="text-red-500 text-sm">{errors.confirmPassword.message}</p>
-            )}
-          
-          </label>
+        <Form.Item
+          label="Confirm Password"
+          name="confirmNewPassword"
+          rules={[{ required: true, message: "Confirm password is required" }]}
+          validateStatus={passwordMismatch ? "error" : ""}
+          help={passwordMismatch ? "Passwords do not match" : null}
+        >
+          <Input.Password
+            placeholder="Confirm Password"
+            onBlur={validatePasswords}
+          />
+        </Form.Item>
+
+        {passError && (
+          <p className="text-red-600 text-center">{passError}</p>
+        )}
 
         {/* Submit Button */}
         <div className="flex justify-center mt-11">
-          <input
-            className="bg-[#2F799E] cursor-pointer px-11 py-1 text-white rounded mt-6"
-            type="submit"
-            value="Save Changes"
-          />
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="px-11 py-1 bg-[#2F799E] text-white rounded"
+            loading={changePasswordLoading}
+          >
+            Save Changes
+          </Button>
         </div>
-      </form>
+      </Form>
     </div>
   );
 };

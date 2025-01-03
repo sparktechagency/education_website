@@ -19,6 +19,7 @@
     "date-fns": "^4.1.0",
     "format": "^0.2.2",
     "lucide-react": "^0.462.0",
+    "moment": "^2.30.1",
     "next": "15.0.3",
     "next-intl": "^3.25.3",
     "next-translate": "^2.6.2",

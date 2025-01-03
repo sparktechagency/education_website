@@ -1,8 +1,11 @@
+'use client'
 import Image from "next/image";
 import profile from "../../../public/article/profile.png";
 import { useTranslations } from "next-intl";
+import { usePostFeedbackMutation } from "@/redux/Api/webmanageApi";
 const Feedbacks = () => {
   const f = useTranslations('footer')
+  const [feedbackAdd] = usePostFeedbackMutation();
   return (
     <div className="max-w-[900px] m-auto">
       <div>

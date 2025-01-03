@@ -1,7 +1,6 @@
+'use client'
 import Image from "next/image";
 import line from "../../../public/home/line.png";
-
-
 import img from "../../../public/home/popular.png";
 import img1 from "../../../public/home/popular1.png";
 import img2 from "../../../public/home/popular2.png";
@@ -11,7 +10,18 @@ import img5 from "../../../public/home/popular5.png";
 import img6 from "../../../public/home/popular6.png";
 import PopularCard from "./PopularCard";
 import { useTranslations } from "next-intl";
+import { useGetshortVideosQuery } from "@/redux/Api/videoApi";
+import { useState } from "react";
 const PopularVideo = () => {
+  const [sort, setSort] = useState("-totalView");
+const { data: videoData } = useGetshortVideosQuery({sort});
+  const videose = videoData?.data?.result || [];
+
+  const handleSortChange = (e) => {
+    setSort(e.target.value);
+  };
+
+  console.log(videose);
   const videos = [
     {
       id: 1,
@@ -91,7 +101,7 @@ const PopularVideo = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
-        {videos.map((video) => (
+        {videose.slice(0,8).map((video) => (
           <div
             key={video.id}
             

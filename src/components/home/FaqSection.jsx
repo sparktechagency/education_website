@@ -3,42 +3,32 @@
 import React from "react";
 import { Collapse } from "antd";
 import { useTranslations } from "next-intl"; // Import the useTranslations hook
+import { useGetFaqQuery } from "@/redux/Api/webmanageApi";
 
-const text = `
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry...
-`;
-
-const items = [
-  {
-    key: "1",
-    label: "How much does your Web flow design cost?",
-    children: <p>{text}</p>,
-  },
-  {
-    key: "2",
-    label: "How long does it take for you to develop a website with Web flow?",
-    children: <p>{text}</p>,
-  },
-  {
-    key: "3",
-    label:
-      "Do you recommend a WordPress to Webflow migration, and why is Webflow better than WordPress?",
-    children: <p>{text}</p>,
-  },
-  {
-    key: "4",
-    label: "Is Webflow good for SEO and Branding?",
-    children: <p>{text}</p>,
-  },
-  {
-    key: "5",
-    label: "What sets your Webflow services apart from other companies?",
-    children: <p>{text}</p>,
-  },
-];
 
 const FaqSection = () => {
   const m = useTranslations("popular"); // Call useTranslations inside the component
+  const {data: faqData , isLoading, error} = useGetFaqQuery();
+  
+
+
+  // Check if data is still loading
+if (isLoading) {
+  return <p>Loading FAQs...</p>;
+}
+
+// Handle potential errors
+if (error) {
+  return <p>Failed to load FAQs. Please try again later.</p>;
+}
+
+const items =
+    faqData?.data?.map((faq) => ({
+      key: faq.id,
+      label: faq.question,
+      children: <p>{faq.answer}</p>,
+    })) || [];
+
 
   return (
     <div className="">

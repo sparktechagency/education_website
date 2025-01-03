@@ -1,122 +1,188 @@
 "use client";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 import profile from "../../../public/article/profile.png";
 import Image from "next/image";
-
+import { Form, Input, Button, Select, message, Spin } from "antd";
 import ChangPassword from "./ChangPassword";
 import { useTranslations } from "next-intl";
+import { IoCameraOutline } from "react-icons/io5";
+import { useGetUserQuery, useUpdateProfileeMutation } from "@/redux/Api/webmanageApi";
+import BaseUrl from "../baseApi/BaseApi";
+
+const { Option } = Select;
 
 const EditProfile = () => {
-
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
-
   // Tab state
+  const [form] = Form.useForm();
   const [activeTab, setActiveTab] = useState("personalInfo");
-  const p = useTranslations('profile')
+  const p = useTranslations("profile");
+
+  const { data: userProfile, isLoading: loadingProfile } = useGetUserQuery();
+  const [updateProfile, { isLoading: updatingProfile }] = useUpdateProfileeMutation();
+  console.log(userProfile)
+  const [image, setImage] = useState(null);
+  useEffect(() => {
+    if (userProfile?.data) {
+      const user = userProfile.data;
+      form.setFieldsValue({
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        gender: user.gender || "",
+      });
+    }
+  }, [userProfile, form]);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
+
+ 
+
+  const onFinish = async (values) => {
+    const data = new FormData();
+    data.append("username", values.username);
+    data.append("phone", values.phone);
+    data.append("gender", values.gender);
+    if (image) {
+      data.append("profile_image", image);
+    }
+
+    try {
+      const response = await updateProfile(data).unwrap();
+      message.success(response.message || "Profile updated successfully");
+    } catch (error) {
+      message.error(error.message || "Failed to update profile");
+    }
+  };
+
+  if (loadingProfile) {
+    return <Spin size="large" />;
+  }
+
+  const user = userProfile?.data;
 
   return (
     <div className="max-w-[1400px] m-auto px-4 lg:px-0 pb-32">
-      
       <div className="md:flex justify-center gap-11">
-      <div>
-        <div className="flex justify-center">
-          <Image
-            className="rounded-full"
-            src={profile}
-            width={100}
-            height={100}
-            alt="profile"
-          />
-        </div>
-
-        <div className="text-center">
-          <p className="font-semibold mt-1">Ian</p>
-          <p>ian@gmail.com</p>
-        </div>
-      </div>
-      {/* Tab navigation */}
-      <div>
-      <div className="flex space-x-4 pb-2  mt-11 mb-9">
-        <button
-          className={`${
-            activeTab === "personalInfo" ? " border-b-4 border-blue-600" : ""
-          }`}
-          onClick={() => setActiveTab("personalInfo")}
-        >
-          {p("Edit Profile")}
-        </button>
-        <button
-          className={`${
-            activeTab === "bookMark" ? "border-b-4 border-blue-600" : ""
-          }`}
-          onClick={() => setActiveTab("bookMark")}
-        >
-          {p("Change Password")}
-        </button>
-      </div>
-
-      {/* Tab content */}
-      {activeTab === "personalInfo" && (
-        <div className=" ">
-          
-          <form className="bg-white p-4 rounded" onSubmit={handleSubmit(onSubmit)}>
-          <h1 className="text-xl font-bold text-center mb-5">{p("Edit Your Profile")}</h1>
-            <label>
-              <span className="">{p("User Name")}</span>
-              <input
-                className="bg-white border py-2  px-1 border-neutral-300 w-full"
-                {...register("fullName")}
-                placeholder="John Cooper"
+        <div>
+          <div className="flex justify-center">
+            <div className="relative w-[140px] h-[124px] mx-auto">
+            <input
+                type="file"
+                onChange={handleImageChange}
+                id="img"
+                style={{ display: "none" }}
               />
-            </label>
-            <div className="  mt-5">
-              <label>
-                <span className="">{p("Email")}</span>
-                <input
-                  className="bg-white border py-2 mb-5 px-1 border-neutral-300 w-full"
-                  {...register("email")}
-                  placeholder="ian@gmail.com"
-                />
-              </label>
-              <label>
-                <span className="">{p("Contact Number")}</span>
-                <input
-                  className="bg-white border py-2  px-1 border-neutral-300 w-full"
-                  {...register("phone")}
-                  placeholder="+99 4543 34543 213"
-                />
-              </label>
-            </div>
-
-            <div className="mt-5">
-              <label>
-                <span className="">{p("Address")}</span>
-                <input
-                  className="bg-white border py-2 px-1 border-neutral-300 w-full"
-                  {...register("additionalInfo")}
-                  placeholder="68/ jokar vila, Gotham, City"
-                />
-              </label>
-            </div>
-            <div className="flex justify-center mt-11">
-              <input
-                className="bg-[#2F799E] px-11 py-1 cursor-pointer  text-white rounded mt-6"
-                type="submit"
-                value="Save Changes"
+              <img
+                style={{ width: 140, height: 140, borderRadius: "100%" }}
+                src={
+                  image
+                    ? URL.createObjectURL(image)
+                    : `${BaseUrl}/${user?.profile_image}` || "/default-profile.png"
+                }
+                alt="Profile"
               />
+              {activeTab === "personalInfo" && (
+                <label
+                  htmlFor="img"
+                  className="absolute top-[80px] -right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center cursor-pointer"
+                >
+                  <IoCameraOutline className="text-black " />
+                </label>
+              )}
             </div>
-          </form>
+          </div>
+          <div className="text-center">
+            <p className="font-semibold mt-6">{user?.username || "N/A"}</p>
+            <p>{user?.email || "N/A"}</p>
+          </div>
         </div>
-      )}
 
-      {activeTab === "bookMark" && (
-        <div className="">
-          <ChangPassword></ChangPassword>
+        {/* Tab navigation */}
+        <div>
+          <div className="flex space-x-4 pb-2 mt-11 mb-9">
+            <button
+              className={`${
+                activeTab === "personalInfo"
+                  ? " border-b-4 border-blue-600"
+                  : ""
+              }`}
+              onClick={() => setActiveTab("personalInfo")}
+            >
+              {p("Edit Profile")}
+            </button>
+            <button
+              className={`${
+                activeTab === "bookMark" ? "border-b-4 border-blue-600" : ""
+              }`}
+              onClick={() => setActiveTab("bookMark")}
+            >
+              {p("Change Password")}
+            </button>
+          </div>
+
+          {/* Tab content */}
+          {activeTab === "personalInfo" && (
+            <div>
+               <Form
+              className="bg-white p-4 rounded md:w-[590px]"
+              layout="vertical"
+              form={form}
+              onFinish={onFinish}
+            >
+              <h1 className="text-xl font-bold text-center mb-5">Edit Your Profile</h1>
+              <Form.Item
+                label="User Name"
+                name="username"
+                rules={[{ required: true, message: "Please enter your name" }]}
+              >
+                <Input placeholder="User Name" />
+              </Form.Item>
+              <Form.Item
+                label="Email"
+                name="email"
+              >
+                <Input placeholder="Email" disabled />
+              </Form.Item>
+              <Form.Item
+                label="Contact Number"
+                name="phone"
+                rules={[{ required: true, message: "Please enter your phone number" }]}
+              >
+                <Input placeholder="Phone" />
+              </Form.Item>
+              <Form.Item
+                label="Gender"
+                name="gender"
+                rules={[{ required: true, message: "Please select your gender" }]}
+              >
+                <Select placeholder="Select Gender">
+                  <Option value="Male">Male</Option>
+                  <Option value="Female">Female</Option>
+                </Select>
+              </Form.Item>
+              <div className="flex justify-center mt-11">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="px-11 py-1 bg-[#2F799E] text-white rounded"
+                  loading={updatingProfile}
+                >
+                  Save Changes
+                </Button>
+              </div>
+            </Form>
+            </div>
+          )}
+
+          {activeTab === "bookMark" && (
+            <div>
+              <ChangPassword />
+            </div>
+          )}
         </div>
-      )}
-      </div>
       </div>
     </div>
   );
