@@ -55,7 +55,7 @@ const ChangPassword = () => {
       >
         <h1 className="text-xl font-bold text-center mb-5">Change Password</h1>
 
-        {/* Current Password */}
+        {/* Current Passwor */}
         <Form.Item
           label="Current Password"
           name="oldPassword"
