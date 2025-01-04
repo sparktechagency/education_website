@@ -6,7 +6,7 @@ const ArticleBookmark = () => {
   const videos = [
     {
       id: 1,
-      title: "Education is the most powerful weapon",
+      title: "ducation is the most powerful weapon",
 
       views: "1.3M views",
       time: "2 day's ago",

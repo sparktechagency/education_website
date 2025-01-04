@@ -25,7 +25,7 @@ const EducationArticle = () => {
     categoryArticle?.data?.map((item) => ({
       id: item._id,
       title: item.name,
-      thumbnail: item.category_image, // Ensure the image path is correctly formatted
+      thumbnail: item.category_image,
     })) || [];
 
   return (
@@ -53,14 +53,14 @@ const EducationArticle = () => {
             <div className="rounded-2xl p-6 py-8 flex items-center gap-11 bg-[#2F799E] m-3">
               <img
                 className="imgg w-[120px] h-[90px]"
-                src={`${BaseUrl}/${item.thumbnail}`} // Update path if needed
+                src={`${BaseUrl}/${item.thumbnail}`}
                 
                 alt={item.title}
               />
               <div>
-                <h2 className="text-white text-4xl">{item.title}</h2>
-                <Link href={`/articleDetails/${item.id}`}>
-                  <button className="bg-white rounded py-2 px-4 mt-6 flex items-center gap-2">
+                <h2 className="text-white text-2xl">{item.title}</h2>
+                <Link href={`/shortCategory/${item.id}`}>
+                  <button className="bg-white rounded py-1 px-2 mt-6 flex items-center gap-2">
                     {m("Read More")} <IoMdArrowForward className="mt-1" />
                   </button>
                 </Link>
