@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 'use client'
+import React from "react";
 import { Link } from "@/i18n/routing";
-import Image from "next/image";
+
 import moment from "moment";
 import { FaBookmark } from "react-icons/fa6";
 import BaseUrl from "../baseApi/BaseApi";

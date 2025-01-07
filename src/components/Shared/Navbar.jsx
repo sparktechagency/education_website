@@ -1,7 +1,7 @@
 "use client";
-
+import React from "react";
 import Image from "next/image";
-import { redirect, usePathname } from "next/navigation";
+import {  usePathname } from "next/navigation";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { FaBars, FaRegUserCircle } from "react-icons/fa";
 import logo from "../../../public/navbar/logo.png";

@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Loading from "@/components/Loading";
 import Navigate from "@/components/navigate/Navigate";
 import { useGetLawQuery } from "@/redux/Api/webmanageApi";

@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 "use client";
 
-
+import React from "react";
 import { useRouter } from "@/i18n/routing";
 import { MdArrowBack } from "react-icons/md";
 

@@ -1,6 +1,7 @@
+
+import React from "react";
 import Image from "next/image";
 import footer from "../../../public/navbar/logo.png";
-
 import { CiFacebook } from "react-icons/ci";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa6";

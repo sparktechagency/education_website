@@ -1,5 +1,7 @@
-import { Link } from "@/i18n/routing";
+/* eslint-disable react/prop-types */
 
+import React from "react";
+import { Link } from "@/i18n/routing";
 import BaseUrl from "../baseApi/BaseApi";
 import moment from "moment";
 

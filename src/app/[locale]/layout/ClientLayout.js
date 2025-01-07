@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 "use client";
-
+import React from "react";
 import Footer from "@/components/Shared/Footer";
 import Navbar from "@/components/Shared/Navbar";
 import { usePathname } from "@/i18n/routing";

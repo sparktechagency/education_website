@@ -1,7 +1,9 @@
+/* eslint-disable no-constant-binary-expression */
 "use client";
+import React from "react";
 import { useState } from "react";
 import profile from "../../../public/article/profile.png";
-import Image from "next/image";
+
 import BookMark from "./BookMark";
 import ArticleBookmark from "./ArticleBookmark";
 import { Link } from "@/i18n/routing";
@@ -16,6 +18,7 @@ const PersonalProfile = () => {
   const [activeTab, setActiveTab] = useState("personalInfo");
   const [activeTab1, setActiveTab1] = useState("video");
   const { data: userInfo, isLoading } = useGetUserQuery();
+  
   const p = useTranslations("profile");
   const n = useTranslations("navbar");
 
@@ -127,7 +130,7 @@ const PersonalProfile = () => {
           {activeTab1 === "video" && (
             <div>
               <h1 className="text-[#3f8cb3] text-2xl pb-2 font-semibold">
-                Vedio's
+                {`Vedio's`}
               </h1>
               <BookMark />
             </div>

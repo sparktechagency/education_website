@@ -1,7 +1,8 @@
 'use client'
 
-
+import React from "react";
 import Articles from "@/components/articles/Articles";
+import Loading from "@/components/Loading";
 import Navigate from "@/components/navigate/Navigate";
 import { useGetShortCategoryQuery } from "@/redux/Api/categoryApi";
 
@@ -19,7 +20,7 @@ const page = () => {
       const p = useTranslations("profile");
     
       if (isLoading) {
-        return <div>Loading...</div>;
+        return <p className="h-screen"><Loading></Loading></p>;
       }
     
       if (error) {

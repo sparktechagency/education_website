@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import logo from "../../../../public/navbar/logo.png";
+import React from "react";
 import { Form, Input, message } from "antd";
 import { Link } from "@/i18n/routing";
 import BaseUrl from "@/components/baseApi/BaseApi";

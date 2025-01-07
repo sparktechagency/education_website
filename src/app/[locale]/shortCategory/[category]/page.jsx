@@ -1,5 +1,5 @@
 'use client'
-
+import React from "react";
 import Articles from "@/components/articles/Articles";
 import Navigate from "@/components/navigate/Navigate";
 import { useGetShortCategoryQuery } from "@/redux/Api/categoryApi";

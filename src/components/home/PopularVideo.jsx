@@ -1,13 +1,8 @@
 'use client'
+import React from "react";
 import Image from "next/image";
 import line from "../../../public/home/line.png";
-import img from "../../../public/home/popular.png";
-import img1 from "../../../public/home/popular1.png";
-import img2 from "../../../public/home/popular2.png";
-import img3 from "../../../public/home/popular3.png";
-import img4 from "../../../public/home/popular4.png";
-import img5 from "../../../public/home/popular5.png";
-import img6 from "../../../public/home/popular6.png";
+
 import PopularCard from "./PopularCard";
 import { useTranslations } from "next-intl";
 import { useGetshortVideosQuery } from "@/redux/Api/videoApi";

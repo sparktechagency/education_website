@@ -1,3 +1,5 @@
+
+import React from "react";
 import PersonalProfile from "@/components/profile/PersonalProfile";
 
 

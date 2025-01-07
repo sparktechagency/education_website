@@ -1,9 +1,10 @@
 'use client'
+import React from "react";
 import Loading from "@/components/Loading";
 import Navigate from "@/components/navigate/Navigate";
 import { useGetprivecyConditionsQuery } from "@/redux/Api/webmanageApi";
 import { useTranslations } from "next-intl";
-import { FaArrowLeft } from "react-icons/fa6";
+
 
 const page = () => {
 

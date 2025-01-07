@@ -1,3 +1,5 @@
+
+import React from "react";
 import Navigate from "@/components/navigate/Navigate";
 import Feedbacks from "@/components/profile/Feedbacks";
 import { useTranslations } from "next-intl";

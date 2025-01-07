@@ -1,8 +1,8 @@
+import React from "react";
 import Navigate from "@/components/navigate/Navigate";
 import EditProfile from "@/components/profile/EditProfile";
 import { useTranslations } from "next-intl";
 
-import { FaArrowLeft } from "react-icons/fa6";
 
 const page = () => {
   const p = useTranslations('profile')

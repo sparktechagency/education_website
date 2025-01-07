@@ -1,10 +1,13 @@
+/* eslint-disable react/prop-types */
+
+import React from "react";
 import { Link } from "@/i18n/routing";
-import Image from "next/image";
 
 import { FaBookmark } from "react-icons/fa6";
 import BaseUrl from "../baseApi/BaseApi";
 import { useBookmarkArticleMutation } from "@/redux/Api/article";
 
+// eslint-disable-next-line react/prop-types
 const ArticleBookmarks = ({ videose }) => {
   console.log(videose)
 

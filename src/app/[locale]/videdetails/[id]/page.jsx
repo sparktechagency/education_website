@@ -1,14 +1,6 @@
 "use client";
-import { MdArrowBack } from "react-icons/md";
-import img from "../../../../../public/home/popular.png";
-import img4 from "../../../../../public/home/popular.png";
-import Image from "next/image";
-import img1 from "../../../../../public/home/popular1.png";
-import img2 from "../../../../../public/home/popular2.png";
-import img3 from "../../../../../public/home/popular3.png";
-import img7 from "../../../../../public/home/popular4.png";
-import img5 from "../../../../../public/home/popular5.png";
-import img6 from "../../../../../public/home/popular6.png";
+import React from "react";
+
 import Navigate from "@/components/navigate/Navigate";
 import { useTranslations } from "next-intl";
 
@@ -18,7 +10,7 @@ import {
 } from "@/redux/Api/videoApi";
 import { useParams } from "next/navigation";
 import BaseUrl from "@/components/baseApi/BaseApi";
-import { useGetShortCategoryQuery } from "@/redux/Api/categoryApi";
+
 import Loading from "@/components/Loading";
 
 const page = () => {
@@ -62,8 +54,8 @@ const page = () => {
 
   console.log(videoUrl);
 
-  const constructImageUrl = (path) =>
-    `${BaseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+  // const constructImageUrl = (path) =>
+  //   `${BaseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 
   return (
     <div>

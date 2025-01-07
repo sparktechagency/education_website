@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Link } from "@/i18n/routing";
 import hero from "../../../public/home/hero1.png";
 import { MdArrowOutward } from "react-icons/md";

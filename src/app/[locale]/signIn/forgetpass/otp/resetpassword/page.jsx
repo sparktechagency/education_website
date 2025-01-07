@@ -1,7 +1,7 @@
 "use client";
-
+import React from "react";
 import { Form, Input, message } from "antd";
-import Image from "next/image";
+
 import BaseUrl from "@/components/baseApi/BaseApi"; // Replace with your Base API path
 import { useLocale } from "next-intl";
 

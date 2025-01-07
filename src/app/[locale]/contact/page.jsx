@@ -1,3 +1,5 @@
+
+import React from "react";
 import Contact from '@/components/contact/Contact';
 import { useTranslations } from 'next-intl';
 import { FaArrowUpRightFromSquare } from 'react-icons/fa6';

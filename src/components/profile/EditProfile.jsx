@@ -1,13 +1,15 @@
+/* eslint-disable no-constant-binary-expression */
 "use client";
+import React from "react";
 import { useEffect, useState } from "react";
-import profile from "../../../public/article/profile.png";
-import Image from "next/image";
-import { Form, Input, Button, Select, message, Spin } from "antd";
+
+import { Form, Input, Button, Select, message} from "antd";
 import ChangPassword from "./ChangPassword";
 import { useTranslations } from "next-intl";
 import { IoCameraOutline } from "react-icons/io5";
 import { useGetUserQuery, useUpdateProfileeMutation } from "@/redux/Api/webmanageApi";
 import BaseUrl from "../baseApi/BaseApi";
+import Loading from "../Loading";
 
 const { Option } = Select;
 
@@ -58,7 +60,7 @@ const EditProfile = () => {
   };
 
   if (loadingProfile) {
-    return <Spin size="large" />;
+    return <Loading></Loading>;
   }
 
   const user = userProfile?.data;

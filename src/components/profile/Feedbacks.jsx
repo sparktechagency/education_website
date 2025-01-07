@@ -8,18 +8,18 @@ import { usePostFeedbackMutation } from "@/redux/Api/webmanageApi";
 const Feedbacks = () => {
   const f = useTranslations('footer');
   const [feedbackAdd] = usePostFeedbackMutation();
-  const [feedback, setFeedback] = useState(""); // State to manage feedback input
-  const [message, setMessage] = useState(null); // State to display response message
+  const [feedback, setFeedback] = useState("");
+  const [message, setMessage] = useState(null); 
 
-  // Handle form submission
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await feedbackAdd({
+      await feedbackAdd({
         description: feedback,
-      }).unwrap(); // Use unwrap() to handle promise responses
+      }).unwrap(); 
       setMessage("Feedback submitted successfully!");
-      setFeedback(""); // Clear the textarea after successful submission
+      setFeedback(""); 
     } catch (error) {
       setMessage("Failed to submit feedback. Please try again.");
       console.error("Error submitting feedback:", error);

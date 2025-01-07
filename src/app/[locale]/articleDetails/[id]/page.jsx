@@ -1,14 +1,14 @@
 "use client";
-
+import React from "react";
 import BaseUrl from "@/components/baseApi/BaseApi";
 import Loading from "@/components/Loading";
 import {
-  useGetArticleQuery,
+
   useGetShortArtilesQuery,
   useGetSingleArticleQuery,
 } from "@/redux/Api/article";
-import { useGetShortCategoryQuery } from "@/redux/Api/categoryApi";
-import Image from "next/image";
+
+
 import { notFound, useParams } from "next/navigation";
 
 const ArticleDetails = () => {

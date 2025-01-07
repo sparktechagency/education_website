@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Videos from "@/components/video/videos";
 import Navigate from "@/components/navigate/Navigate";
 import { useTranslations } from "next-intl";

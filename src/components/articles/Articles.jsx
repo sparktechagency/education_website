@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import Image from "next/image";
+
 import Link from "next/link";
-import { useLocale, useTranslations } from "next-intl";
+import {  useTranslations } from "next-intl";
 import { FaArrowRight, FaBookmark } from "react-icons/fa6";
-import { format } from "date-fns";
+
 import BaseUrl from "../baseApi/BaseApi";
 import { useBookmarkArticleMutation } from "@/redux/Api/article";
 

@@ -1,6 +1,8 @@
+
+import React from "react";
 import Navigate from "@/components/navigate/Navigate";
 import Image from "next/image";
-import { MdArrowBack } from "react-icons/md";
+
 
 import img from "../../../../../public/home/popular.png";
 import img4 from "../../../../../public/home/popular.png";
@@ -104,9 +106,9 @@ const page = ({ params }) => {
   ];
 
   const article = videos.find((item) => item.id === parseInt(id));
-  if (!article) {
-    return notFound();
-  }
+  // if (!article) {
+  //   return notFound();
+  // }
 
   const h = useTranslations("hero")
   const p = useTranslations("profile")

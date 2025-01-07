@@ -1,7 +1,7 @@
+
+import React from "react";
 import ArticleBookmarks from "../articlebookmark/ArticleBookmarks";
-import img from "../../../public/home/popular.png";
-import { MdArrowBack } from "react-icons/md";
-import { useGetArticleQuery, useGetOnlyArticleQuery } from "@/redux/Api/article";
+import {  useGetOnlyArticleQuery } from "@/redux/Api/article";
 import Loading from "../Loading";
 
 const ArticleBookmark = () => {

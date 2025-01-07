@@ -1,6 +1,7 @@
 'use client'
+import React from "react";
 import Videos from "../video/Videos";
-import img from "../../../public/home/popular.png";
+
 import { useGetOnlyVideoQuery } from "@/redux/Api/videoApi";
 import Loading from "../Loading";
 

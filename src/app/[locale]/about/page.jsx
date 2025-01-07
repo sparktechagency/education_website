@@ -1,5 +1,5 @@
 'use client';
-
+import React from "react";
 import { useTranslations } from 'next-intl';
 import { useGetAboutQuery } from '@/redux/Api/webmanageApi';
 import Loading from '@/components/Loading';

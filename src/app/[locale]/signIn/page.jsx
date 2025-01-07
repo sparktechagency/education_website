@@ -1,9 +1,9 @@
 "use client";
+
+import React from "react";
 import { Checkbox, Form, Input, message } from "antd";
 import { Link } from "@/i18n/routing";
 import BaseUrl from "@/components/baseApi/BaseApi";
-
-
 const Page = () => {
   const onFinish = async (values) => {
     const payload = {
