@@ -13,9 +13,9 @@ const settingApi = baseApi.injectEndpoints({
     }),
 
     getShortCategory: builder.query({
-      query: ({ category }) => {
+      query: ({searchTerm, category }) => {
         return {
-          url: `/article/get-all-article?category=${category}`,
+          url: `/article/get-all-article?searchTerm=${searchTerm}&category=${category}`,
           method: "GET",
         };
       },

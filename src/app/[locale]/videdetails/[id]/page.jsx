@@ -12,22 +12,43 @@ import img6 from "../../../../../public/home/popular6.png";
 import Navigate from "@/components/navigate/Navigate";
 import { useTranslations } from "next-intl";
 
-import { useGetSingleVideosQuery } from "@/redux/Api/videoApi";
+import {
+  useGetCategoryVideosQuery,
+  useGetSingleVideosQuery,
+} from "@/redux/Api/videoApi";
 import { useParams } from "next/navigation";
 import BaseUrl from "@/components/baseApi/BaseApi";
+import { useGetShortCategoryQuery } from "@/redux/Api/categoryApi";
+import Loading from "@/components/Loading";
+
 const page = () => {
   const params = useParams();
-  const { data: apiResponse, isLoading, error } = useGetSingleVideosQuery({ id: params?.id });
+  const {
+    data: apiResponse,
+    isLoading,
+    error,
+  } = useGetSingleVideosQuery({ id: params?.id });
 
   const a = useTranslations("hero");
   const p = useTranslations("profile");
 
+  const { data: releted, isLoading: isLoadingRelated } = useGetCategoryVideosQuery({
+    category: apiResponse?.data?.category,
+  });
+
+  const reletedData = releted?.data?.result || [];
+  console.log(reletedData);
+
   if (isLoading) {
-    return <p className="text-center mt-10">Loading...</p>;
+    return <p className="h-screen"><Loading></Loading></p>;
   }
 
   if (error) {
-    return <p className="text-center mt-10 text-red-500">Failed to load video details.</p>;
+    return (
+      <p className="mt-10 text-center text-red-500">
+        Failed to load video details.
+      </p>
+    );
   }
 
   const videoData = apiResponse?.data;
@@ -37,9 +58,13 @@ const page = () => {
     path ? `${BaseUrl.replace(/\/$/, "")}${path.replace(/\\/g, "/")}` : "";
 
   const videoUrl = constructUrl(videoData?.video); // Construct video URL
-  const thumbnailUrl = constructUrl(videoData?.thumbnail_image); 
+  const thumbnailUrl = constructUrl(videoData?.thumbnail_image);
 
-  console.log(videoUrl)
+  console.log(videoUrl);
+
+  const constructImageUrl = (path) =>
+    `${BaseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+
   return (
     <div>
       <div className="max-w-[1400px] px-4 lg:px-0 m-auto mb-20">
@@ -53,7 +78,7 @@ const page = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
                 fill="currentColor"
-                className="h-4 w-4 opacity-70 order-1"
+                className="order-1 w-4 h-4 opacity-70"
               >
                 <path
                   fillRule="evenodd"
@@ -63,57 +88,74 @@ const page = () => {
               </svg>
               <input
                 type="text"
-                className="grow order-2 text-left bg-transparent placeholder-transparent"
+                className="order-2 text-left placeholder-transparent bg-transparent grow"
                 placeholder="Search"
               />
-              <span className="absolute right-3 text-white pointer-events-none">
+              <span className="absolute text-white pointer-events-none right-3">
                 {a("search")}
               </span>
             </label>
           </div>
         </div>
 
-        <div className="lg:grid grid-cols-3">
+        <div className="grid-cols-3 lg:grid">
           <div className="col-span-2 mt-2 md:mr-4">
             <div className="relative">
-            <video
-            src={videoUrl}
-            poster={thumbnailUrl}
-            className="w-full h-90 object-cover"
-            controls
-            autoPlay
-          />
-              
+              <video
+                src={videoUrl}
+                poster={thumbnailUrl}
+                className="object-cover w-full h-90"
+                controls
+                autoPlay
+              />
             </div>
+
+            <h1 className="text-2xl font-bold text-[#2F799E] mt-5">
+              {videoData?.title}
+            </h1>
+            <p className="mt-3 text-gray-600 text-md">
+              {videoData?.description}
+            </p>
+            <p className="mt-1 text-sm text-gray-500">
+              Views: {videoData?.totalView}
+            </p>
           </div>
 
           <div className="col-span-1 ">
-            {/* {related.slice(0, 3).map((relat) => (
-              <>
-                <div>
-                  <div className="flex bg-[#C0C9CD] rounded-xl my-2 mx-1">
-                    <Image
-                      className="rounded-xl"
-                      src={relat.thumbnail1}
-                      width={140}
-                      height={100}
-                      alt="asdf"
-                    />
+            <div>
+              {isLoadingRelated ? (
+                // Show loading spinner or animation for related videos
+                <Loading />
+              ) : (
+                reletedData.slice(0, 3).map((relat) => (
+                  <div key={relat.id}>
+                    <div className="flex bg-[#C0C9CD] rounded-xl  my-2 mx-1">
+                      <img
+                        src={`${BaseUrl}/${relat.thumbnail_image}`}
+                        alt={relat.title}
+                        className="rounded-tl-lg  rounded-bl-lg w-[150px] "
+                      />
 
-                    <div className="p-3">
-                      <p className="font-semibold"> {relat.time1}</p>
-                      <p className=" font-semibold ">{relat.title1}</p>
-                      <p className="text-sm">{relat.detaisl}</p>
+                      <div className="p-3 py-5">
+                        <p className="font-semibold"> </p>
+                        <p className="font-semibold ">{relat.title}</p>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: relat?.description
+                              ?.split(" ")
+                              .slice(0, 8)
+                              .join(" ") + "...",
+                          }}
+                          className="description-content"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </>
-            ))} */}
+                ))
+              )}
+            </div>
           </div>
         </div>
-        <h1 className="text-2xl font-bold text-[#2F799E] mt-5">{videoData?.title}</h1>
-        <p className="text-md text-gray-600 mt-3">{videoData?.description}</p>
-        <p className="text-sm text-gray-500 mt-1">Views: {videoData?.totalView}</p>
 
         <div></div>
       </div>

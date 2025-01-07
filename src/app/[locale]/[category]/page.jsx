@@ -1,8 +1,10 @@
 'use client'
 
+
 import Articles from "@/components/articles/Articles";
 import Navigate from "@/components/navigate/Navigate";
 import { useGetShortCategoryQuery } from "@/redux/Api/categoryApi";
+
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { useState } from "react";

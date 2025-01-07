@@ -1,4 +1,5 @@
 'use client'
+import Loading from "@/components/Loading";
 import Navigate from "@/components/navigate/Navigate";
 import { useGetprivecyConditionsQuery } from "@/redux/Api/webmanageApi";
 import { useTranslations } from "next-intl";
@@ -9,7 +10,7 @@ const page = () => {
   const f = useTranslations("footer")
  const { data: privecy, isLoading, error } = useGetprivecyConditionsQuery(); 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className="h-screen"><Loading></Loading></p>;
   }
 
   if (error) {

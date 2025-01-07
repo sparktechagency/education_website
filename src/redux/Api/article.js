@@ -4,9 +4,19 @@ import baseApi from "./baseApi";
 const article = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getArticle: builder.query({
+      query: ({searchTerm}) => {
+        return {
+          url: `/article/get-all-article?searchTerm=${searchTerm}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["videos"],
+    }),
+   
+    getOnlyArticle: builder.query({
       query: () => {
         return {
-          url: "/article/get-all-article",
+          url: `/article/get-all-article`,
           method: "GET",
         };
       },
@@ -25,6 +35,27 @@ const article = baseApi.injectEndpoints({
     }),
 
 
+    bookmarkArticle: builder.mutation({
+      query: (id, data) => {
+        return {
+          url: `/bookmark/add-delete-article-bookmark/${id}`,
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["videos"],
+    }),
+
+    getShortArtiles: builder.query({
+      query: ({ category }) => {
+        return {
+          url: `/article/get-all-article?category=${category}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["videos"],
+    }),
+
 
   }),
 });
@@ -32,6 +63,9 @@ const article = baseApi.injectEndpoints({
 export const {
  
   useGetArticleQuery,
-  useGetSingleArticleQuery
+  useGetSingleArticleQuery,
+  useBookmarkArticleMutation,
+  useGetOnlyArticleQuery,
+  useGetShortArtilesQuery
   
 } = article;

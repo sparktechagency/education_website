@@ -4,8 +4,10 @@ import { useState } from "react";
 import OTPInput from "react-otp-input";
 import { message } from "antd";
 import BaseUrl from "@/components/baseApi/BaseApi";
+import { useLocale } from "next-intl";
 
 const Page = () => {
+  const locale = useLocale();
   const [otp, setOtp] = useState("");
   const [email] = useState(localStorage.getItem("userEmail") || "");
 
@@ -39,7 +41,7 @@ const Page = () => {
       if (response.ok && responseData.success) {
         message.success(responseData.message || "OTP verified successfully!");
         console.log("Response Data:", responseData);
-        window.location.href = "/reset-password";
+        window.location.href = `/${locale}/signIn/forgetpass/otp/resetpassword`;
       } else {
         message.error(responseData.message || "Failed to verify OTP.");
         console.error("Error:", responseData);

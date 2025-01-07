@@ -1,69 +1,55 @@
+'use client';
+import React from 'react';
 import Navigate from '@/components/navigate/Navigate';
 import Image from 'next/image';
-import { FaArrowLeft } from 'react-icons/fa6';
-
-import notification from '../../../../public/article/profile.png';
 import { useTranslations } from 'next-intl';
+import { useGetNotificationQuery } from '@/redux/Api/webmanageApi';
+import Loading from '@/components/Loading';
 
 const page = () => {
-  const notifications = [
-    {
-      id: 1,
-      title: "They have an education industry group that focuses on compliance, contracts, and policy for educational institutions.",
-      head:"free educational.....",
-      time:"2.00",
-      img: notification,
-    },
-    {
-      id: 2,
-      title: "They have an education industry group that focuses on compliance, contracts, and policy for educational institutions.",
-      head:"free educational.....",
-      time:"2.00",
-      img: notification,
-    },
-    {
-      id: 3,
-      title: "They have an education industry group that focuses on compliance, contracts, and policy for educational institutions.",
-     head:"free educational.....",
-     time:"2.00",
-      img: notification,
-    },
-  ];
+  const { data: notificationData, isLoading, error } = useGetNotificationQuery();
 
-  const p = useTranslations("profile")
+  const p = useTranslations("profile");
+
+  if (isLoading) return <p className="h-screen"><Loading></Loading></p>;
+  if (error) return <div>Error fetching notifications!</div>;
+
+  // Destructure notifications from API response
+  const notifications = notificationData?.data?.result || [];
+
   return (
     <div className="max-w-[1400px] m-auto">
       <div className="mt-4 mb-20">
-      <div className="md:w-[20%]">
-          <Navigate title={`${p("Notification")}`}></Navigate>
+        <div className="md:w-[20%]">
+          <Navigate title={`${p("Notification")}`} />
         </div>
         <div className="mt-11">
-          <div className='text-xl font-semibold'>
-            Total 128 Notification
+          <div className="text-xl font-semibold">
+            Total {notifications.length} Notifications
           </div>
           {notifications.map((notification) => (
             <div
-              className="border-b py-6 ml-5 flex justify-between items-center pr-4"
-              key={notification.id}
+              className="flex items-center justify-between py-6 pr-4 ml-5 border-b"
+              key={notification._id}
             >
-              <div className="flex md:gap-11 gap-3 ">
+              <div className="flex gap-3 md:gap-11 ">
                 <div>
                   <Image
                     width={80}
                     height={80}
-                    src={notification.img}
+                    src="/article/profile.png" // Static image for now
                     alt={notification.title}
                   />
                 </div>
                 <div className="flex items-center">
                   <div>
-                    <h3>{notification.head}</h3>
-                    <p className="text-[#595959]">{notification.title}</p>
+                    <h3>{notification.title}</h3>
+                    <p className="text-[#595959]">{notification.message}</p>
                   </div>
                 </div>
               </div>
               <div>
-                <h1>{notification.time}</h1>
+                <h1>{new Date(notification.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</h1>
               </div>
             </div>
           ))}

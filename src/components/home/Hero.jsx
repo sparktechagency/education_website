@@ -6,14 +6,14 @@ const Hero = () => {
   const h = useTranslations("hero");
   return (
     <div>
-     
+{/*      
       <div className="mx-4 lg:mx-0">
         <label className="input input-bordered rounded-sm mt-5 flex items-center gap-2 bg-[#75BEE3] max-w-[900px] m-auto text-white relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
             fill="currentColor"
-            className="h-4 w-4 opacity-70 order-1"
+            className="order-1 w-4 h-4 opacity-70"
           >
             <path
               fillRule="evenodd"
@@ -23,18 +23,18 @@ const Hero = () => {
           </svg>
           <input
             type="text"
-            className="grow order-2 text-left bg-transparent placeholder-transparent"
+            className="order-2 text-left placeholder-transparent bg-transparent grow"
             placeholder="Search"
           />
-          <span className="absolute right-3 text-white pointer-events-none">
+          <span className="absolute text-white pointer-events-none right-3">
             {h("search")}
           </span>
         </label>
-      </div>
+      </div> */}
 
      
       <div
-        className="relative bg-cover bg-center md:h-[80vh] h-[500px] mt-5 rounded"
+        className="relative bg-cover bg-center md:h-[80vh] h-[500px] -mt-[1px] "
         style={{
           backgroundImage: `url(${hero.src})`,
           backgroundSize: "cover", 
@@ -44,8 +44,8 @@ const Hero = () => {
           
         }}
       >
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center md:px-32">
-          <h1 className="text-4xl md:text-5xl font-bold">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white md:px-32">
+          <h1 className="text-4xl font-bold md:text-5xl">
             {h("Education is the most powerful weapon which you can use to change the world")}
           </h1>
           <p className="mt-4 text-lg md:text-2xl">– Nelson Mandela</p>

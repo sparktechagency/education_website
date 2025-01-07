@@ -4,6 +4,7 @@ import React from "react";
 import { Collapse } from "antd";
 import { useTranslations } from "next-intl"; // Import the useTranslations hook
 import { useGetFaqQuery } from "@/redux/Api/webmanageApi";
+import Loading from "../Loading";
 
 
 const FaqSection = () => {
@@ -14,7 +15,7 @@ const FaqSection = () => {
 
   // Check if data is still loading
 if (isLoading) {
-  return <p>Loading FAQs...</p>;
+  return <p><Loading></Loading></p>;
 }
 
 // Handle potential errors

@@ -3,8 +3,10 @@
 import { Form, Input, message } from "antd";
 import Image from "next/image";
 import BaseUrl from "@/components/baseApi/BaseApi"; // Replace with your Base API path
+import { useLocale } from "next-intl";
 
 const Page = () => {
+  const locale = useLocale();
   const onFinish = async (values) => {
     const email = localStorage.getItem("userEmail"); // Retrieve the email from localStorage
     if (!email) {
@@ -39,7 +41,7 @@ const Page = () => {
         localStorage.setItem("refreshToken", responseData.data.refreshToken);
 
         // Redirect to login or dashboard
-        window.location.href = "/login"; // Update the URL as needed
+        window.location.href = `/${locale}/signIn`; // Update the URL as needed
       } else {
         // Handle API errors
         message.error(responseData.message || "Failed to reset password.");

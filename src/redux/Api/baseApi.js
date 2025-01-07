@@ -2,7 +2,7 @@
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const baseUrl = "http://192.168.10.11:6050";
+const baseUrl = "http://192.168.12.145:6050";
 
 // Helper function to get the token
 const getToken = () => {

@@ -21,7 +21,7 @@ const handleBookmark = async (id) => {
     console.log("Video to bookmat article.");
   }
 };
-  
+
   return (
     <div>
       <Link href={`videdetails/${videose._id}`}>
@@ -31,7 +31,7 @@ const handleBookmark = async (id) => {
             alt={videose.title}
             className="w-full h-[300px] object-cover"
           />
-          <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-md">
+          <button className="absolute p-3 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full shadow-md top-1/2 left-1/2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -61,7 +61,7 @@ const handleBookmark = async (id) => {
         </div>
 
         <div className="gap-2">
-          <div className="text-sm text-gray-200 mt-2 flex items-center gap-2">
+          <div className="flex items-center gap-2 mt-2 text-sm text-gray-200">
             <span>{videose.totalView} views</span>
             <span></span>
             <span>{moment(videose.createdAt).fromNow()}</span> 

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { FaBars, FaRegUserCircle } from "react-icons/fa";
 import logo from "../../../public/navbar/logo.png";
@@ -9,10 +9,11 @@ import language from "../../../public/navbar/language.png";
 import { Link } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 
+
 const Navbar = () => {
   const currentPath = usePathname();
   const locale = useLocale();
- 
+
 
   const navItems = [
     {
@@ -45,7 +46,8 @@ const Navbar = () => {
     localStorage.removeItem('accessToken')
    
     
-    window.location.href = "/signIn"; 
+    window.location.href = `/${locale}/signIn`; 
+   
   }
 
   const n = useTranslations("navbar");

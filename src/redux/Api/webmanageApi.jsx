@@ -65,6 +65,17 @@ const faq = baseApi.injectEndpoints({
         providesTags: ["videos"],
       }),
 
+      getLaw: builder.query({
+        query: () => {
+          return {
+            url: "/manage/get-law-form",
+            method: "GET",
+          };
+        },
+        providesTags: ["videos"],
+      }),
+
+
       getTermsContuct: builder.query({
         query: () => {
           return {
@@ -86,6 +97,18 @@ const faq = baseApi.injectEndpoints({
           };
         },
       }),
+
+
+      getNotification: builder.query({
+        query: () => {
+          return {
+            url: "/notification/get-notifications",
+            method: "GET",
+          };
+        },
+        providesTags: ["videos"],
+      }),
+
       
   }),
 });
@@ -98,5 +121,7 @@ useUpdateProfileeMutation,
 useChangePasswordMutation,
 useGetprivecyConditionsQuery,
 useGetTermsContuctQuery,
-usePostFeedbackMutation
+usePostFeedbackMutation,
+useGetNotificationQuery,
+useGetLawQuery
 } = faq;

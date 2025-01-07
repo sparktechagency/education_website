@@ -16,91 +16,25 @@ const PopularVideo = () => {
   const [sort, setSort] = useState("-totalView");
 const { data: videoData } = useGetshortVideosQuery({sort});
   const videose = videoData?.data?.result || [];
+  console.log(videose)
 
   const handleSortChange = (e) => {
     setSort(e.target.value);
   };
 
   console.log(videose);
-  const videos = [
-    {
-      id: 1,
-      title: "Education is the most powerful weapon",
-      
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img,
-    },
-    {
-      id: 2,
-      title: "Education is the most powerful weapon",
-      
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img1,
-    },
-    {
-      id: 3,
-      title: "Education is the most powerful weapon",
-
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img2,
-    },
-    {
-      id: 4,
-      title: "Education is the most powerful weapon",
-     
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img3,
-    },
-    {
-      id: 5,
-      title: "Education is the most powerful weapon",
-    
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img4,
-    },
-    {
-      id: 6,
-      title: "Education is the most powerful weapon",
-    
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img5,
-    },
-    {
-      id: 7,
-      title: "Education is the most powerful weapon",
-     
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img6,
-    },
-    {
-      id: 8,
-      title: "Education is the most powerful weapon",
-    
-      views: "1.3M views",
-      time: "2 day's ago",
-      thumbnail: img4,
-    },
-   
-  ];
-
+  
   const p = useTranslations("popular");
   return (
     <div className="px-4 lg::px-0">
-      <div className="text-center py-5 ">
+      <div className="py-5 text-center ">
         <h1 className="text-[#2F799E] text-2xl font-bold font-serif">{p("Popular Videos")}</h1>
         <div className="flex justify-center mt-3">
           <Image  src={line} width={250} height={50} alt="line" />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
         {videose.slice(0,8).map((video) => (
           <div
             key={video.id}

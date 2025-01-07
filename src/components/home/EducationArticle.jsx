@@ -7,6 +7,7 @@ import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { useGetCategoryQuery } from "@/redux/Api/categoryApi";
 import BaseUrl from "../baseApi/BaseApi";
+import Loading from "../Loading";
 
 const EducationArticle = () => {
   const { data: categoryArticle, isLoading, error } = useGetCategoryQuery();
@@ -14,7 +15,7 @@ const EducationArticle = () => {
   const m = useTranslations("article");
 
   if (isLoading) {
-    return <p>Loading categories...</p>;
+    return <p><Loading></Loading></p>;
   }
 
   if (error) {
@@ -59,7 +60,7 @@ const EducationArticle = () => {
               />
               <div>
                 <h2 className="text-white text-2xl">{item.title}</h2>
-                <Link href={`/shortCategory/${item.id}`}>
+                <Link href={`/${item.id}`}>
                   <button className="bg-white rounded py-1 px-2 mt-6 flex items-center gap-2">
                     {m("Read More")} <IoMdArrowForward className="mt-1" />
                   </button>

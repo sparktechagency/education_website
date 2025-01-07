@@ -3,8 +3,10 @@ import { Form, Input, Button, message } from "antd";
 import Image from "next/image";
 import logo from "../../../../../public/navbar/logo.png";
 import BaseUrl from "@/components/baseApi/BaseApi"; 
+import { useLocale } from "next-intl";
 
 const Page = () => {
+  const locale = useLocale();
   const onFinish = async (values) => {
     const payload = {
       email: values.email,
@@ -25,6 +27,7 @@ const Page = () => {
         localStorage.setItem("userEmail", values.email);
         message.success(responseData.message || "Password reset link sent!");
         console.log("Response Data:", responseData);
+        window.location.href = `/${locale}/signIn/forgetpass/otp`;
       } else {
         message.error(responseData.message || "Failed to send reset link.");
         console.error("Error:", responseData);

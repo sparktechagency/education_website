@@ -2,13 +2,14 @@
 
 import { useTranslations } from 'next-intl';
 import { useGetAboutQuery } from '@/redux/Api/webmanageApi';
+import Loading from '@/components/Loading';
 
 const Page = () => {
   const { data: aboutUs, isLoading, error } = useGetAboutQuery(); // Fetch API data
   const m = useTranslations("aboutus");
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className="h-screen"><Loading></Loading></p>;
   }
 
   if (error) {

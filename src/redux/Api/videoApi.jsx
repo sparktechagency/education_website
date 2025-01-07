@@ -5,9 +5,9 @@ const videos = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     
     getVideos: builder.query({
-      query: () => {
+      query: ({searchTerm}) => {
         return {
-          url: "/video/get-all-videos",
+          url: `/video/get-all-videos?searchTerm=${searchTerm}`,
           method: "GET",
         };
       },
@@ -20,6 +20,27 @@ const videos = baseApi.injectEndpoints({
       query: ({ sort }) => {
         return {
           url: `/video/get-all-videos/?sort=${sort}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["videos"],
+    }),
+
+    getOnlyVideo: builder.query({
+      query: () => {
+        return {
+          url: `/video/get-all-videos`,
+          method: "GET",
+        };
+      },
+      providesTags: ["videos"],
+    }),
+
+
+    getCategoryVideos: builder.query({
+      query: ({ category }) => {
+        return {
+          url: `/video/get-all-videos/?category=${category}`,
           method: "GET",
         };
       },
@@ -57,5 +78,7 @@ export const {
  useGetVideosQuery,
  useGetSingleVideosQuery,
  useGetshortVideosQuery,
- useBookmarkVideosMutation
+ useBookmarkVideosMutation,
+ useGetCategoryVideosQuery,
+ useGetOnlyVideoQuery
 } = videos;

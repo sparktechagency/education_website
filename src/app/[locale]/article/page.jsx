@@ -1,17 +1,20 @@
 "use client";
 
 import Articles from "@/components/articles/Articles";
+import Loading from "@/components/Loading";
 import Navigate from "@/components/navigate/Navigate";
 import { useGetArticleQuery } from "@/redux/Api/article";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 const Page = () => {
-  const { data, isLoading, error } = useGetArticleQuery();
+  const [searchTerm, setSearch] = useState("");
+  const { data, isLoading, error } = useGetArticleQuery({searchTerm});
   const m = useTranslations("hero");
   const p = useTranslations("profile");
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return<p className="h-screen"><Loading></Loading></p>;
   }
 
   if (error) {
@@ -42,6 +45,7 @@ const Page = () => {
                 />
               </svg>
               <input
+              onChange={(e)=>setSearch(e.target.value)}
                 type="text"
                 className="grow order-2 text-left bg-transparent placeholder-transparent"
                 placeholder="Search"
