@@ -2,11 +2,12 @@
   "name": "education-website-client",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
+   "scripts": {
+  "dev": "next dev -H 192.168.10.26 -p 3000",
+  "build": "next build",
+  "start": "next start -H 192.168.10.26 -p 3000",
+  "lint": "next lint"
+},
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-separator": "^1.1.0",

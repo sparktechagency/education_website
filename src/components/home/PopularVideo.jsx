@@ -10,6 +10,7 @@ import { useState } from "react";
 const PopularVideo = () => {
   const [sort, setSort] = useState("-totalView");
 const { data: videoData } = useGetshortVideosQuery({sort});
+console.log(videoData)
   const videose = videoData?.data?.result || [];
   console.log(videose)
 
