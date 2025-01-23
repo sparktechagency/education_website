@@ -1,20 +1,25 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Articles from "@/components/articles/Articles";
 import Loading from "@/components/Loading";
 import Navigate from "@/components/navigate/Navigate";
 import { useGetArticleQuery } from "@/redux/Api/article";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { NoData } from "@/components/NoData";
+ // Import NoData component
 
 const Page = () => {
   const [searchTerm, setSearch] = useState("");
-  const { data, isLoading, error } = useGetArticleQuery({searchTerm});
+  const { data, isLoading, error } = useGetArticleQuery({ searchTerm });
   const m = useTranslations("hero");
   const p = useTranslations("profile");
 
   if (isLoading) {
-    return<p className="h-screen"><Loading></Loading></p>;
+    return (
+      <p className="h-screen">
+        <Loading />
+      </p>
+    );
   }
 
   if (error) {
@@ -45,7 +50,7 @@ const Page = () => {
                 />
               </svg>
               <input
-              onChange={(e)=>setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
                 type="text"
                 className="grow order-2 text-left bg-transparent placeholder-transparent"
                 placeholder="Search"
@@ -57,11 +62,15 @@ const Page = () => {
           </div>
         </div>
 
-        <div>
-          {articles.map((item) => (
-            <Articles key={item._id} item={item} />
-          ))}
-        </div>
+        {articles.length > 0 ? (
+          <div>
+            {articles.map((item) => (
+              <Articles key={item._id} item={item} />
+            ))}
+          </div>
+        ) : (
+          <NoData /> // Render NoData component if no articles are found
+        )}
       </div>
     </div>
   );

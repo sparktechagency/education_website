@@ -1,29 +1,32 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Videos from "@/components/video/videos";
 import Navigate from "@/components/navigate/Navigate";
 import { useTranslations } from "next-intl";
 import { useGetVideosQuery } from "@/redux/Api/videoApi";
-import { useState } from "react";
 import Loading from "@/components/Loading";
+import { NoData } from "@/components/NoData";
+ // Import the NoData component
 
 const page = () => {
   const [searchTerm, setSearch] = useState("");
   const { data: videoData, isLoading, error } = useGetVideosQuery({ searchTerm });
-  console.log(videoData);
   const videos = videoData?.data?.result || [];
-  console.log(videos);
 
   const m = useTranslations("hero");
   const p = useTranslations("profile");
 
   if (isLoading) {
-    // If data is still loading, display the loading component
-    return <p className="h-screen"><Loading /></p>;
+    // Display loading component while data is being fetched
+    return (
+      <p className="h-screen">
+        <Loading />
+      </p>
+    );
   }
 
   if (error) {
-    // If there is an error, you can display an error message
+    // Display error message if there's an error in the request
     return <div>Error: {error.message}</div>;
   }
 
@@ -60,13 +63,17 @@ const page = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
-        {videos.map((videose, i) => (
-          <div key={i}>
-            <Videos videose={videose}></Videos>
-          </div>
-        ))}
-      </div>
+      {videos.length > 0 ? (
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
+          {videos.map((videose, i) => (
+            <div key={i}>
+              <Videos videose={videose}></Videos>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <NoData /> // Render the NoData component when no videos are found
+      )}
     </div>
   );
 };

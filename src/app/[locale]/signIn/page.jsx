@@ -1,11 +1,15 @@
 "use client";
 
-import React from "react";
-import { Checkbox, Form, Input, message } from "antd";
+import React, { useState } from "react";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import { Link } from "@/i18n/routing";
 import BaseUrl from "@/components/baseApi/BaseApi";
+import { toast } from "sonner";
 const Page = () => {
+  const [loading, setLoading] = useState(false); // Loading state for button
+
   const onFinish = async (values) => {
+    setLoading(true); // Start loading
     const payload = {
       email: values.email,
       password: values.password,
@@ -20,28 +24,25 @@ const Page = () => {
         body: JSON.stringify(payload),
       });
 
-      const responseData = await response.json(); 
-      console.log(responseData)
+      const responseData = await response.json();
+      console.log(responseData);
       if (response.ok && responseData.success) {
         // Login successful
-        alert('success')
-        console.log("Login Success:", responseData);
+        toast.success(responseData.message);
         localStorage.setItem("accessToken", responseData.data.accessToken);
         localStorage.setItem("refreshToken", responseData.data.refreshToken);
-        
-        window.location.href = "/"; 
+        window.location.href = "/"; // Redirect to the homepage
       } else {
-        
-        message.error(responseData.message || "Login failed");
+        toast.error(responseData.message || "Login failed");
         console.error("Error:", responseData);
       }
     } catch (error) {
-   
-      message.error("An unexpected error occurred. Please try again later.");
+      toast.error("An unexpected error occurred. Please try again later.");
       console.error("Unexpected Error:", error);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
-
   return (
     <div className="min-h-screen flex items-center md:pt-0 px-4 justify-center bg-[#2F799E]">
       <div className="w-full max-w-[1500px] m-auto">
@@ -110,14 +111,22 @@ const Page = () => {
                 </div>
 
                 <Form.Item>
-                  <button
-                    type="submit"
-                    className="w-full py-2 bg-[#2F799E] text-white rounded hover:bg-gray-800 focus:ring-2 focus:ring-gray-500"
+                <Button
+                    type="primary"
+                    htmlType="submit"
+                    loading={loading} // Loading state
+                    className="w-full py-5 bg-[#2F799E] text-white"
                   >
-                    Submit
-                  </button>
+                    {loading ? "Loading..." : "Submit"}
+                  </Button>
                 </Form.Item>
               </Form>
+              <span className="flex justify-center">
+                              already have an don't account?{" "}
+                              <Link href={"signUp"}>
+                                <span className="text-blue-500"> Sign Up</span>
+                              </Link>
+                            </span>
             </div>
           </div>
         </div>

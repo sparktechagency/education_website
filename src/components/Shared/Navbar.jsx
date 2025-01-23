@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import {  usePathname } from "next/navigation";
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -13,8 +13,11 @@ import { useLocale, useTranslations } from "next-intl";
 const Navbar = () => {
   const currentPath = usePathname();
   const locale = useLocale();
-
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken"); // Check for token in localStorage
+    setIsLoggedIn(!!token); // Set state based on token presence
+  }, []);
   const navItems = [
     {
       title: "Home",
@@ -128,8 +131,16 @@ const Navbar = () => {
           ))}
         </div>
         <div>
-          <button onClick={handleLogOut} className="text-white">Log Out</button>
-        </div>
+            {isLoggedIn ? (
+              <button onClick={handleLogOut} className="text-white">
+                Log Out
+              </button>
+            ) : (
+              <Link href={`${locale}/signIn`} className="text-white">
+                Sign In
+              </Link>
+            )}
+          </div>
         </div>
       </div>
       <div className="my-2 lg:my-0 flex lg:flex-col py-2">

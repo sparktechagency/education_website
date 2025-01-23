@@ -10,6 +10,7 @@ import { IoCameraOutline } from "react-icons/io5";
 import { useGetUserQuery, useUpdateProfileeMutation } from "@/redux/Api/webmanageApi";
 import BaseUrl from "../baseApi/BaseApi";
 import Loading from "../Loading";
+import { toast } from "sonner";
 
 const { Option } = Select;
 
@@ -53,9 +54,9 @@ const EditProfile = () => {
 
     try {
       const response = await updateProfile(data).unwrap();
-      message.success(response.message || "Profile updated successfully");
+      toast.success(response.message );
     } catch (error) {
-      message.error(error.message || "Failed to update profile");
+      toast.error(error.message || "Failed to update profile");
     }
   };
 

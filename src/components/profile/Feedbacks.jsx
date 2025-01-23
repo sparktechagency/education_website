@@ -50,7 +50,7 @@ const Feedbacks = () => {
             <label>
               {f("Feedback")} <br />
               <textarea
-                className="bg-white border rounded w-full h-[150px]"
+                className="bg-white border rounded w-full h-[150px] p-2"
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
                 placeholder="Enter your feedback here..."

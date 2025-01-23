@@ -13,19 +13,22 @@ import { notFound, useParams } from "next/navigation";
 
 const ArticleDetails = () => {
   const params = useParams();
+  console.log(params)
 
   const {
     data: apiResponse,
     isLoading,
     error,
   } = useGetSingleArticleQuery({ id: params?.id });
+  console.log(apiResponse?.data?.category)
 
   const { data: releted, isLoading: isRelatedLoading } =
     useGetShortArtilesQuery({
-      category: apiResponse?.data?.category,
+      category: apiResponse?.data?.category._id,
     });
 
   const reletedData = releted?.data?.result || [];
+  console.log(reletedData)
 
   if (isLoading) {
     return (
@@ -101,14 +104,14 @@ const ArticleDetails = () => {
             reletedData.slice(0, 3).map((relat, index) => (
               <div
                 key={index}
-                className="flex bg-[#C0C9CD] rounded-xl my-2 mx-1"
+                className="flex bg-[#C0C9CD] rounded-xl my-1 mx-1 h-[140px]"
               >
                 {relat.article_images?.map((image, imgIndex) => (
                   <img
                     key={imgIndex}
                     src={constructImageUrl(image)}
                     alt={`Article Image ${imgIndex + 1}`}
-                    className="rounded-tl-lg rounded-bl-lg w-[150px]"
+                    className="rounded-tl-lg rounded-bl-lg w-[160px] h-[140px]"
                   />
                 ))}
 

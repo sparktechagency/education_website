@@ -1,12 +1,17 @@
 "use client";
 
-import React from "react";
-import { Form, Input, message } from "antd";
+import React, { useState } from "react";
+import { Button, Form, Input, message } from "antd";
 import { Link } from "@/i18n/routing";
 import BaseUrl from "@/components/baseApi/BaseApi";
+import { toast } from "sonner";
+import { useLocale } from "next-intl";
 
 const page = () => {
+  const [loading, setLoading] = useState(false); 
+  const locale = useLocale();
   const onFinish = async (values) => {
+    setLoading(true); // Start loading
     const payload = {
       password: values.password,
       confirmPassword: values.confirmPassword,
@@ -16,7 +21,7 @@ const page = () => {
         email: values.email,
       },
     };
-  
+
     try {
       const response = await fetch(`${BaseUrl}/user/register-user`, {
         method: "POST",
@@ -25,27 +30,26 @@ const page = () => {
         },
         body: JSON.stringify(payload),
       });
-  
+
       const responseData = await response.json();
-  
+      console.log(responseData);
+
       if (response.ok && responseData.success) {
-  
-        alert('sucess')
-        console.log("Success:", responseData);
+        toast.success(responseData.message);
+        window.location.href = `/${locale}/signIn`; 
       } else {
-       
-        message.error(responseData.message || "Registration failed");
+        toast.error(responseData.message);
         console.error("Error:", responseData);
       }
     } catch (error) {
- 
-      message.error("An unexpected error occurred. Please try again later.");
+      toast.error("An unexpected error occurred. Please try again later.");
       console.error("Unexpected Error:", error);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
-
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    toast.error("Failed:", errorInfo);
   };
 
   return (
@@ -164,12 +168,14 @@ const page = () => {
                 </Form.Item>
 
                 <Form.Item>
-                  <button
-                    type="submit"
-                    className="w-full py-2 bg-[#2F799E] text-white rounded"
+                <Button
+                    type="primary"
+                    htmlType="submit"
+                    loading={loading} // Show loading state
+                    className="w-full py-5 hover:bg-none bg-[#2F799E] text-white "
                   >
                     Submit
-                  </button>
+                  </Button>
                 </Form.Item>
               </Form>
               <span className="flex justify-center">
@@ -182,6 +188,7 @@ const page = () => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 };

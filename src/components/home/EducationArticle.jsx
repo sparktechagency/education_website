@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import { useGetCategoryQuery } from "@/redux/Api/categoryApi";
 import BaseUrl from "../baseApi/BaseApi";
 import Loading from "../Loading";
+import { NoData } from "../NoData"; // Import NoData component
 
 const EducationArticle = () => {
   const { data: categoryArticle, isLoading, error } = useGetCategoryQuery();
@@ -16,7 +17,11 @@ const EducationArticle = () => {
   const m = useTranslations("article");
 
   if (isLoading) {
-    return <p><Loading></Loading></p>;
+    return (
+      <p>
+        <Loading />
+      </p>
+    );
   }
 
   if (error) {
@@ -49,28 +54,31 @@ const EducationArticle = () => {
         </div>
       </div>
 
-      <div className="md:grid grid-cols-2 mt-9">
-        {categories.map((item) => (
-          <div key={item.id}>
-            <div className="rounded-2xl p-6 py-8 flex items-center gap-11 bg-[#2F799E] m-3">
-              <img
-                className="imgg w-[120px] h-[90px]"
-                src={`${BaseUrl}/${item.thumbnail}`}
-                
-                alt={item.title}
-              />
-              <div>
-                <h2 className="text-white text-2xl">{item.title}</h2>
-                <Link href={`/${item.id}`}>
-                  <button className="bg-white rounded py-1 px-2 mt-6 flex items-center gap-2">
-                    {m("Read More")} <IoMdArrowForward className="mt-1" />
-                  </button>
-                </Link>
+      {categories.length > 0 ? (
+        <div className="md:grid grid-cols-2 mt-9">
+          {categories.map((item) => (
+            <div key={item.id}>
+              <div className="rounded-2xl p-6 py-8 flex items-center gap-11 bg-[#2F799E] m-3">
+                <img
+                  className="imgg w-[120px] h-[90px]"
+                  src={`${BaseUrl}/${item.thumbnail}`}
+                  alt={item.title}
+                />
+                <div>
+                  <h2 className="text-white text-2xl">{item.title}</h2>
+                  <Link href={`/${item.id}`}>
+                    <button className="bg-white rounded py-1 px-2 mt-6 flex items-center gap-2">
+                      {m("Read More")} <IoMdArrowForward className="mt-1" />
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p className="my-11 text-center text-2xl">No Category Available</p> // Display NoData when categories are empty
+      )}
     </div>
   );
 };

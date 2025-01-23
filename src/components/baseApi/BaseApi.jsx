@@ -1,3 +1,3 @@
-const BaseUrl = "http://10.0.60.37:6050"; 
+const BaseUrl = "http://143.110.241.146:9050"; 
 
 export default BaseUrl;

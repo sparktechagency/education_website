@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import ReduxProvider from "@/provider/ReduxProvider";
+import { Toaster } from "sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,7 +39,9 @@ export default async function RootLayout({ children, params }) {
       >
         <ReduxProvider>
         <NextIntlClientProvider messages={messages}>
+        <Toaster />
           <div className="  text-black">{children}</div>{" "}
+          
         </NextIntlClientProvider>
         </ReduxProvider>
       </body>

@@ -5,6 +5,7 @@ import { Form, Input, Button } from "antd";
 import { useState } from "react";
 
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const ChangPassword = () => {
   const [form] = Form.useForm();
@@ -35,14 +36,14 @@ const ChangPassword = () => {
     changePassword(values)
       .unwrap()
       .then(() => {
-        alert('sucess')
-        console.log("Your password has been changed successfully. Please log in again.");
+        
+        toast.success(response.message);
         localStorage.removeItem("accessToken");
         router.push("/signIn");
       })
       .catch((error) => {
-        alert('unsucess')
-        console.error(error?.data?.message || "Failed to change password.");
+       
+        toast.error(error?.data?.message || "Failed to change password.");
       });
   };
 

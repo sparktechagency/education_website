@@ -7,6 +7,7 @@ import { FaArrowRight, FaBookmark } from "react-icons/fa6";
 
 import BaseUrl from "../baseApi/BaseApi";
 import { useBookmarkArticleMutation } from "@/redux/Api/article";
+import { toast } from "sonner";
 
 const Articles = ({ item }) => {
   const a = useTranslations("article");
@@ -16,10 +17,11 @@ const Articles = ({ item }) => {
   const handleBookmark = async (id) => {
     console.log(id);
     try {
-      const res = await addBookmark(id).unwrap();
-      console.log(res);
+      const response = await addBookmark(id).unwrap();
+      toast.success(response.message);
       console.log("Video bookmarked successfully!");
     } catch (error) {
+      toast.error(response.message);
       console.log("Failed to bookmark article.");
     }
   };

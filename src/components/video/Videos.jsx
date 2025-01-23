@@ -7,6 +7,7 @@ import moment from "moment";
 import { FaBookmark } from "react-icons/fa6";
 import BaseUrl from "../baseApi/BaseApi";
 import { useBookmarkVideosMutation } from "@/redux/Api/videoApi";
+import { toast } from "sonner";
 
 const Videos = ({ videose }) => {
 
@@ -16,11 +17,11 @@ const Videos = ({ videose }) => {
 const handleBookmark = async (id) => {
   console.log(id)
   try {
-    const res = await addBookmark(id).unwrap();
-    console.log(res)
+    const response = await addBookmark(id).unwrap();
+    toast.success(response.message || "Video bookmark successfully!")
     console.lg("Video bookmark successfully!");
   } catch (error) {
-    console.log("Video to bookmat article.");
+    toast.error(response.message)
   }
 };
 
