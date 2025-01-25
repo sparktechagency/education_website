@@ -1,11 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import Videos from "@/components/video/videos";
+
 import Navigate from "@/components/navigate/Navigate";
 import { useTranslations } from "next-intl";
 import { useGetVideosQuery } from "@/redux/Api/videoApi";
 import Loading from "@/components/Loading";
 import { NoData } from "@/components/NoData";
+import Videos from "@/components/video/Videos";
  // Import the NoData component
 
 const page = () => {
