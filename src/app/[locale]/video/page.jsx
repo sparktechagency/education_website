@@ -6,7 +6,12 @@ import { useTranslations } from "next-intl";
 import { useGetVideosQuery } from "@/redux/Api/videoApi";
 import Loading from "@/components/Loading";
 import { NoData } from "@/components/NoData";
-import Videos from "@/components/video/Videos";
+// import Videos from "@/components/video/Videos";
+const Videos = dynamic(() => import("@/components/video/Videos"), {
+  loading: () => <p>Loading...</p>, // Optional: Custom loading component
+  ssr: false, // Optional: Disable server-side rendering
+});
+
  // Import the NoData component
 
 const page = () => {
