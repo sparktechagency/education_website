@@ -1,6 +1,6 @@
 'use client';
 import React from "react";
-import Videos from "../video/Videos";
+import Videos from "../video/videos";
 import { useGetOnlyVideoQuery } from "@/redux/Api/videoApi";
 import Loading from "../Loading";
 import { NoData } from "../NoData";
