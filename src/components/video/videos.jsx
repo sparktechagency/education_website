@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable react/prop-type */
 'use client'
 import React from "react";
 import { Link } from "@/i18n/routing";
