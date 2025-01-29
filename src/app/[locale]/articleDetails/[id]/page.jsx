@@ -126,7 +126,7 @@ const ArticleDetails = () => {
                     <p className="font-semibold">
                       {calculateDaysAgo(relat.createdAt)}
                     </p>
-                    <p className="font-semibold">
+                    <Link href={`${relat._id}`}><p className="font-semibold">
                       {relat.title
                         ? relat.title.split(" ").slice(0, 5).join(" ") +
                           (relat.title.split(" ").length > 5 ? "..." : "")
@@ -137,7 +137,7 @@ const ArticleDetails = () => {
                         ? relat.summery.split(" ").slice(0, 10).join(" ") +
                           (relat.summery.split(" ").length > 10 ? "..." : "")
                         : ""}
-                    </div>
+                    </div></Link>
                   </div>
                 </div>
               ))

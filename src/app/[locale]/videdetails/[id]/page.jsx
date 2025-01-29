@@ -131,6 +131,7 @@ const page = () => {
                       /></Link>
 
                       <div className="p-3 py-5">
+                        <Link href={`${relat._id}` }>
                         <p className="font-semibold"> </p>
                         <p className="font-semibold ">{relat.title}</p>
                         <div
@@ -141,7 +142,7 @@ const page = () => {
                               .join(" ") + "...",
                           }}
                           className="description-content"
-                        />
+                        /></Link>
                       </div>
                     </div>
                   </div>
