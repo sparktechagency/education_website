@@ -3,25 +3,23 @@ import React from "react";
 import BaseUrl from "@/components/baseApi/BaseApi";
 import Loading from "@/components/Loading";
 import {
-
   useGetShortArtilesQuery,
   useGetSingleArticleQuery,
 } from "@/redux/Api/article";
-
 
 import { notFound, useParams } from "next/navigation";
 import Link from "next/link";
 
 const ArticleDetails = () => {
   const params = useParams();
-  console.log(params)
+  console.log(params);
 
   const {
     data: apiResponse,
     isLoading,
     error,
   } = useGetSingleArticleQuery({ id: params?.id });
-  console.log(apiResponse?.data?.category)
+  console.log(apiResponse?.data?.category);
 
   const { data: releted, isLoading: isRelatedLoading } =
     useGetShortArtilesQuery({
@@ -29,7 +27,7 @@ const ArticleDetails = () => {
     });
 
   const reletedData = releted?.data?.result || [];
-  console.log(reletedData)
+  console.log(reletedData);
 
   if (isLoading) {
     return (
@@ -76,18 +74,19 @@ const ArticleDetails = () => {
 
   return (
     <div className="max-w-[1400px] px-4 lg:px-0 m-auto mb-20">
+      <h1 className="my-7 text-2xl font-bold">{singleData.title}</h1>
       <div className="grid grid-cols-5">
         <div className="col-span-3">
-          <h1 className="my-6 text-2xl font-bold">{singleData.title}</h1>
-          {singleData.article_images?.map((image, index) => (
+          {singleData.article_images?.slice(0, 1)?.map((image, index) => (
             <img
               key={index}
               src={constructImageUrl(image)}
               alt={`Article Image ${index + 1}`}
-              className="w-full my-4 rounded-lg"
+              className="w-full my-4 h-[500px] rounded-lg"
             />
           ))}
-          <div className="my-4 text-gray-700">
+
+          {/* <div className="my-4 text-gray-700">
             <span className="text-sm text-gray-600">
               Published: {calculateDaysAgo(singleData.createdAt)}
             </span>
@@ -95,52 +94,74 @@ const ArticleDetails = () => {
           <div
             className="text-gray-700"
             dangerouslySetInnerHTML={{ __html: singleData.description }}
-          />
+          /> */}
         </div>
 
-        <div className="mt-[72px] lg:ml-4 col-span-2">
-          {isRelatedLoading ? (
-            <Loading />
-          ) : (
-            reletedData.slice(0, 3).map((relat, index) => (
-              <div
-                key={index}
-                className="flex bg-[#C0C9CD] rounded-xl my-1 mx-1 h-[140px]"
-              >
-                {relat.article_images?.map((image, imgIndex) => (
-                  <Link href={`${relat._id}`}>
-                  <img
-                    key={imgIndex}
-                    src={constructImageUrl(image)}
-                    alt={`Article Image ${imgIndex + 1}`}
-                    className="rounded-tl-lg rounded-bl-lg w-[160px] h-[140px]"
-                  /></Link>
-                ))}
+        <div className="mt-3 lg:ml-4 col-span-2 ">
+          <div className="h-[500px] overflow-scroll no-scrollbar">
+            {isRelatedLoading ? (
+              <Loading />
+            ) : (
+              reletedData.slice(0, 8).map((relat, index) => (
+                <div
+                  key={index}
+                  className="grid grid-cols-6 bg-[#C0C9CD] rounded-xl my-1 mx-1 h-[140px]"
+                >
+                  <div className="col-span-2">
+                    {relat.article_images
+                      ?.slice(0, 1)
+                      .map((image, imgIndex) => (
+                        <Link href={`${relat._id}`}>
+                          <img
+                            key={imgIndex}
+                            src={constructImageUrl(image)}
+                            alt={`Article Image ${imgIndex + 1}`}
+                            className="rounded-tl-lg rounded-bl-lg h-[140px] w-[170px] object-cover"
+                          />
+                        </Link>
+                      ))}
+                  </div>
 
-                <div className="p-3 py-5">
-                  <p className="font-semibold">
-                    {calculateDaysAgo(relat.createdAt)}
-                  </p>
-                  <p className="font-semibold">{relat.title}</p>
-                  <div
-                    //  dangerouslySetInnerHTML={{
-                    //   __html: extractTextWithoutImage(relat?.descriptio),
-                    // }}
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        extractTextWithoutImage(relat?.description)
-                          ?.split(" ")
-                          .slice(0, 8)
-                          .join(" ") + "...",
-                    }}
-                    className="description-content"
-                  />
+                  <div className="p-1 py-2 col-span-4">
+                    <p className="font-semibold">
+                      {calculateDaysAgo(relat.createdAt)}
+                    </p>
+                    <p className="font-semibold">
+                      {relat.title
+                        ? relat.title.split(" ").slice(0, 5).join(" ") +
+                          (relat.title.split(" ").length > 5 ? "..." : "")
+                        : ""}
+                    </p>
+                    <div>
+                      {relat.summery
+                        ? relat.summery.split(" ").slice(0, 10).join(" ") +
+                          (relat.summery.split(" ").length > 10 ? "..." : "")
+                        : ""}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
+          </div>
         </div>
       </div>
+      <div className="my-4 text-gray-700 w-full">
+        {singleData.article_images?.slice(1)?.map((image, index) => (
+          <img
+            key={index}
+            src={constructImageUrl(image)}
+            alt={`Article Image ${index + 1}`}
+            className="w-full my-4  rounded-lg"
+          />
+        ))}
+        <span className="text-sm text-gray-600">
+          Published: {calculateDaysAgo(singleData.createdAt)}
+        </span>
+      </div>
+      <div
+        className="text-gray-700 w-full "
+        dangerouslySetInnerHTML={{ __html: singleData.description }}
+      />
     </div>
   );
 };

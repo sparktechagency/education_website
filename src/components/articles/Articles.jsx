@@ -61,18 +61,21 @@ const Articles = ({ item }) => {
           key={index}
           src={constructImageUrl(image)}
           alt={`Article Image ${index + 2}`}
-          className="object-cover w-full rounded-3xl"
+          className="object-cover w-full h-[70vh] rounded-3xl"
         />
       ))}
       <div className="flex justify-between my-5">
         <h1 className="text-2xl font-bold">{item?.title}</h1>
       </div>
-      <div
+      <div>
+      {item?.summery}
+      </div>
+      {/* <div
        dangerouslySetInnerHTML={{
         __html: extractTextWithoutImage(item?.description),
       }}
         className="description-content"
-      />
+      /> */}
       <div className="flex justify-between my-5">
         <div className="flex items-center gap-4">
           <span className="text-lg">{calculateDaysAgo(item.createdAt)}</span>

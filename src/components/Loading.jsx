@@ -1,10 +1,16 @@
-import { Skeleton } from 'antd'
+import { Skeleton, Spin } from 'antd'
 import React from 'react'
 
 const Loading = () => {
     return (
-        <div className='h-screen'>
-            <Skeleton active />
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            
+        }}>
+            <Spin size="large" />
         </div>
     )
 }

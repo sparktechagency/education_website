@@ -153,3 +153,43 @@
   padding: 15px ;
   border-radius: 50%;
 }
+
+/* .no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+} */
+
+/* Hide scrollbar for all browsers */
+.no-scrollbar {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #888 transparent; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+/* Webkit-based browsers (Chrome, Safari) */
+.no-scrollbar::-webkit-scrollbar {
+  width: 2px; /* Width of the scrollbar */
+  height: 1px; /* Height for horizontal scrollbar */
+}
+
+/* Track (background) */
+.no-scrollbar::-webkit-scrollbar-track {
+  background: #e60a0a  !important; /* Light grey background */
+  border-radius: 10px;
+}
+
+/* Handle (scroll thumb) */
+.no-scrollbar::-webkit-scrollbar-thumb {
+  background: #ff0000 !important; /* Dark grey scrollbar */
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.no-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #d10000 !important;/* Slightly darker grey */
+}
+

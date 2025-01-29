@@ -120,7 +120,7 @@ const page = () => {
                 // Show loading spinner or animation for related videos
                 <Loading />
               ) : (
-                reletedData.slice(0, 3).map((relat) => (
+                reletedData.slice(0, 4).map((relat) => (
                   <div key={relat.id}>
                     <div className="flex bg-[#C0C9CD] rounded-xl  my-2 mx-1">
                       <Link href={`${relat._id}` }>
