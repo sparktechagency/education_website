@@ -10,6 +10,7 @@ import {
 
 
 import { notFound, useParams } from "next/navigation";
+import Link from "next/link";
 
 const ArticleDetails = () => {
   const params = useParams();
@@ -107,12 +108,13 @@ const ArticleDetails = () => {
                 className="flex bg-[#C0C9CD] rounded-xl my-1 mx-1 h-[140px]"
               >
                 {relat.article_images?.map((image, imgIndex) => (
+                  <Link href={`${relat._id}`}>
                   <img
                     key={imgIndex}
                     src={constructImageUrl(image)}
                     alt={`Article Image ${imgIndex + 1}`}
                     className="rounded-tl-lg rounded-bl-lg w-[160px] h-[140px]"
-                  />
+                  /></Link>
                 ))}
 
                 <div className="p-3 py-5">

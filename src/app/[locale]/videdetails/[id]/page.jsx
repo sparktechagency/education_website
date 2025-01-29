@@ -12,6 +12,7 @@ import { useParams } from "next/navigation";
 import BaseUrl from "@/components/baseApi/BaseApi";
 
 import Loading from "@/components/Loading";
+import Link from "next/link";
 
 const page = () => {
   const params = useParams();
@@ -122,11 +123,12 @@ const page = () => {
                 reletedData.slice(0, 3).map((relat) => (
                   <div key={relat.id}>
                     <div className="flex bg-[#C0C9CD] rounded-xl  my-2 mx-1">
+                      <Link href={`${relat._id}` }>
                       <img
                         src={`${BaseUrl}/${relat.thumbnail_image}`}
                         alt={relat.title}
                         className="rounded-tl-lg  rounded-bl-lg w-[150px] "
-                      />
+                      /></Link>
 
                       <div className="p-3 py-5">
                         <p className="font-semibold"> </p>
