@@ -1,17 +1,21 @@
 "use client";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Button, message } from "antd";
 import OTPInput from "react-otp-input";
-import { message } from "antd";
 import BaseUrl from "@/components/baseApi/BaseApi";
 import { useLocale } from "next-intl";
+import { toast } from "sonner";
 
 const Page = () => {
   const locale = useLocale();
   const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [resendLoading, setResendLoading] = useState(false);
   const [email] = useState(localStorage.getItem("userEmail") || "");
 
   const handleVerify = async () => {
+    console.log("Entered OTP:", otp); 
+
     if (!email) {
       message.error("Email not found. Please restart the reset process.");
       return;
@@ -22,33 +26,32 @@ const Page = () => {
       return;
     }
 
-    const payload = {
-      email: email,
-      resetCode: Number(otp),
-    };
+    const payload = { email, resetCode: Number(otp) };
+    console.log("Payload:", payload);
+
+    setLoading(true); // Start loading spinner
 
     try {
       const response = await fetch(`${BaseUrl}/auth/verify-reset-otp`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
       const responseData = await response.json();
+      console.log("API Response:", responseData); 
 
       if (response.ok && responseData.success) {
         message.success(responseData.message || "OTP verified successfully!");
-        console.log("Response Data:", responseData);
         window.location.href = `/${locale}/signIn/forgetpass/otp/resetpassword`;
       } else {
         message.error(responseData.message || "Failed to verify OTP.");
-        console.error("Error:", responseData);
       }
     } catch (error) {
       message.error("An unexpected error occurred. Please try again later.");
       console.error("Unexpected Error:", error);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -58,31 +61,30 @@ const Page = () => {
       return;
     }
 
-    const payload = {
-      email: email,
-    };
+    const payload = { email };
+
+    setResendLoading(true); // Start loading spinner
 
     try {
       const response = await fetch(`${BaseUrl}/auth/resend-reset-code`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
       const responseData = await response.json();
 
       if (response.ok && responseData.success) {
-        alert('Reset code sent successfully!')
-        console.log("Resend Response Data:", responseData);
+        toast.success("Reset code sent successfully!");
+        console.log( responseData.message);
       } else {
-        message.error(responseData.message || "Failed to resend reset code.");
-        console.error("Resend Error:", responseData);
+        toast.error(responseData.message );
       }
     } catch (error) {
       message.error("An unexpected error occurred while resending the code.");
       console.error("Unexpected Resend Error:", error);
+    } finally {
+      setResendLoading(false); // Stop loading
     }
   };
 
@@ -112,21 +114,29 @@ const Page = () => {
               )}
             />
           </div>
-          <button
+
+          {/* Verify OTP Button */}
+          <Button
+            type="primary"
+            block
+            size="large"
+            className="w-full py-5 bg-[#2F799E] text-white"
+            loading={loading} // Show loading spinner when verifying
             onClick={handleVerify}
-            className="w-full py-2 bg-[#2F799E] text-white rounded-md mb-4"
           >
             Verify Code
-          </button>
+          </Button>
 
-          <span className="flex justify-center">
+          <span className="flex justify-center mt-4">
             You have not received the email?{" "}
-            <span
-              className="text-blue-500 cursor-pointer"
+            <Button
+              type="link"
+              className="-ml-2 -mt-1"
+              loading={resendLoading} // Show loading spinner when resending
               onClick={handleResend}
             >
               Resend
-            </span>
+            </Button>
           </span>
         </div>
       </div>

@@ -7,42 +7,41 @@ import BaseUrl from "@/components/baseApi/BaseApi";
 import { toast } from "sonner";
 const Page = () => {
   const [loading, setLoading] = useState(false); // Loading state for button
-
-  const onFinish = async (values) => {
+  
+  const onFinish = (values) => {
     setLoading(true); // Start loading
     const payload = {
       email: values.email,
       password: values.password,
     };
 
-    try {
-      const response = await fetch(`${BaseUrl}/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const responseData = await response.json();
-      console.log(responseData);
-      if (response.ok && responseData.success) {
-        // Login successful
-        toast.success(responseData.message);
-        localStorage.setItem("accessToken", responseData.data.accessToken);
-        localStorage.setItem("refreshToken", responseData.data.refreshToken);
-        window.location.href = "/"; // Redirect to the homepage
-      } else {
-        toast.error(responseData.message || "Login failed");
-        console.error("Error:", responseData);
-      }
-    } catch (error) {
-      toast.error("An unexpected error occurred. Please try again later.");
-      console.error("Unexpected Error:", error);
-    } finally {
-      setLoading(false); // Stop loading
-    }
+    fetch(`${BaseUrl}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log(responseData);
+        if (responseData.success) {
+          toast.success(responseData.message);
+          localStorage.setItem("accessToken", responseData.data.accessToken);
+          localStorage.setItem("refreshToken", responseData.data.refreshToken);
+          window.location.href = "/";
+        } else {
+          toast.error(responseData.message || "Login failed");
+          console.error("Error:", responseData);
+        }
+      })
+      .catch((error) => {
+        toast.error("An unexpected error occurred. Please try again later.");
+        console.error("Unexpected Error:", error);
+      })
+      .finally(() => setLoading(false)); // Stop loading
   };
+
   return (
     <div className="min-h-screen flex items-center md:pt-0 px-4 justify-center bg-[#2F799E]">
       <div className="w-full max-w-[1500px] m-auto">
@@ -111,10 +110,11 @@ const Page = () => {
                 </div>
 
                 <Form.Item>
-                <Button
+                  <Button
                     type="primary"
                     htmlType="submit"
-                    loading={loading} // Loading state
+                    loading={loading}
+                    wave={false} // Loading state
                     className="w-full py-5 bg-[#2F799E] text-white"
                   >
                     {loading ? "Loading..." : "Submit"}
@@ -122,11 +122,11 @@ const Page = () => {
                 </Form.Item>
               </Form>
               <span className="flex justify-center">
-                              already have an don't account?{" "}
-                              <Link href={"signUp"}>
-                                <span className="text-blue-500"> Sign Up</span>
-                              </Link>
-                            </span>
+                already have an don't account?{" "}
+                <Link href={"signUp"}>
+                  <span className="text-blue-500"> Sign Up</span>
+                </Link>
+              </span>
             </div>
           </div>
         </div>
