@@ -7,7 +7,7 @@ import moment from "moment";
 
 const PopularCard = ({video}) => {
     return (
-      <div>
+      <div className="">
       <Link href={`/videdetails/${video._id}`}>
         <div className="relative">
           <img

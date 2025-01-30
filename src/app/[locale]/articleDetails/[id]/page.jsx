@@ -73,10 +73,10 @@ const ArticleDetails = () => {
   };
 
   return (
-    <div className="max-w-[1400px] px-4 lg:px-0 m-auto mb-20">
+    <div className="max-w-[1400px] px-4 lg:px-4 m-auto mb-20">
       <h1 className="my-7 text-2xl font-bold">{singleData.title}</h1>
-      <div className="grid grid-cols-5">
-        <div className="col-span-3">
+      <div className="lg:grid grid-cols-5">
+        <div className="lg:col-span-3">
           {singleData.article_images?.slice(0, 1)?.map((image, index) => (
             <img
               key={index}

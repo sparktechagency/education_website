@@ -55,7 +55,7 @@ const Navbar = () => {
 
   const n = useTranslations("navbar");
   return (
-    <div className="flex justify-between items-center px-4 lg:px-0">
+    <div className="flex justify-between items-center px-4 lg:px-2">
       <div className="flex">
         <div className="lg:hidden">
           <div className="drawer">

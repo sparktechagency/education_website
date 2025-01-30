@@ -63,7 +63,7 @@ const Page = () => {
         </div>
 
         {articles.length > 0 ? (
-          <div className="">
+          <div className="lg:px-3">
             {articles.map((item) => (
               <Articles key={item._id} item={item} />
             ))}

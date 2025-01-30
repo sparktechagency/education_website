@@ -19,7 +19,7 @@ const PopularVideo = () => {
   const p = useTranslations("popular");
 
   return (
-    <div className="px-4 lg:px-0">
+    <div className="px-4 lg:px-4">
       <div className="py-5 text-center">
         <h1 className="text-[#2F799E] text-2xl font-bold font-serif">
           {p("Popular Videos")}
