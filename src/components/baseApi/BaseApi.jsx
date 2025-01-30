@@ -1,3 +1,3 @@
-const BaseUrl = "http://143.198.25.100:5000"; 
+const BaseUrl = "https://api.kidsknowrights.com"; 
 
 export default BaseUrl;
