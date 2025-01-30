@@ -122,18 +122,22 @@ const page = () => {
               ) : (
                 reletedData.slice(0, 4).map((relat) => (
                   <div key={relat.id}>
-                    <div className="flex bg-[#C0C9CD] rounded-xl  my-2 mx-1">
+                    <div className="grid grid-cols-6 bg-[#C0C9CD] rounded-xl my-1 mx-1 h-[140px]">
+                      <div className="col-span-2">
                       <Link href={`${relat._id}` }>
                       <img
                         src={`${BaseUrl}/${relat.thumbnail_image}`}
                         alt={relat.title}
-                        className="rounded-tl-lg  rounded-bl-lg w-[150px] "
+                        className="rounded-tl-lg  rounded-bl-lg w-[150px] h-[140px]"
                       /></Link>
+                      </div>
 
-                      <div className="p-3 py-5">
+                      <div className="p-1 py-2 col-span-4">
                         <Link href={`${relat._id}` }>
                         <p className="font-semibold"> </p>
-                        <p className="font-semibold ">{relat.title}</p>
+                        <p className="font-semibold ">{relat.title ? relat.title.split(" ").slice(0, 5).join(" ") +
+                          (relat.title.split(" ").length > 5 ? "..." : "")
+                        : ""}</p>
                         <div
                           dangerouslySetInnerHTML={{
                             __html: relat?.description
