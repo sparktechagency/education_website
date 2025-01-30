@@ -42,7 +42,7 @@ const Footer = () => {
 
   const t = useTranslations("footer");
   return (
-    <div className="max-w-[1400px] m-auto px-4 lg:px-4">
+    <div className="max-w-[1400px] m-auto px-4 lg:px-0">
       <div className=" md:grid grid-cols-3 pt-5 pb-6">
         <div>
           <div className="flex items-center gap-3">

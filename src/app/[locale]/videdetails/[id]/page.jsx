@@ -61,8 +61,8 @@ const page = () => {
   return (
     <div>
       <div className="max-w-[1400px] px-4 lg:px-4 m-auto mb-20">
-        <div className="flex items-center gap-2 my-5 mb-11">
-          <div className="md:w-[20%]">
+        <div className="md:flex items-center gap-2 my-5 md:mb-11">
+          <div className="md:w-[20%] mb-2 md:mb-0">
             <Navigate title={`${p("Details")}`}></Navigate>
           </div>
           <div className="md:w-[60%]">

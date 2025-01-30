@@ -1,11 +1,12 @@
+'use client';
 import React from "react";
-import ArticleBookmarks from "../articlebookmark/ArticleBookmarks";
-import { useGetOnlyArticleQuery } from "@/redux/Api/article";
+import Videos from "../video/videos";
+import { useGetOnlyVideoQuery } from "@/redux/Api/videoApi";
 import Loading from "../Loading";
-import { NoData } from "../NoData"; // Import the NoData component
+import { NoData } from "../NoData";
 
-const ArticleBookmark = () => {
-  const { data, isLoading, error } = useGetOnlyArticleQuery();
+const BookMark = () => {
+  const { data, isLoading, error } = useGetOnlyVideoQuery();
 
   if (isLoading) {
     return (
@@ -16,31 +17,33 @@ const ArticleBookmark = () => {
   }
 
   if (error) {
-    return <div>Error loading articles: {error.message}</div>;
+    return <div className="h-screen text-2xl flex justify-center items-center">Server Error Videos Bookmark: {error.message}</div>;
   }
 
-  // Filter articles with isBookmark true
-  const articlesBookmark = (data?.data?.result || []).filter(
-    (article) => article.isBookmark === true
+  // Filter videos that are bookmarked
+  const videos = (data?.data?.result || []).filter(
+    (video) => video.isBookmark === true
   );
 
   return (
     <div>
-      <div className="max-w-[1400px] m-auto mb-20">
-        {articlesBookmark.length > 0 ? (
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
-            {articlesBookmark.map((article) => (
-              <div key={article.id}>
-                <ArticleBookmarks videose={article} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <NoData /> 
-        )}
-      </div>
+      {videos.length > 0 ? (
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
+          {videos.map((videose, i) => (
+            <div key={i}>
+              <Videos videose={videose} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-lg ">
+          
+         <NoData></NoData>
+         
+        </p>
+      )}
     </div>
   );
 };
 
-export default ArticleBookmark;
+export default BookMark;
