@@ -2,7 +2,7 @@
 import React from "react";
 
 import Link from "next/link";
-import {  useTranslations } from "next-intl";
+import {  useLocale, useTranslations } from "next-intl";
 import { FaArrowRight, FaBookmark } from "react-icons/fa6";
 
 import BaseUrl from "../baseApi/BaseApi";
@@ -11,17 +11,24 @@ import { toast } from "sonner";
 
 const Articles = ({ item }) => {
   const a = useTranslations("article");
-
+  const locale = useLocale();
   const [addBookmark] = useBookmarkArticleMutation();
 
   const handleBookmark = async (id) => {
-    console.log(id);
+    // Check if accessToken exists in localStorage
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      // Redirect to sign-in page if not logged in
+      window.location.href = `/${locale}/signIn`;
+      return;
+    }
+
     try {
       const response = await addBookmark(id).unwrap();
       toast.success(response.message);
-      console.log("Video bookmarked successfully!");
+      console.log("Article bookmarked successfully!");
     } catch (error) {
-      toast.error(response.message);
+      toast.error("Failed to bookmark article.");
       console.log("Failed to bookmark article.");
     }
   };

@@ -7,22 +7,30 @@ import { FaBookmark } from "react-icons/fa6";
 import BaseUrl from "../baseApi/BaseApi";
 import { useBookmarkVideosMutation } from "@/redux/Api/videoApi";
 import { toast } from "sonner";
+import { useLocale } from "next-intl";
 
 const Videos = ({ videose }) => {
-
+  const locale = useLocale();
   const [addBookmark] =  useBookmarkVideosMutation();
 
 
-const handleBookmark = async (id) => {
-  console.log(id)
-  try {
-    const response = await addBookmark(id).unwrap();
-    toast.success(response.message || "Video bookmark successfully!")
-    console.lg("Video bookmark successfully!");
-  } catch (error) {
-    toast.error(response.message)
-  }
-};
+  const handleBookmark = async (id) => {
+    // Check if accessToken exists in localStorage
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      // Redirect to sign-in page if not logged in
+      window.location.href = `/${locale}/signIn`;
+      return;
+    }
+
+    try {
+      const response = await addBookmark(id).unwrap();
+      toast.success(response.message || "Video bookmarked successfully!");
+      console.log("Video bookmarked successfully!");
+    } catch (error) {
+      toast.error(error.message || "Failed to bookmark video.");
+    }
+  };
 
   return (
     <div>
