@@ -14,7 +14,7 @@ const Footer = () => {
       path: "/",
     },
     {
-      title: "About Us",
+      title: "About us",
       path: "/about",
     },
     {
@@ -26,7 +26,7 @@ const Footer = () => {
       path: "/terms&condition",
     },
     {
-      title: "privacy Policy",
+      title: "Privacy Policy",
       path: "/privacyPolicy",
     },
     {

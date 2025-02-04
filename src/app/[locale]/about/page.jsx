@@ -28,10 +28,10 @@ const Page = () => {
       <div className="bg-[#DBE3EA] py-8 px-4">
         <div className="max-w-[1400px] m-auto">
           <h1 className="md:text-4xl text-2xl font-bold">
-            {m("Discover Who We Are")}
+            {m("Who We Are")}
           </h1>
           <h1 className="text-white font-bold md:text-4xl text-2xl mt-2">
-            <span className="text-zinc-600">-</span> {m("what drives us")}
+            <span className="text-zinc-600">-</span> {m("What drives Us")}
           </h1>
         </div>
       </div>

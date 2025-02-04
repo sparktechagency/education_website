@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { FaBars, FaRegUserCircle } from "react-icons/fa";
 import logo from "../../../public/navbar/logo.png";
@@ -13,6 +13,7 @@ const Navbar = () => {
   const currentPath = usePathname();
   const locale = useLocale();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken"); // Check for token in localStorage
@@ -21,17 +22,14 @@ const Navbar = () => {
 
   const navItems = [
     { title: "Home", path: "/" },
-    { title: "About Us", path: "/about" },
+    { title: "About us", path: "/about" },
     { title: "Video", path: "/video" },
     { title: "Article", path: "/article" },
   ];
 
   const changeLanguage = (language) => {
-    if (language === "Eng") {
-      window.location.href = "/en";
-    } else {
-      window.location.href = "/es";
-    }
+    const newLocale = language === "Eng" ? "en" : "es";
+    router.push(`/${newLocale}${currentPath.replace(`/${locale}`, "")}`);
   };
 
   const handleLogOut = () => {
@@ -74,8 +72,9 @@ const Navbar = () => {
                           ? "text-yellow-200"
                           : "hover:text-gray-300"
                       }`}
-                      onClick={() =>
-                        (document.getElementById("my-drawer").checked = false) // Close the drawer
+                      onClick={
+                        () =>
+                          (document.getElementById("my-drawer").checked = false) // Close the drawer
                       }
                     >
                       <div className="border-b border-neutral-300 py-5">
@@ -99,8 +98,9 @@ const Navbar = () => {
                     <Link
                       href={`/signIn`}
                       className="text-white"
-                      onClick={() =>
-                        (document.getElementById("my-drawer").checked = false) // Close the drawer
+                      onClick={
+                        () =>
+                          (document.getElementById("my-drawer").checked = false) // Close the drawer
                       }
                     >
                       Sign In
@@ -109,16 +109,26 @@ const Navbar = () => {
                 </div>
                 <div className="flex-grow"></div>
                 <div className="mb-4">
-                  <Link
-                    href={"/personalInfo"}
-                    onClick={() =>
-                      (document.getElementById("my-drawer").checked = false) // Close the drawer
-                    }
-                  >
-                    <div className="bg-[#57a6ce] p-2 rounded flex justify-center">
+                  
+                  {isLoggedIn ? (
+              <Link href={"/personalInfo"}>
+                <div className="bg-[#57a6ce] p-2 rounded flex justify-center">
                       <FaRegUserCircle className="text-2xl" />
                     </div>
-                  </Link>
+              </Link>
+            ) : (
+              <Link href={`/signIn`}>
+                <div className="bg-[#57a6ce] p-2 rounded flex justify-center">
+                <FaRegUserCircle
+                className="text-2xl"
+                  onClick={() => {
+                    const drawer = document.getElementById("my-drawer");
+                    if (drawer) drawer.checked = false;
+                  }}
+                />
+                 </div>
+              </Link>
+            )}
                 </div>
               </ul>
             </div>
@@ -190,9 +200,20 @@ const Navbar = () => {
             <IoMdNotificationsOutline />
           </Link>
           <div className="hidden lg:block">
-            <Link href={"/personalInfo"}>
-              <FaRegUserCircle />
-            </Link>
+            {isLoggedIn ? (
+              <Link href={"/personalInfo"}>
+                <FaRegUserCircle />
+              </Link>
+            ) : (
+              <Link href={`/signIn`}>
+                <FaRegUserCircle
+                  onClick={() => {
+                    const drawer = document.getElementById("my-drawer");
+                    if (drawer) drawer.checked = false;
+                  }}
+                />
+              </Link>
+            )}
           </div>
         </div>
       </div>

@@ -2,10 +2,10 @@
   "footer": {
     "Kids Know Rights": "Los niños conocen sus derechos.",
     "Home": "Inicio",
-    "About Us": "Sobre Nosotros",
+    "About us": "Sobre Nosotros",
     "Contact Us": "Contáctanos",
     "Terms & condition": "Términos y Condiciones",
-    "privacy Policy": "Política de Privacidad",
+    "Privacy Policy": "Política de Privacidad",
     "Feedback": "Comentarios",
     "Partner Law Firms": "Bufetes de Abogados Socios",
     "Quick Link": "Enlace Rápido",
@@ -19,7 +19,7 @@
 
   "navbar": {
     "Home": "Inicio",
-    "About Us": "Sobre Nosotros",
+    "About us": "Sobre Nosotros",
     "Video": "Vídeo",
     "Article": "Artículo"
   },
@@ -41,8 +41,8 @@
   },
 
   "aboutus": {
-    "Discover Who We Are": "Descubre Quiénes Somos &",
-    "what drives us": "Lo que nos motiva"
+    "Who We Are": "Quiénes Somos &",
+    "What drives Us": "Lo que nos motiva"
   },
   "article": {
     "Read More": "Leer Más",

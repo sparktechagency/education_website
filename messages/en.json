@@ -2,10 +2,10 @@
     "footer": {
     "Kids Know Rights": "Kids Know Rights",
     "Home": "Home",
-    "About Us": "About Us",
+    "About us": "About us",
     "Contact Us": "Contact Us",
     "Terms & condition": "Terms & condition",
-    "privacy Policy": "privacy Policy",
+    "Privacy Policy": "Privacy Policy",
     "Feedback": "Feedback",
     "Partner Law Firms": "Partner Law Firms",
     "Quick Link": "Quick Link",
@@ -20,7 +20,7 @@
 
   "navbar": {
     "Home": "Home",
-    "About Us": "About Us",
+    "About us": "About us",
     "Video": "Video",
     "Article": "Article"
   },
@@ -44,8 +44,8 @@
   },
 
   "aboutus":{
-    "Discover Who We Are":"Discover Who We Are &",
-    "what drives us":"what drives us"
+    "Who We Are":"Who We Are &",
+    "What drives Us":"What drives Us"
   },
   "article":{
     "Read More":"Read More",
