@@ -3,7 +3,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // const baseUrl = "https://api.kidsknowrights.com";  
-const baseUrl = "http://24.144.126.228:5000";
+const baseUrl = "https://api.kidsknowrights.com";
 // Helper function to get the token
 const getToken = () => {
   if (typeof window === "undefined") {
