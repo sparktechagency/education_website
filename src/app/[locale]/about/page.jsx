@@ -31,7 +31,7 @@ const Page = () => {
             {m("Who We Are")}
           </h1>
           <h1 className="text-white font-bold md:text-4xl text-2xl mt-2">
-            <span className="text-zinc-600">-</span> {m("What drives Us")}
+            <span className="text-zinc-600">-</span> {m("What Drives Us")}
           </h1>
         </div>
       </div>
