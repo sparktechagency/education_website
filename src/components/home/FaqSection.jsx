@@ -34,7 +34,7 @@ const FaqSection = () => {
     })) || [];
 
   return (
-    <div className="max-w-[800px] mx-auto px-4">
+    <div className=" px-4">
       <h1 className="text-2xl font-semibold text-center mt-16">{m("Faa")}</h1>
 
       {items.length > 0 ? (

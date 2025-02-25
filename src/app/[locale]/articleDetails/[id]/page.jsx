@@ -24,7 +24,7 @@ const ArticleDetails = () => {
   const { data: releted, isLoading: isRelatedLoading } =
     useGetShortArtilesQuery({
       category: apiResponse?.data?.category._id,
-    });
+    },{skip: !apiResponse?.data?.category._id});
 
   const reletedData = releted?.data?.result || [];
   console.log(reletedData);

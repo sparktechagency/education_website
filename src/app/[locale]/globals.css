@@ -182,6 +182,18 @@
   border-radius: 10px;
 }
 
+.ant-collapse-header-text{
+  font-size: 17px;
+  font-weight: 500;
+  padding: 10px 0;
+}
+
+:where(.css-dev-only-do-not-override-cdzvx5).ant-collapse>.ant-collapse-item:first-child, :where(.css-dev-only-do-not-override-cdzvx5).ant-collapse>.ant-collapse-item:first-child>.ant-collapse-header {
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  
+}
+
 /* Handle (scroll thumb) */
 .no-scrollbar::-webkit-scrollbar-thumb {
   background: #ff0000 !important; /* Dark grey scrollbar */
