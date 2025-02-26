@@ -122,7 +122,7 @@ const PersonalProfile = () => {
                 }`}
                 onClick={() => setActiveTab1("video")}
               >
-                video
+                Video
               </button>
               <button
                 className={`${
@@ -132,7 +132,7 @@ const PersonalProfile = () => {
                 }`}
                 onClick={() => setActiveTab1("article")}
               >
-                article
+                Article
               </button>
             </div>
           </div>

@@ -10,11 +10,10 @@ import { NoData } from '@/components/NoData'; // Import NoData component for fal
 const Page = () => {
   const { data: notificationData, isLoading, error } = useGetNotificationQuery();
   const p = useTranslations("profile");
+  
 
   if (isLoading) return <p className="h-screen"><Loading /></p>;
-  if (error) return <div className='h-screen flex justify-center items-center'>Error fetching notifications!</div>;
-
-  // Destructure notifications from API response
+  if (error) return <div className='h-screen flex justify-center items-center'>No Notification</div>;
   const notifications = notificationData?.data?.result || [];
 
   return (
@@ -62,7 +61,7 @@ const Page = () => {
               ))}
             </>
           ) : (
-            <NoData /> // Show NoData when no notifications are available
+            <NoData /> 
           )}
         </div>
       </div>
