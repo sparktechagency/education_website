@@ -30,7 +30,7 @@ const page = () => {
   });
 
   const reletedData = releted?.data?.result || [];
-  console.log(reletedData);
+  
 
   if (isLoading) {
     return <p className="h-screen"><Loading></Loading></p>;
@@ -53,7 +53,7 @@ const page = () => {
   const videoUrl = constructUrl(videoData?.video); // Construct video URL
   const thumbnailUrl = constructUrl(videoData?.thumbnail_image);
 
-  console.log(videoUrl);
+  
 
   // const constructImageUrl = (path) =>
   //   `${BaseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;

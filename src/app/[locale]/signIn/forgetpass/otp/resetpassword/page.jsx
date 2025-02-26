@@ -35,7 +35,7 @@ const Page = () => {
 
       if (response.ok && responseData.success) {
         toast.success(responseData.message );
-        console.log("Response Data:", responseData);
+       
 
         // Save tokens to localStorage
         localStorage.setItem("accessToken", responseData.data.accessToken);
@@ -56,7 +56,6 @@ const Page = () => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
   };
 
   return (

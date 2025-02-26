@@ -12,14 +12,14 @@ import Link from "next/link";
 
 const ArticleDetails = () => {
   const params = useParams();
-  console.log(params);
+
 
   const {
     data: apiResponse,
     isLoading,
     error,
   } = useGetSingleArticleQuery({ id: params?.id });
-  console.log(apiResponse?.data?.category);
+
 
   const { data: releted, isLoading: isRelatedLoading } =
     useGetShortArtilesQuery({
@@ -27,7 +27,7 @@ const ArticleDetails = () => {
     },{skip: !apiResponse?.data?.category._id});
 
   const reletedData = releted?.data?.result || [];
-  console.log(reletedData);
+ 
 
   if (isLoading) {
     return (

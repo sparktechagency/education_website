@@ -32,7 +32,7 @@ const page = () => {
       });
 
       const responseData = await response.json();
-      console.log(responseData);
+      
 
       if (response.ok && responseData.success) {
         toast.success(responseData.message);

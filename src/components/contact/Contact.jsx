@@ -14,7 +14,7 @@ const Contact = () => {
     try {
       const response = await contuct(values).unwrap(); // Call the POST API and unwrap the response
       message.success("Message sent successfully!");
-      console.log("Server Response:", response);
+   
       form.resetFields(); // Clear the form fields after successful submission
     } catch (error) {
       message.error("Failed to send message. Please try again.");

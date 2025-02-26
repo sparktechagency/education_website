@@ -14,7 +14,7 @@ const Page = () => {
   const [email] = useState(localStorage.getItem("userEmail") || "");
 
   const handleVerify = async () => {
-    console.log("Entered OTP:", otp); 
+   
 
     if (!email) {
       message.error("Email not found. Please restart the reset process.");
@@ -27,7 +27,7 @@ const Page = () => {
     }
 
     const payload = { email, resetCode: Number(otp) };
-    console.log("Payload:", payload);
+    
 
     setLoading(true); // Start loading spinner
 
@@ -39,7 +39,7 @@ const Page = () => {
       });
 
       const responseData = await response.json();
-      console.log("API Response:", responseData); 
+    
 
       if (response.ok && responseData.success) {
         message.success(responseData.message || "OTP verified successfully!");
@@ -76,7 +76,7 @@ const Page = () => {
 
       if (response.ok && responseData.success) {
         toast.success("Reset code sent successfully!");
-        console.log( responseData.message);
+       
       } else {
         toast.error(responseData.message );
       }

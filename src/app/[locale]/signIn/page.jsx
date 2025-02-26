@@ -24,7 +24,7 @@ const Page = () => {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData);
+       
         if (responseData.success) {
           toast.success(responseData.message);
           localStorage.setItem("accessToken", responseData.data.accessToken);

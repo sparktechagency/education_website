@@ -39,7 +39,7 @@ const Page = () => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    
   };
 
   return (

@@ -26,7 +26,7 @@ const Videos = ({ videose }) => {
     try {
       const response = await addBookmark(id).unwrap();
       toast.success(response.message || "Video bookmarked successfully!");
-      console.log("Video bookmarked successfully!");
+    
     } catch (error) {
       toast.error(error.message || "Failed to bookmark video.");
     }

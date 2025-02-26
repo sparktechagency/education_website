@@ -11,7 +11,7 @@ const page = () => {
     const params = useParams();
     const { data, isLoading, error  } = useGetShortCategoryQuery({searchTerm, category : params.category});
 
-   console.log(data)
+   
 
     const m = useTranslations("hero");
       const p = useTranslations("profile");
@@ -25,7 +25,7 @@ const page = () => {
       }
     
       const articles = data?.data?.result || [];
-      console.log(articles)
+      
     return (
         <div className="max-w-[1400px] m-auto">
       <div className="mx-4 lg:mx-0">

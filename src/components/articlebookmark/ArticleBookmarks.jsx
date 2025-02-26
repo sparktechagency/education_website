@@ -9,7 +9,7 @@ import { useBookmarkArticleMutation } from "@/redux/Api/article";
 
 // eslint-disable-next-line react/prop-types
 const ArticleBookmarks = ({ videose }) => {
-  console.log(videose)
+  
 
   const constructImageUrl = (path) =>
     `${BaseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
@@ -18,13 +18,13 @@ const ArticleBookmarks = ({ videose }) => {
   
   
     const handleBookmark = async (id) => {
-      console.log(id)
+    
       try {
         const res = await addBookmark(id).unwrap();
-        console.log(res)
+        
         console.lg("Video bookmark successfully!");
       } catch (error) {
-        console.log("Video to bookmat article.");
+        
       }
     };
   return (

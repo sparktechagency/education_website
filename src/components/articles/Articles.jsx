@@ -26,10 +26,10 @@ const Articles = ({ item }) => {
     try {
       const response = await addBookmark(id).unwrap();
       toast.success(response.message);
-      console.log("Article bookmarked successfully!");
+
     } catch (error) {
       toast.error("Failed to bookmark article.");
-      console.log("Failed to bookmark article.");
+    
     }
   };
 

@@ -48,7 +48,7 @@ const article = baseApi.injectEndpoints({
 
     getShortArtiles: builder.query({
       query: ({ category }) => {
-        console.log(category)
+       
         return {
           url: `/article/get-all-article?category=${category}`,
           method: "GET",
