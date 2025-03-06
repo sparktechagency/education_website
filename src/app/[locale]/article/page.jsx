@@ -6,11 +6,16 @@ import Navigate from "@/components/navigate/Navigate";
 import { useGetArticleQuery } from "@/redux/Api/article";
 import { useTranslations } from "next-intl";
 import { NoData } from "@/components/NoData";
+import { Pagination } from "antd";
  // Import NoData component
 
 const Page = () => {
   const [searchTerm, setSearch] = useState("");
-  const { data, isLoading, error } = useGetArticleQuery({ searchTerm });
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+  const { data, isLoading, error } = useGetArticleQuery({ searchTerm ,page: currentPage,
+    limit: pageSize,});
+  
   const m = useTranslations("hero");
   const p = useTranslations("profile");
 
@@ -25,6 +30,11 @@ const Page = () => {
   if (error) {
     return <div>Error loading articles: {error.message}</div>;
   }
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
 
   const articles = data?.data?.result || [];
 
@@ -62,16 +72,25 @@ const Page = () => {
           </div>
         </div>
 
-        {articles.length > 0 ? (
+        {articles?.length > 0 ? (
           <div className="lg:px-3">
-            {articles.map((item) => (
-              <Articles key={item._id} item={item} />
+            {articles?.map((item) => (
+              <Articles key={item?._id} item={item} />
             ))}
           </div>
         ) : (
           <NoData /> // Render NoData component if no articles are found
         )}
       </div>
+      <div className="mt-4 flex justify-center mb-11">
+          <Pagination
+            current={currentPage}
+            pageSize={pageSize}
+            total={data?.data?.meta?.total || 0}
+            onChange={handlePageChange}
+            showSizeChanger={false}
+          />
+        </div>
     </div>
   );
 };

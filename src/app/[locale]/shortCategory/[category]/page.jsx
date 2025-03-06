@@ -61,8 +61,8 @@ const page = () => {
         </div>
 
         <div>
-          {articles.map((item) => (
-            <Articles key={item._id} item={item} />
+          {articles?.map((item) => (
+            <Articles key={item?._id} item={item} />
           ))}
         </div>
       </div>

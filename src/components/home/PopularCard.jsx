@@ -8,11 +8,11 @@ import moment from "moment";
 const PopularCard = ({video}) => {
     return (
       <div className="">
-      <Link href={`/videdetails/${video._id}`}>
+      <Link href={`/videdetails/${video?._id}`}>
         <div className="relative">
           <img
-            src={`${BaseUrl}/${video.thumbnail_image}`}
-            alt={video.title}
+            src={`${BaseUrl}/${video?.thumbnail_image}`}
+            alt={video?.title}
             className="w-full h-[300px] object-cover"
           />
           <button className="absolute p-3 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full shadow-md top-1/2 left-1/2">
@@ -36,15 +36,15 @@ const PopularCard = ({video}) => {
 
       <div className="p-2 bg-[#2F799E] text-white -mt-[1px]">
         <div className="flex items-center gap-2">
-          <h2 className="text-lg font-bold truncate">{video.title}</h2>
+          <h2 className="text-lg font-bold truncate">{video?.title}</h2>
           
         </div>
 
         <div className="gap-2">
           <div className="flex items-center gap-2 mt-2 text-sm text-gray-200">
-            <span>{video.totalView} views</span>
+            <span>{video?.totalView} views</span>
             
-            <span>{moment(video.createdAt).fromNow()}</span> 
+            <span>{moment(video?.createdAt).fromNow()}</span> 
           </div>
         </div>
       </div>

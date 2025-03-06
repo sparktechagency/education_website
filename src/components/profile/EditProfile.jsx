@@ -25,12 +25,12 @@ const EditProfile = () => {
 
   useEffect(() => {
     if (userProfile?.data) {
-      const user = userProfile.data;
+      const user = userProfile?.data;
       form.setFieldsValue({
-        username: user.username,
-        email: user.email,
-        phone: user.phone,
-        gender: user.gender || "",
+        username: user?.username,
+        email: user?.email,
+        phone: user?.phone,
+        gender: user?.gender || "",
       });
     }
   }, [userProfile, form]);

@@ -27,9 +27,9 @@ const BookMark = () => {
 
   return (
     <div>
-      {videos.length > 0 ? (
+      {videos?.length > 0 ? (
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
-          {videos.map((videose, i) => (
+          {videos?.map((videose, i) => (
             <div key={i}>
               <Videos videose={videose} />
             </div>

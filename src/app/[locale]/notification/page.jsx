@@ -23,15 +23,15 @@ const Page = () => {
           <Navigate title={`${p("Notification")}`} />
         </div>
         <div className="mt-11">
-          {notifications.length > 0 ? (
+          {notifications?.length > 0 ? (
             <>
               <div className="text-xl font-semibold mb-4">
-                Total {notifications.length} Notifications
+                Total {notifications?.length} Notifications
               </div>
-              {notifications.map((notification) => (
+              {notifications?.map((notification) => (
                 <div
                   className="flex items-center justify-between py-6 pr-4 ml-5 border-b"
-                  key={notification._id}
+                  key={notification?._id}
                 >
                   <div className="flex gap-3 md:gap-11">
                     <div>
@@ -39,19 +39,19 @@ const Page = () => {
                         width={80}
                         height={80}
                         src="/article/profile.png" // Static image for now
-                        alt={notification.title}
+                        alt={notification?.title}
                       />
                     </div>
                     <div className="flex items-center">
                       <div>
-                        <h3 className="font-semibold">{notification.title}</h3>
-                        <p className="text-[#595959]">{notification.message}</p>
+                        <h3 className="font-semibold">{notification?.title}</h3>
+                        <p className="text-[#595959]">{notification?.message}</p>
                       </div>
                     </div>
                   </div>
                   <div>
                     <h1 className="text-gray-500">
-                      {new Date(notification.createdAt).toLocaleTimeString([], {
+                      {new Date(notification?.createdAt).toLocaleTimeString([], {
                         hour: '2-digit',
                         minute: '2-digit',
                       })}

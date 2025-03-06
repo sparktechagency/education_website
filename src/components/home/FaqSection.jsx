@@ -28,9 +28,9 @@ const FaqSection = () => {
   // Prepare items for the Ant Design Collapse component
   const items =
     faqData?.data?.map((faq) => ({
-      key: faq.id,
-      label: faq.question,
-      children: <p>{faq.answer}</p>,
+      key: faq?.id,
+      label: faq?.question,
+      children: <p>{faq?.answer}</p>,
     })) || [];
 
   return (
@@ -45,7 +45,7 @@ const FaqSection = () => {
           expandIconPosition="right"
         />
       ) : (
-        <p className="my-11 text-center text-2xl">No Faq Available</p>  // Show NoData component if no FAQs are available
+        <p className="my-11 text-center text-2xl">No Faq Available</p>  
       )}
     </div>
   );

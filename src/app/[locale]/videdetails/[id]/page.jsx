@@ -120,23 +120,23 @@ const page = () => {
                 // Show loading spinner or animation for related videos
                 <Loading />
               ) : (
-                reletedData.slice(0, 4).map((relat) => (
-                  <div key={relat.id}>
+                reletedData?.slice(0, 4)?.map((relat) => (
+                  <div key={relat?.id}>
                     <div className="grid grid-cols-6 bg-[#C0C9CD] rounded-xl my-1 mx-1 h-[140px]">
                       <div className="col-span-2">
-                      <Link href={`${relat._id}` }>
+                      <Link href={`${relat?._id}` }>
                       <img
-                        src={`${BaseUrl}/${relat.thumbnail_image}`}
-                        alt={relat.title}
+                        src={`${BaseUrl}/${relat?.thumbnail_image}`}
+                        alt={relat?.title}
                         className="rounded-tl-lg  rounded-bl-lg w-[150px] h-[140px]"
                       /></Link>
                       </div>
 
                       <div className="p-1 py-2 col-span-4">
-                        <Link href={`${relat._id}` }>
+                        <Link href={`${relat?._id}` }>
                         <p className="font-semibold"> </p>
-                        <p className="font-semibold ">{relat.title ? relat.title.split(" ").slice(0, 5).join(" ") +
-                          (relat.title.split(" ").length > 5 ? "..." : "")
+                        <p className="font-semibold ">{relat?.title ? relat?.title.split(" ")?.slice(0, 5).join(" ") +
+                          (relat?.title?.split(" ")?.length > 5 ? "..." : "")
                         : ""}</p>
                         <div
                           dangerouslySetInnerHTML={{

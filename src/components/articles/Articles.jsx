@@ -63,7 +63,7 @@ const Articles = ({ item }) => {
 
   return (
     <div className="mb-20">
-      {item?.article_images?.slice(0, 1).map((image, index) => (
+      {item?.article_images?.slice(0, 1)?.map((image, index) => (
         <img
           key={index}
           src={constructImageUrl(image)}
@@ -85,9 +85,9 @@ const Articles = ({ item }) => {
       /> */}
       <div className="flex justify-between my-5">
         <div className="flex items-center gap-4">
-          <span className="text-lg">{calculateDaysAgo(item.createdAt)}</span>
+          <span className="text-lg">{calculateDaysAgo(item?.createdAt)}</span>
 
-          <Link href={`articleDetails/${item._id}`}>
+          <Link href={`articleDetails/${item?._id}`}>
             <button className="flex items-center gap-1 bg-[#2F799E] text-white px-3 pl-5 py-2 rounded-full">
               {a("Read More")}{" "}
               <span className="bg-yellow-500 p-1 rounded-full text-[#2F799E]">
@@ -97,11 +97,11 @@ const Articles = ({ item }) => {
           </Link>
         </div>
         <p
-          onClick={() => handleBookmark(item._id)}
+          onClick={() => handleBookmark(item?._id)}
           className="text-2xl cursor-pointer"
         >
           <FaBookmark
-            style={{ color: item.isBookmark === true ? "red" : "cadetblue" }}
+            style={{ color: item?.isBookmark === true ? "red" : "cadetblue" }}
           />
         </p>
       </div>

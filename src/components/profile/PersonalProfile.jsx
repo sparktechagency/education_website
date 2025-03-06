@@ -57,7 +57,7 @@ const PersonalProfile = () => {
             {userInfo?.data?.profile_image ? (
               <img
                 className="rounded-full h-[120px] w-[120px]"
-                src={`${BaseUrl}/${userInfo.data.profile_image}`}
+                src={`${BaseUrl}/${userInfo?.data?.profile_image}`}
                 alt="profile"
               />
             ) : (

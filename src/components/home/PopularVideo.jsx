@@ -29,10 +29,10 @@ const PopularVideo = () => {
         </div>
       </div>
 
-      {videos.length > 0 ? (
+      {videos?.length > 0 ? (
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
-          {videos.slice(0, 8).map((video) => (
-            <div key={video.id}>
+          {videos?.slice(0, 8)?.map((video) => (
+            <div key={video?.id}>
               <PopularCard video={video} />
             </div>
           ))}

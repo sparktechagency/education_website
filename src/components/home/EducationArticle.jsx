@@ -30,9 +30,9 @@ const EducationArticle = () => {
 
   const categories =
     categoryArticle?.data?.map((item) => ({
-      id: item._id,
-      title: item.name,
-      thumbnail: item.category_image,
+      id: item?._id,
+      title: item?.name,
+      thumbnail: item?.category_image,
     })) || [];
 
   return (
@@ -54,19 +54,19 @@ const EducationArticle = () => {
         </div>
       </div>
 
-      {categories.length > 0 ? (
+      {categories?.length > 0 ? (
         <div className="md:grid grid-cols-2 mt-9">
-          {categories.map((item) => (
-            <div key={item.id}>
+          {categories?.map((item) => (
+            <div key={item?.id}>
               <div className="rounded-2xl p-6 py-8 flex items-center gap-11 bg-[#2F799E] m-3">
                 <img
                   className="imgg w-[120px] h-[90px]"
-                  src={`${BaseUrl}/${item.thumbnail}`}
-                  alt={item.title}
+                  src={`${BaseUrl}/${item?.thumbnail}`}
+                  alt={item?.title}
                 />
                 <div>
-                  <h2 className="text-white text-2xl">{item.title}</h2>
-                  <Link href={`/${item.id}`}>
+                  <h2 className="text-white text-2xl">{item?.title}</h2>
+                  <Link href={`/${item?.id}`}>
                     <button className="bg-white rounded py-1 px-2 mt-6 flex items-center gap-2">
                       {m("Read More")} <IoMdArrowForward className="mt-1" />
                     </button>

@@ -4,9 +4,9 @@ import baseApi from "./baseApi";
 const article = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getArticle: builder.query({
-      query: ({searchTerm}) => {
+      query: ({searchTerm,page,limit}) => {
         return {
-          url: `/article/get-all-article?searchTerm=${searchTerm}`,
+          url: `/article/get-all-article?searchTerm=${searchTerm}&page=${page}&limit=${limit}`,
           method: "GET",
         };
       },
@@ -14,9 +14,9 @@ const article = baseApi.injectEndpoints({
     }),
    
     getOnlyArticle: builder.query({
-      query: () => {
+      query: ({page,limit}) => {
         return {
-          url: `/article/get-all-article`,
+          url: `/article/get-all-article?page=${page}&limit=${limit}`,
           method: "GET",
         };
       },

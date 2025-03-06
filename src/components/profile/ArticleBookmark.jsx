@@ -1,14 +1,22 @@
 'use client';
-import React from "react";
+import React, { useState } from "react";
 import Videos from "../video/videos";
 import Loading from "../Loading";
 import { NoData } from "../NoData";
 import { useGetOnlyArticleQuery } from "@/redux/Api/article";
 import { ArticleCard } from "../video/ArticleCard";
+import { Pagination } from "antd";
 
 const BookMark = () => {
-  const { data, isLoading, error } = useGetOnlyArticleQuery();
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 12;
+  const { data, isLoading, error } = useGetOnlyArticleQuery({page: currentPage,
+    limit: pageSize,});
+ 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
 
   if (isLoading) {
     return (
@@ -44,6 +52,15 @@ const BookMark = () => {
          
         </p>
       )}
+      <div className="mt-4 flex justify-center">
+          <Pagination
+            current={currentPage}
+            pageSize={pageSize}
+            total={data?.data?.meta?.total || 0}
+            onChange={handlePageChange}
+            showSizeChanger={false}
+          />
+        </div>
     </div>
   );
 };

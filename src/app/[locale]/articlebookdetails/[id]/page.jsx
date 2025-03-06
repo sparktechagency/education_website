@@ -105,7 +105,7 @@ const page = ({ params }) => {
     
   ];
 
-  const article = videos.find((item) => item.id === parseInt(id));
+  const article = videos.find((item) => item?.id === parseInt(id));
   // if (!article) {
   //   return notFound();
   // }

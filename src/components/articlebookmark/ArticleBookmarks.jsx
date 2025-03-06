@@ -29,9 +29,9 @@ const ArticleBookmarks = ({ videose }) => {
     };
   return (
     <div>
-      <Link href={`articleDetails/${videose._id}`}>
+      <Link href={`articleDetails/${videose?._id}`}>
         <div className="relative">
-        {videose?.article_images?.slice(0,1).map((image, index) => (
+        {videose?.article_images?.slice(0,1)?.map((image, index) => (
           <img
             key={index}
             src={constructImageUrl(image)}
@@ -44,10 +44,10 @@ const ArticleBookmarks = ({ videose }) => {
 
       <div className="p-2 bg-[#2F799E] text-white -mt-[1px]">
         <div className="flex items-center justify-between gap-2">
-          <h2 className="text-lg font-bold truncate">{videose.title}</h2>
-          <p onClick={() => handleBookmark(videose._id)} className="text-2xl cursor-pointer">
+          <h2 className="text-lg font-bold truncate">{videose?.title}</h2>
+          <p onClick={() => handleBookmark(videose?._id)} className="text-2xl cursor-pointer">
                 <FaBookmark
-                    style={{ color: videose.isBookmark===true ? "#FFBF5A" : "green" }}
+                    style={{ color: videose?.isBookmark===true ? "#FFBF5A" : "green" }}
                   />
                 </p>
         </div>

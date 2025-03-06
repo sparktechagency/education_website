@@ -24,7 +24,7 @@ const page = () => {
       }
     
       if (error) {
-        return <div>Error loading articles: {error.message}</div>;
+        return <div>Error loading articles: {error?.message}</div>;
       }
     
       const articles = data?.data?.result || [];
@@ -64,8 +64,8 @@ const page = () => {
         </div>
 
         <div>
-          {articles.map((item) => (
-            <Articles key={item._id} item={item} />
+          {articles?.map((item) => (
+            <Articles key={item?._id} item={item} />
           ))}
         </div>
       </div>
