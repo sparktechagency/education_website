@@ -61,7 +61,7 @@ const PersonalProfile = () => {
                 alt="profile"
               />
             ) : (
-              <FaUserCircle className="text-gray-400" size={120} /> // React Icon fallback
+              <FaUserCircle className="text-gray-400" size={120} /> // React Icon fallbac
             )}
           </div>
 
