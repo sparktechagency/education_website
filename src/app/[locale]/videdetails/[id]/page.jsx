@@ -2,7 +2,7 @@
 import React from "react";
 
 import Navigate from "@/components/navigate/Navigate";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import {
   useGetCategoryVideosQuery,
@@ -22,6 +22,7 @@ const page = () => {
     error,
   } = useGetSingleVideosQuery({ id: params?.id });
 
+  const locale = useLocale(); 
   const a = useTranslations("hero");
   const p = useTranslations("profile");
 
@@ -30,8 +31,11 @@ const page = () => {
   });
 
   const reletedData = releted?.data?.result || [];
+  const selectedLanguage = locale === "en" ? "ENGLISH" : "SPANISH";
   
-
+const filteredRelated = reletedData.filter(
+    (video) => video.language === selectedLanguage
+  );
   if (isLoading) {
     return <p className="h-screen"><Loading></Loading></p>;
   }
@@ -119,38 +123,44 @@ const page = () => {
               {isLoadingRelated ? (
                 // Show loading spinner or animation for related videos
                 <Loading />
-              ) : (
-                reletedData?.slice(0, 4)?.map((relat) => (
-                  <div key={relat?.id}>
-                    <div className="grid grid-cols-6 bg-[#C0C9CD] rounded-xl my-1 mx-1 h-[140px]">
-                      <div className="col-span-2">
-                      <Link href={`${relat?._id}` }>
-                      <img
-                        src={`${BaseUrl}/${relat?.thumbnail_image}`}
-                        alt={relat?.title}
-                        className="rounded-tl-lg  rounded-bl-lg w-[150px] h-[140px]"
-                      /></Link>
-                      </div>
+              ) : filteredRelated.length > 0 ? (
+                filteredRelated.slice(0, 4).map((relat) => (
+                  <div key={relat?._id} className="grid grid-cols-6 bg-[#C0C9CD] rounded-xl my-1 mx-1 h-[140px]">
+                    <div className="col-span-2">
+                      <Link href={`${relat?._id}`}>
+                        <img
+                          src={`${BaseUrl}/${relat?.thumbnail_image}`}
+                          alt={relat?.title}
+                          className="rounded-tl-lg rounded-bl-lg w-[150px] h-[140px]"
+                        />
+                      </Link>
+                    </div>
 
-                      <div className="p-1 py-2 col-span-4">
-                        <Link href={`${relat?._id}` }>
-                        <p className="font-semibold"> </p>
-                        <p className="font-semibold ">{relat?.title ? relat?.title.split(" ")?.slice(0, 5).join(" ") +
-                          (relat?.title?.split(" ")?.length > 5 ? "..." : "")
-                        : ""}</p>
+                    <div className="p-1 py-2 col-span-4">
+                      <Link href={`${relat?._id}`}>
+                      
+                        <p className="font-semibold">
+                          {relat?.title
+                            ? relat?.title.split(" ").slice(0, 5).join(" ") +
+                              (relat?.title.split(" ").length > 5 ? "..." : "")
+                            : ""}
+                        </p>
                         <div
                           dangerouslySetInnerHTML={{
-                            __html: relat?.description
-                              ?.split(" ")
-                              .slice(0, 8)
-                              .join(" ") + "...",
+                            __html:
+                              relat?.description
+                                ?.split(" ")
+                                .slice(0, 8)
+                                .join(" ") + "...",
                           }}
                           className="description-content"
-                        /></Link>
-                      </div>
+                        />
+                      </Link>
                     </div>
                   </div>
                 ))
+              ) : (
+                <p className="text-center text-gray-500 mt-4">No related videos available.</p>
               )}
             </div>
           </div>

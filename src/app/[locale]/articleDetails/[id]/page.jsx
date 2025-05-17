@@ -9,11 +9,12 @@ import {
 
 import { notFound, useParams } from "next/navigation";
 import Link from "next/link";
+import { useLocale } from "next-intl";
 
 const ArticleDetails = () => {
   const params = useParams();
 
-
+  const locale = useLocale();
   const {
     data: apiResponse,
     isLoading,
@@ -27,8 +28,10 @@ const ArticleDetails = () => {
     },{skip: !apiResponse?.data?.category?._id});
 
   const reletedData = releted?.data?.result || [];
- 
-
+  const selectedLanguage = locale === "en" ? "ENGLISH" : "SPANISH";
+ const filteredRelated = reletedData.filter(
+    (article) => article.language === selectedLanguage
+  );
   if (isLoading) {
     return (
       <p className="h-screen">
@@ -100,51 +103,54 @@ const ArticleDetails = () => {
 
         <div className="mt-3 lg:ml-4 col-span-2 ">
           <div className="hidden lg:block">
-          <div className="h-[500px] overflow-scroll no-scrollbar">
-            {isRelatedLoading ? (
-              <Loading />
-            ) : (
-              reletedData?.slice(0, 8)?.map((relat, index) => (
-                <div
-                  key={index}
-                  className="grid grid-cols-6 bg-[#C0C9CD] rounded-xl my-1 mx-1 h-[140px]"
-                >
-                  <div className="col-span-2">
-                    {relat?.article_images
-                      ?.slice(0, 1)
-                      .map((image, imgIndex) => (
-                        <Link href={`${relat?._id}`}>
-                          <img
-                            key={imgIndex}
-                            src={constructImageUrl(image)}
-                            alt={`Article Image ${imgIndex + 1}`}
-                            className="rounded-tl-lg rounded-bl-lg h-[140px] w-[170px] object-cover"
-                          />
-                        </Link>
-                      ))}
-                  </div>
+           <div className="h-[500px] overflow-scroll no-scrollbar">
+              {isRelatedLoading ? (
+                <Loading />
+              ) : filteredRelated.length > 0 ? (
+                filteredRelated.slice(0, 8).map((relat, index) => (
+                  <div
+                    key={index}
+                    className="grid grid-cols-6 bg-[#C0C9CD] rounded-xl my-1 mx-1 h-[140px]"
+                  >
+                    <div className="col-span-2">
+                      {relat?.article_images
+                        ?.slice(0, 1)
+                        .map((image, imgIndex) => (
+                          <Link href={`${relat?._id}`} key={imgIndex}>
+                            <img
+                              src={constructImageUrl(image)}
+                              alt={`Article Image ${imgIndex + 1}`}
+                              className="rounded-tl-lg rounded-bl-lg h-[140px] w-[170px] object-cover"
+                            />
+                          </Link>
+                        ))}
+                    </div>
 
-                  <div className="p-1 py-2 col-span-4">
-                    <p className="text-sm">
-                      {calculateDaysAgo(relat?.createdAt)}
-                    </p>
-                    <Link href={`${relat?._id}`}><p className="font-semibold">
-                      {relat?.title
-                        ? relat?.title?.split(" ")?.slice(0, 4).join(" ") +
-                          (relat?.title?.split(" ")?.length > 5 ? "..." : "")
-                        : ""}
-                    </p>
-                    <div>
-                      {relat?.summery
-                        ? relat?.summery?.split(" ")?.slice(0, 5).join(" ") +
-                          (relat?.summery?.split(" ")?.length > 5 ? "..." : "")
-                        : ""}
-                    </div></Link>
+                    <div className="p-1 py-2 col-span-4">
+                      <p className="text-sm">{calculateDaysAgo(relat?.createdAt)}</p>
+                      <Link href={`${relat?._id}`}>
+                        <p className="font-semibold">
+                          {relat?.title
+                            ? relat?.title?.split(" ").slice(0, 4).join(" ") +
+                              (relat?.title?.split(" ").length > 5 ? "..." : "")
+                            : ""}
+                        </p>
+                        <div>
+                          {relat?.summery
+                            ? relat?.summery?.split(" ").slice(0, 5).join(" ") +
+                              (relat?.summery?.split(" ").length > 5 ? "..." : "")
+                            : ""}
+                        </div>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              ))
-            )}
-          </div>
+                ))
+              ) : (
+                <p className="text-center text-gray-500 mt-4">
+                  No related articles available.
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -167,51 +173,50 @@ const ArticleDetails = () => {
       />
 
       <div className="block lg:hidden">
-      <div className="">
-            {isRelatedLoading ? (
-              <Loading />
-            ) : (
-              reletedData.slice(0, 6).map((relat, index) => (
-                <div
-                  key={index}
-                  className="grid grid-cols-6 bg-[#C0C9CD] rounded-xl my-1 mx-1 h-[140px]"
-                >
-                  <div className="col-span-2">
-                    {relat?.article_images
-                      ?.slice(0, 1)
-                      .map((image, imgIndex) => (
-                        <Link href={`${relat?._id}`}>
-                          <img
-                            key={imgIndex}
-                            src={constructImageUrl(image)}
-                            alt={`Article Image ${imgIndex + 1}`}
-                            className="rounded-tl-lg rounded-bl-lg h-[140px] w-[170px] object-cover"
-                          />
-                        </Link>
-                      ))}
-                  </div>
+        <div className="">
+          {isRelatedLoading ? (
+            <Loading />
+          ) : (
+            filteredRelated.slice(0, 6).map((relat, index) => (
+              <div
+                key={index}
+                className="grid grid-cols-6 bg-[#C0C9CD] rounded-xl my-1 mx-1 h-[140px]"
+              >
+                <div className="col-span-2">
+                  {relat?.article_images
+                    ?.slice(0, 1)
+                    .map((image, imgIndex) => (
+                      <Link href={`${relat?._id}`} key={imgIndex}>
+                        <img
+                          src={constructImageUrl(image)}
+                          alt={`Article Image ${imgIndex + 1}`}
+                          className="rounded-tl-lg rounded-bl-lg h-[140px] w-[170px] object-cover"
+                        />
+                      </Link>
+                    ))}
+                </div>
 
-                  <div className="p-1 py-2 col-span-4">
-                    <p className="text-sm">
-                      {calculateDaysAgo(relat?.createdAt)}
-                    </p>
-                    <Link href={`${relat?._id}`}><p className="font-semibold">
+                <div className="p-1 py-2 col-span-4">
+                  <p className="text-sm">{calculateDaysAgo(relat?.createdAt)}</p>
+                  <Link href={`${relat?._id}`}>
+                    <p className="font-semibold">
                       {relat?.title
-                        ? relat?.title?.split(" ")?.slice(0, 5).join(" ") +
-                          (relat?.title?.split(" ")?.length > 5 ? "..." : "")
+                        ? relat?.title?.split(" ").slice(0, 5).join(" ") +
+                          (relat?.title?.split(" ").length > 5 ? "..." : "")
                         : ""}
                     </p>
                     <div>
                       {relat?.summery
-                        ? relat?.summery.split(" ")?.slice(0, 5).join(" ") +
-                          (relat?.summery.split(" ")?.length > 5 ? "..." : "")
+                        ? relat?.summery.split(" ").slice(0, 5).join(" ") +
+                          (relat?.summery.split(" ").length > 5 ? "..." : "")
                         : ""}
-                    </div></Link>
-                  </div>
+                    </div>
+                  </Link>
                 </div>
-              ))
-            )}
-          </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

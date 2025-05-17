@@ -16,8 +16,8 @@ const Navbar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken"); // Check for token in localStorage
-    setIsLoggedIn(!!token); // Set state based on token presence
+    const token = localStorage.getItem("accessToken");
+    setIsLoggedIn(!!token);
   }, []);
 
   const navItems = [

@@ -73,6 +73,7 @@ const Articles = ({ item }) => {
       ))}
       <div className="flex justify-between my-5">
         <h1 className="text-2xl font-bold">{item?.title}</h1>
+        
       </div>
       <div>
       {item?.summery}

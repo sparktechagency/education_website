@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 import Navigate from "@/components/navigate/Navigate";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useGetVideosQuery } from "@/redux/Api/videoApi";
 import Loading from "@/components/Loading";
 import { NoData } from "@/components/NoData";
@@ -14,12 +14,12 @@ const page = () => {
   const [searchTerm, setSearch] = useState("");
   const { data: videoData, isLoading, error } = useGetVideosQuery({ searchTerm });
   const videos = videoData?.data?.result || [];
-
+ const locale = useLocale();
   const m = useTranslations("hero");
   const p = useTranslations("profile");
 
   if (isLoading) {
-    // Display loading component while data is being fetched
+    
     return (
       <p className="h-screen">
         <Loading />
@@ -28,9 +28,11 @@ const page = () => {
   }
 
   if (error) {
-    // Display error message if there's an error in the request
+  
     return <div>Error: {error.message}</div>;
   }
+    const selectedLanguage = locale === "en" ? "ENGLISH" : "SPANISH";
+      const filteredVideos = videos.filter((video) => video.language === selectedLanguage);
 
   return (
     <div className="max-w-[1400px] px-4 lg:px-4 m-auto mb-20">
@@ -65,9 +67,9 @@ const page = () => {
         </div>
       </div>
 
-      {videos?.length > 0 ? (
+      {filteredVideos?.length > 0 ? (
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
-          {videos?.map((videose, i) => (
+          {filteredVideos?.map((videose, i) => (
             <div key={i}>
               <Videos videose={videose}></Videos>
             </div>

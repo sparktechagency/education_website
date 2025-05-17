@@ -4,7 +4,7 @@ import Articles from "@/components/articles/Articles";
 import Loading from "@/components/Loading";
 import Navigate from "@/components/navigate/Navigate";
 import { useGetArticleQuery } from "@/redux/Api/article";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { NoData } from "@/components/NoData";
 import { Pagination } from "antd";
  // Import NoData component
@@ -12,12 +12,17 @@ import { Pagination } from "antd";
 const Page = () => {
   const [searchTerm, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const locale = useLocale();
+  const selectedLanguage = locale === "en" ? "ENGLISH" : "SPANISH";
   const pageSize = 10;
   const { data, isLoading, error } = useGetArticleQuery({ searchTerm ,page: currentPage,
     limit: pageSize,});
+    console.log(data)
   
   const m = useTranslations("hero");
   const p = useTranslations("profile");
+
+  
 
   if (isLoading) {
     return (
@@ -37,6 +42,13 @@ const Page = () => {
 
 
   const articles = data?.data?.result || [];
+  console.log(articles)
+
+   const filteredArticles = (articles || []).filter(
+    (article) => article.language === selectedLanguage
+  );
+
+ 
 
   return (
     <div className="max-w-[1400px] m-auto">
@@ -72,9 +84,9 @@ const Page = () => {
           </div>
         </div>
 
-        {articles?.length > 0 ? (
+        {filteredArticles?.length > 0 ? (
           <div className="lg:px-3">
-            {articles?.map((item) => (
+            {filteredArticles?.map((item) => (
               <Articles key={item?._id} item={item} />
             ))}
           </div>

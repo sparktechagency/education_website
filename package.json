@@ -2,7 +2,7 @@
   "name": "education-website-client",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
+"scripts": {
     "dev": "next dev -H 24.144.126.228 -p 3000",
     "build": "next build",
     "start": "next start -H 24.144.126.228 -p 3000",
