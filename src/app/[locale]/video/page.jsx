@@ -16,15 +16,16 @@ const page = () => {
   const [currentPage, setCurrentPage] = useState(1);
   console.log(currentPage);
   const pageSize = 10;
-
+   const locale = useLocale();
+   const selectedLanguage = locale === "en" ? "ENGLISH" : "SPANISH";
   const {
     data: videoData,
     isLoading,
     error,
-  } = useGetVideosQuery({ searchTerm, page: currentPage, limit: pageSize });
+  } = useGetVideosQuery({ searchTerm, page: currentPage, limit: pageSize, language: selectedLanguage });
   console.log(videoData);
   const videos = videoData?.data?.result || [];
-  const locale = useLocale();
+
   const m = useTranslations("hero");
   const p = useTranslations("profile");
 
@@ -43,7 +44,7 @@ const page = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  const selectedLanguage = locale === "en" ? "ENGLISH" : "SPANISH";
+
   const filteredVideos = videos.filter(
     (video) => video.language === selectedLanguage
   );
@@ -81,9 +82,9 @@ const page = () => {
         </div>
       </div>
 
-      {filteredVideos?.length > 0 ? (
+      {videos?.length > 0 ? (
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
-          {filteredVideos?.map((videose, i) => (
+          {videos?.map((videose, i) => (
             <div key={i}>
               <Videos videose={videose}></Videos>
             </div>

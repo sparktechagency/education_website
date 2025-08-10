@@ -46,11 +46,8 @@ const Page = () => {
   const articles = data?.data?.result || [];
   console.log(articles)
 
-   const filteredArticles = (articles || []).filter(
-    (article) => article.language === selectedLanguage
-  );
 
-  console.log(filteredArticles)
+
 
  console.log(data?.data?.meta?.total)
 
@@ -88,9 +85,9 @@ const Page = () => {
           </div>
         </div>
 
-        {filteredArticles?.length > 0 ? (
+        {articles?.length > 0 ? (
           <div className="lg:px-3">
-            {filteredArticles?.map((item) => (
+            {articles?.map((item) => (
               <Articles key={item?._id} item={item} />
             ))}
           </div>
