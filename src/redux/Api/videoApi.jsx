@@ -5,9 +5,9 @@ const videos = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     
     getVideos: builder.query({
-      query: ({searchTerm}) => {
+      query: ({searchTerm,page,limit,language}) => {
         return {
-          url: `/video/get-all-videos?searchTerm=${searchTerm}`,
+          url: `/video/get-all-videos?searchTerm=${searchTerm}&page=${page}&limit=${limit}`,
           method: "GET",
         };
       },

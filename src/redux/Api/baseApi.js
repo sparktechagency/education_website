@@ -13,7 +13,7 @@ const getToken = () => {
     return localStorage.getItem("accessToken");
   }
 };
-
+//24.144.126.228
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({

@@ -7,19 +7,32 @@ import { useGetVideosQuery } from "@/redux/Api/videoApi";
 import Loading from "@/components/Loading";
 import { NoData } from "@/components/NoData";
 import Videos from "@/components/video/videos";
+import { Pagination } from "antd";
 // import Videos from "@/components/video/Videos";
- // Import the NoData component
+// Import the NoData component
 
 const page = () => {
   const [searchTerm, setSearch] = useState("");
-  const { data: videoData, isLoading, error } = useGetVideosQuery({ searchTerm });
+  const [currentPage, setCurrentPage] = useState(1);
+  console.log(currentPage);
+  const pageSize = 10;
+
+  const {
+    data: videoData,
+    isLoading,
+    error,
+  } = useGetVideosQuery({ searchTerm, page: currentPage, limit: pageSize });
+  console.log(videoData);
   const videos = videoData?.data?.result || [];
- const locale = useLocale();
+  const locale = useLocale();
   const m = useTranslations("hero");
   const p = useTranslations("profile");
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   if (isLoading) {
-    
     return (
       <p className="h-screen">
         <Loading />
@@ -28,11 +41,12 @@ const page = () => {
   }
 
   if (error) {
-  
     return <div>Error: {error.message}</div>;
   }
-    const selectedLanguage = locale === "en" ? "ENGLISH" : "SPANISH";
-      const filteredVideos = videos.filter((video) => video.language === selectedLanguage);
+  const selectedLanguage = locale === "en" ? "ENGLISH" : "SPANISH";
+  const filteredVideos = videos.filter(
+    (video) => video.language === selectedLanguage
+  );
 
   return (
     <div className="max-w-[1400px] px-4 lg:px-4 m-auto mb-20">
@@ -78,6 +92,16 @@ const page = () => {
       ) : (
         <NoData /> // Render the NoData component when no videos are found
       )}
+
+      <div className="mt-4 flex justify-center mb-11">
+        <Pagination
+          current={currentPage}
+          pageSize={pageSize}
+          total={videoData?.data?.meta?.total || 0}
+          onChange={handlePageChange}
+          showSizeChanger={false}
+        />
+      </div>
     </div>
   );
 };

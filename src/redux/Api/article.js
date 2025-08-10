@@ -4,9 +4,9 @@ import baseApi from "./baseApi";
 const article = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getArticle: builder.query({
-      query: ({searchTerm,page,limit}) => {
+      query: ({searchTerm,page,limit,language}) => {
         return {
-          url: `/article/get-all-article?searchTerm=${searchTerm}&page=${page}&limit=${limit}`,
+          url: `/article/get-all-article?searchTerm=${searchTerm}&page=${page}&limit=${limit}&language=${language}`,
           method: "GET",
         };
       },

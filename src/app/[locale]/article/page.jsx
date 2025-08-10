@@ -12,11 +12,13 @@ import { Pagination } from "antd";
 const Page = () => {
   const [searchTerm, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  console.log(currentPage)
   const locale = useLocale();
   const selectedLanguage = locale === "en" ? "ENGLISH" : "SPANISH";
+  console.log(selectedLanguage)
   const pageSize = 10;
   const { data, isLoading, error } = useGetArticleQuery({ searchTerm ,page: currentPage,
-    limit: pageSize,});
+    limit: pageSize, language:selectedLanguage});
     console.log(data)
   
   const m = useTranslations("hero");
@@ -48,7 +50,9 @@ const Page = () => {
     (article) => article.language === selectedLanguage
   );
 
- 
+  console.log(filteredArticles)
+
+ console.log(data?.data?.meta?.total)
 
   return (
     <div className="max-w-[1400px] m-auto">
